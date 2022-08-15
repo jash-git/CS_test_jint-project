@@ -13,11 +13,11 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("CS_test_Jint")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("2022.8.15.0512")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("2022.8.15.0903")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("CS_test_Jint")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CS_test_Jint")]
-[assembly: System.Reflection.AssemblyVersionAttribute("2022.8.15.0512")]
+[assembly: System.Reflection.AssemblyVersionAttribute("2022.8.15.0903")]
 
 // 由 MSBuild WriteCodeFragment 類別產生。
 

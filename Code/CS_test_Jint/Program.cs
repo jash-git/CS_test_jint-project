@@ -71,6 +71,56 @@ namespace CS_test_Jint
 
             return result.AsString();
         }
+
+        static String CallSum(int x = 19, int y = 46)
+        {
+            var engine = new Engine();
+
+            engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
+                Path.DirectorySeparatorChar + "func.js"));
+
+            var result = engine.Execute("JSCallJS(" + x + "," + y + ")").GetCompletionValue();
+
+            return result.AsString();
+        }
+
+        static String JS_ParseJson()
+        {
+            string text = "{ \"sites\" : [" +
+                          "{ \"name\":\"Runoob\" , \"url\":\"www.runoob.com\" }," +
+                          "{ \"name\":\"Google\" , \"url\":\"www.google.com\" }," +
+                          "{ \"name\":\"Taobao\" , \"url\":\"www.taobao.com\" } ]}";
+
+            var engine = new Engine();
+
+            engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
+                Path.DirectorySeparatorChar + "func.js"));
+
+            engine.SetValue("json_data", text);
+
+            var result = engine.Execute("parseJson()").GetCompletionValue();
+
+            return result.AsString();
+        }
+
+        static String JS_CreateJsonString()
+        {
+            string text = "{ \"sites\" : [" +
+                          "{ \"name\":\"Runoob\" , \"url\":\"www.runoob.com\" }," +
+                          "{ \"name\":\"Google\" , \"url\":\"www.google.com\" }," +
+                          "{ \"name\":\"Taobao\" , \"url\":\"www.taobao.com\" } ]}";
+
+            var engine = new Engine();
+
+            engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
+                Path.DirectorySeparatorChar + "func.js"));
+
+            engine.SetValue("json_data", text);
+
+            var result = engine.Execute("obj2JsonString()").GetCompletionValue();
+
+            return result.AsString();
+        }
         //---fun,js
 
         static void Main(string[] args)
@@ -81,6 +131,7 @@ namespace CS_test_Jint
             //單行JS直譯測試，確定Jint Lib可用
             Console.WriteLine(engine.Execute("2+5*12").GetCompletionValue());
             */
+
             /*
             //透過C#無限迴圈，製作一個CMD的可輸入的JS直譯器
             // x=12
@@ -104,7 +155,13 @@ namespace CS_test_Jint
             Console.WriteLine(Sum());
             Console.WriteLine(Echo());
             Console.WriteLine(DoubleCall());
+            Console.WriteLine(String.Format("19+46+10={0}", CallSum()));
             //*/
+
+            //JSON基本測試
+            Console.WriteLine(JS_ParseJson());
+            Console.WriteLine(JS_CreateJsonString());
+
             pause();
         }
     }
