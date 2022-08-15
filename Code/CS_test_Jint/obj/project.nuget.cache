@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "TbSu2DHMvQJSx+OJhd7YxEXclLZurHsPRkWLn+fYJg9ksbvoUqv59yf62j4+hOv8hDyXEahs2l4xxrB1v16ZPA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\devel\\Desktop\\CS_VPOS\\CS_test_Jint\\CS_test_Jint.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\devel\\.nuget\\packages\\jint\\2.11.58\\jint.2.11.58.nupkg.sha512"
+  ],
+  "logs": []
+}
