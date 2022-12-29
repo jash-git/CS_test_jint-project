@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\devel\\Desktop\\CS_VPOS\\CS_test_Jint\\CS_test_Jint.csproj": {}
+    "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\CS_test_Jint.csproj": {}
   },
   "projects": {
-    "C:\\Users\\devel\\Desktop\\CS_VPOS\\CS_test_Jint\\CS_test_Jint.csproj": {
+    "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\CS_test_Jint.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\devel\\Desktop\\CS_VPOS\\CS_test_Jint\\CS_test_Jint.csproj",
+        "projectUniqueName": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\CS_test_Jint.csproj",
         "projectName": "CS_test_Jint",
-        "projectPath": "C:\\Users\\devel\\Desktop\\CS_VPOS\\CS_test_Jint\\CS_test_Jint.csproj",
+        "projectPath": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\CS_test_Jint.csproj",
         "packagesPath": "C:\\Users\\devel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\devel\\Desktop\\CS_VPOS\\CS_test_Jint\\obj\\",
+        "outputPath": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -51,11 +51,11 @@
             },
             "System.IO.Ports": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[7.0.0, )"
             },
             "System.Text.Encoding.CodePages": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -74,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
