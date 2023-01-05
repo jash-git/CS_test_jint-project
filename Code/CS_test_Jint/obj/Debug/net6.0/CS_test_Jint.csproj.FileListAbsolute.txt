@@ -60,3 +60,5 @@ C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\n
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\CS_test_Jint.pdb
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\CS_test_Jint.genruntimeconfig.cache
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\ref\CS_test_Jint.dll
+C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\BILL_80mm.js
+C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\BILL_57mm.js
