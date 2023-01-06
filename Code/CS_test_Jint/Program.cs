@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Jint;
 using System.Text;
+using System.Drawing.Printing;
 
 //出處/原始教學 網站
 //https://github.com/sebastienros/jint
@@ -12,6 +13,9 @@ using System.Text;
 
 using System.IO.Ports; //RS232
 using System.Text.Json;
+using System.Drawing;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace CS_test_Jint
 {
@@ -488,6 +492,57 @@ namespace CS_test_Jint
             }
             Console.WriteLine("C# Modified ESC_Command End");
 
+            Int32 dwError = 0, dwWritten = 0;
+            IntPtr hPrinter = new IntPtr(0);
+            DOCINFOA di = new DOCINFOA();
+            bool bSuccess = false;
+            di.pDocName = "My C#.NET RAW Document";
+            di.pDataType = "RAW";
+            try
+            {
+                // 打開印表機                
+                if (PrinterHelper.OpenPrinter("80mm Series Printer", out hPrinter, IntPtr.Zero))
+                {
+                    // 啟動文檔列印                    
+                    if (PrinterHelper.StartDocPrinter(hPrinter, 1, di))
+                    {
+                        // 開始列印                        
+                        if (PrinterHelper.StartPagePrinter(hPrinter))
+                        {
+                            if ((ESCPOSCommand != null) && (ESCPOSCommand.value != null))
+                            {
+                                for (int i = 0; i < ESCPOSCommand.value.Count; i++)
+                                {                                    
+                                    byte[] bytes = Encoding.GetEncoding("big5").GetBytes(ESCPOSCommand.value[i]);
+
+                                    Int32 dwCount = bytes.Length;
+                                    // 非託管指針              
+                                    IntPtr pBytes = Marshal.AllocHGlobal(dwCount);
+                                    // 將託管位元組陣列複製到非託管記憶體指標          
+                                    Marshal.Copy(bytes, 0, pBytes, dwCount);
+
+                                    // 向印表機輸出位元組  
+                                    bSuccess = PrinterHelper.WritePrinter(hPrinter, pBytes, dwCount, out dwWritten);
+                                }
+                            }
+                                                       
+                            PrinterHelper.EndPagePrinter(hPrinter);
+                        }
+                        PrinterHelper.EndDocPrinter(hPrinter);
+                    }
+                    PrinterHelper.ClosePrinter(hPrinter);
+                }
+                if (bSuccess == false)
+                {
+                    dwError = Marshal.GetLastWin32Error();
+                }
+            }
+            catch (Win32Exception ex)
+            {
+                bSuccess = false;
+            }
+
+            /*RS232 Mode
             string[] m_comports;//= SerialPort.GetPortNames();
             m_comports = SerialPort.GetPortNames();
             if ((m_comports.Length > 0) && (!m_port.IsOpen))
@@ -515,13 +570,14 @@ namespace CS_test_Jint
                         m_port.Write(Encoding.GetEncoding("big5").GetBytes(ESCPOSCommand.value[i]), 0, Encoding.GetEncoding("big5").GetBytes(ESCPOSCommand.value[i]).Length);
                     }
                 }
-                //*/
+                
                 Console.WriteLine("ESC_Command to Printer End");
             }
             else
             {
                 m_port.Close();
             }
+            */
         }
         static void ESC_POS_JS2Data_RS232Print()
         {
