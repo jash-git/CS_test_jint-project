@@ -56,7 +56,7 @@ function Main() {
     var day = pad2(date.getDate());//day (1-31)
     var year = date.getFullYear();
     var hour = pad2(date.getHours());
-    var minute = date.getMinutes();
+    var minute = pad2(date.getMinutes());
     strbuf = ShiftSpace + '日期: ' + year + "-" + month + "-" + day + "  時間: " + hour + ':' + minute;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 
@@ -302,7 +302,7 @@ function Main() {
     day = pad2(now.getDate());//day (1-31)
     year = now.getFullYear();
     hour = pad2(now.getHours());
-    minute = now.getMinutes();
+    minute = pad2(now.getMinutes());
     strbuf = ShiftSpace + "列印時間: " + year + "-" + month + "-" + day + " " + hour + ':' + minute;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 列印時間 + 換行
 	
