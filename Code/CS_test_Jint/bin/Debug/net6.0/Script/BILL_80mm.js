@@ -244,13 +244,13 @@ function Main() {
 	}		
 	strbuf = "小計金額: " + space + json_obj.subtotal;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
-
-    strbuf = '------------------------------------------------';
-    ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
 	
 	//服務費
 	if(json_obj.service_fee>0)
 	{
+		strbuf = '------------------------------------------------';
+		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+	
 		space = "";
 		spaceCount = 48 - Wlen("服務費(" + json_obj.service_rate + "%): ") - Wlen(""+json_obj.service_fee);
 		for (var l = 0; l < spaceCount; l++){
