@@ -16,6 +16,8 @@ using System.Text.Json;
 using System.Drawing;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using System.Net.Sockets;
+using System.Reflection;
 
 namespace CS_test_Jint
 {
@@ -492,6 +494,55 @@ namespace CS_test_Jint
             }
             Console.WriteLine("C# Modified ESC_Command End");
 
+            TcpClient tcpSocket = new TcpClient();
+            tcpSocket.ReceiveBufferSize = 8192;//8k
+            tcpSocket.SendBufferSize = 8192;//8k
+            int intTcpRetryCount = 0;
+            try
+            {
+                do
+                {
+                    //tcpSocket.Connect("192.168.1.54", 9100);
+                    if (!tcpSocket.ConnectAsync("192.168.1.54", 9100).Wait(1000))//if (!tcpSocket.Connected)
+                    {
+                        tcpSocket = null;
+                        tcpSocket = new TcpClient();
+                        intTcpRetryCount++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }while ((!tcpSocket.Connected) && (intTcpRetryCount<3));
+                
+                if(tcpSocket.Connected)
+                {
+                    if ((ESCPOSCommand != null) && (ESCPOSCommand.value != null))
+                    {
+                        for (int i = 0; i < ESCPOSCommand.value.Count; i++)
+                        {
+                            byte[] bytes = Encoding.GetEncoding("big5").GetBytes(ESCPOSCommand.value[i]);
+                            NetworkStream tcpStream = tcpSocket.GetStream();
+                            tcpStream.Write(bytes, 0, bytes.Length);
+                            tcpStream.Flush();
+                        }
+                    }
+                    tcpSocket.GetStream().Close();
+                    tcpSocket.Close();
+                }
+                else
+                {
+
+                }
+
+            }
+            catch (Win32Exception ex)
+            {
+
+            }
+
+
+            /*印表驅動&Windows API
             Int32 dwError = 0, dwWritten = 0;
             IntPtr hPrinter = new IntPtr(0);
             DOCINFOA di = new DOCINFOA();
@@ -541,6 +592,7 @@ namespace CS_test_Jint
             {
                 bSuccess = false;
             }
+            */
 
             /*RS232 Mode
             string[] m_comports;//= SerialPort.GetPortNames();
