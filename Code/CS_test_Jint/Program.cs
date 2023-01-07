@@ -503,17 +503,18 @@ namespace CS_test_Jint
                 do
                 {
                     //tcpSocket.Connect("192.168.1.54", 9100);
-                    if (!tcpSocket.ConnectAsync("192.168.1.54", 9100).Wait(1000))//if (!tcpSocket.Connected)
+                    if (!tcpSocket.ConnectAsync("192.168.1.54", 9100).Wait(3000))//if (!tcpSocket.Connected)
                     {
                         tcpSocket = null;
                         tcpSocket = new TcpClient();
                         intTcpRetryCount++;
+                        Console.WriteLine("TCP RetryCount={0};{1}",intTcpRetryCount, DateTime.Now.ToString("yyyyMMddHHmmss"));
                     }
                     else
                     {
                         break;
                     }
-                }while ((!tcpSocket.Connected) && (intTcpRetryCount<3));
+                }while ((!tcpSocket.Connected) && (intTcpRetryCount<5));
                 
                 if(tcpSocket.Connected)
                 {
@@ -532,13 +533,13 @@ namespace CS_test_Jint
                 }
                 else
                 {
-
+                    Console.WriteLine("TCP Connect Error");
                 }
 
             }
             catch (Win32Exception ex)
             {
-
+                Console.WriteLine("TCP Error:{0}",ex.ToString());
             }
 
 
