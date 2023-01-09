@@ -40,7 +40,8 @@ function Main() {
     ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
 
 	//單號;文字靠左 + 放大 + 單號 + 換行
-    strbuf = ShiftSpace + '單號(' + json_obj.order_type_name + ') :' + json_obj.call_num;
+	var order_noAry = json_obj.order_no.split('-');
+    strbuf = ShiftSpace + '單號(' + json_obj.order_type_name + ') :' + order_noAry[1];//json_obj.call_num;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
 
 	//桌號;文字靠左 + 放大 + 桌號 + 換行
