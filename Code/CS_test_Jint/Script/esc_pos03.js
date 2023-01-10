@@ -1,11 +1,11 @@
 //---
-//建立 40 mm,25 mm 標籤機 Command
+//建立 40 mm,60 mm 標籤機 Command
 const lcPOSITION_X = 15;//起始定位座標點
 const lcPOSITION_Y = 10;//起始定位座標點
 const lcPOSITION_HalfWidth = 175;
-const lcWORD_COUNT = 24;//(12*2)一行英文最多字數(SIZE 40 mm,25 mm)
+const lcWORD_COUNT = 24;//(12*2)一行英文最多字數(SIZE 40 mm,60 mm)
 
-const lcSET_PAGE_SIZE = 'SIZE 40 mm,25 mm\r\n';//設定紙張大小
+const lcSET_PAGE_SIZE = 'SIZE 40 mm,60 mm\r\n';//設定紙張大小
 const lcSET_GAP_DISTANCE = 'GAP 3 mm,0 mm\r\n';//設定紙張間隙
 const lcSET_DIRECTION = 'DIRECTION 1\r\n'; //設定紙張方向
 const lcCLEAR = 'CLS\r\n';//清除影像暫存
@@ -21,9 +21,9 @@ const lcFONT_SIZE01 = '"TST24.BF2",0,1,1,';//字型大小1 => H=25,W=13
 const lcEND = '\r\n';
 
 const lcPRINTEND = "PRINT 1,1\r\n";//指定設定列印資料對應列印張數
-//---建立 40 mm,25 mm 標籤機 Command
+//---建立 40 mm,60 mm 標籤機 Command
 
-//標籤40 mm,25 mm範本
+//標籤40 mm,60 mm範本
 function Main() {
     //JSON資料顯示格式轉換: https://jsonformatter.org/
 	//測試資料來源: C:\Users\devel\Desktop\CS_VPOS\CS_VPOS\Json2Class\orders_new.cs
@@ -96,13 +96,24 @@ function Main() {
 				CMD_Value.push(lcDATA_START + POSITION_dayX + ',' + POSITION_timeY + ',' + lcFONT_SIZE01 + strbuf + lcEND);
 				
 				//---
-				//產品+配料				
+				//產品+配料		
+
+				//產品
 				strbuf = '"' + json_obj.order_items[i].product_name + '"'; //取出產品名稱
 				var POSITION_nameY =50;//產品名稱字高
 				var POSITION_Y = lcPOSITION_Y + POSITION_numY;
 				PositionY_Buf = POSITION_Y + POSITION_nameY/2;
                 CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + POSITION_Y + ',' + lcFONT_SIZE02 + strbuf + lcEND);
 
+				//分隔線
+				var Delimiter = '------------------------'	
+				strbuf = '"' + Delimiter + '"';
+				CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE02 + strbuf + lcEND);				
+				
+				var POSITION_Line = 10;
+				PositionY_Buf += POSITION_Line;
+				
+				//配料
                 if (json_obj.order_items[i].condiments != null) {
                     strbuf = '';
                     for (var k = 0; k < json_obj.order_items[i].condiments.length; k++) {
@@ -111,16 +122,12 @@ function Main() {
                     
                     var array = String2Array(strbuf, 24);
                     for (var l = 0; l < array.length; l++) {
-                        PositionY_Buf = lcPOSITION_Y + POSITION_numY + POSITION_nameY + (l * 25);
+                        PositionY_Buf = lcPOSITION_Y + POSITION_numY + POSITION_nameY + POSITION_Line + (l * 25);
                         strbuf = '"  ' + array[l]+'"';
                         CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE01 + strbuf + lcEND);
                     }
 				}
 				//---產品+配料
-
-				var Delimiter = '------------------------'					
-				strbuf = '"' + Delimiter + '"';
-				CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE02 + strbuf + lcEND);				
                 
 				//金額
 				PositionY_Buf += 25;
