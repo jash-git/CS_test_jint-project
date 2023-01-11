@@ -86,12 +86,12 @@ function Main() {
 				CMD_Value.push(lcDATA_START + lcPOSITION_HalfWidth + ',' + lcPOSITION_Y + ',' + lcFONT_SIZE02 + strbuf + lcEND);
 				
 				//日期
-				strbuf = '"' + month + '-' + day + '"';
+				strbuf = '"' + month + '/' + day + '"';
 				var POSITION_dayX = lcPOSITION_HalfWidth +(13*Wlen(order_noAry[1]));
 				CMD_Value.push(lcDATA_START + POSITION_dayX + ',' + lcPOSITION_Y + ',' + lcFONT_SIZE01 + strbuf + lcEND);
 				
 				//時間
-				strbuf = '"' + hour + '-' + minute + '"';
+				strbuf = '"' + hour + ':' + minute + '"';
 				var POSITION_timeY=lcPOSITION_Y+25;
 				CMD_Value.push(lcDATA_START + POSITION_dayX + ',' + POSITION_timeY + ',' + lcFONT_SIZE01 + strbuf + lcEND);
 				

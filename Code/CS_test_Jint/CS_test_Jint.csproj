@@ -56,6 +56,9 @@
     <None Update="Script\Lable_40mm_25mm_RS232.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Script\Lable_40mm_60mm_RS232.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -319,7 +319,7 @@ namespace CS_test_Jint
             }
         }
 
-        static void ESCPOS_Lable_RS232Print(String StrInput)
+        static void ESCPOS_Lable_RS232Print(String StrInput,String StrMemo)
         {
             Console.WriteLine("Init Jint...");
             var engine = new Engine();
@@ -330,11 +330,10 @@ namespace CS_test_Jint
             */
 
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "CommonFun.js"));
-            engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "esc_pos03.js"));
 
             engine.SetValue("input", StrInput);
+            engine.SetValue("memo", StrMemo);
 
             Console.WriteLine("Create ESC_Command...");
             String StrFunName = "Main()";
@@ -759,7 +758,10 @@ namespace CS_test_Jint
             StreamReader sr = new StreamReader(@"C:\Users\devel\Desktop\ALL.json");
             string StrInput = sr.ReadLine();
             sr.Close();// 關閉串流
-            ESCPOS_Lable_RS232Print(StrInput);
+            StreamReader sr01 = new StreamReader(@"C:\Users\devel\Desktop\product_memo.json");
+            string StrMemo = sr01.ReadLine();
+            sr01.Close();// 關閉串流
+            ESCPOS_Lable_RS232Print(StrInput,StrMemo);
 
             //ESCPOS_Receipt_RS232Print(StrInput);//收據
             //ESCPOS_PaymentDetails_RS232Print(StrInput);//付款明細
