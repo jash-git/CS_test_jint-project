@@ -127,6 +127,11 @@ function Main() {
                         CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE01 + strbuf + lcEND);
                     }
 				}
+				else{//沒有配料 也要有空白列 ~ 排版一致性
+					PositionY_Buf = lcPOSITION_Y + POSITION_numY + POSITION_nameY + POSITION_Line;
+					strbuf = '"  "';
+					CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE01 + strbuf + lcEND);
+				}					
 				//---產品+配料
                 
 				//金額
