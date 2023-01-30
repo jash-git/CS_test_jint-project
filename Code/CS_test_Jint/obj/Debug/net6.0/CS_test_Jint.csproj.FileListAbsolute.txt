@@ -70,3 +70,5 @@ C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\n
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\Lable_40mm_25mm_RS232.js
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\Lable_40mm_60mm_RS232.js
+C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\SMART_80mm.js
+C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\SMART_57mm.js
