@@ -402,7 +402,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "SMART_80mm.js"));
+                Path.DirectorySeparatorChar + "SMART_57mm.js"));
 
             engine.SetValue("input", StrInput);
 

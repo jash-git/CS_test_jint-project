@@ -141,7 +141,7 @@ function Main() {
                 }
 
 				//智能食譜內容
-				strbuf = ShiftSpace ;
+				strbuf = "" ;
 				if (json_obj.order_items[i].material_list != null) {
 					for (var k = 0; k < json_obj.order_items[i].material_list.length; k++) {
                         var strvalue = ((parseFloat(json_obj.order_items[i].material_list[k].material_value) - parseInt(json_obj.order_items[i].material_list[k].material_value,10))>0.0) ? json_obj.order_items[i].material_list[k].material_value : (""+parseInt(json_obj.order_items[i].material_list[k].material_value,10));
@@ -155,7 +155,13 @@ function Main() {
                             strbuf = strbuf + strdata;
 						}						
 					}
-					ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+
+					//切斷列印
+                    var array = String2Array(strbuf, 34);//34=分隔線字數
+					for (var l = 0; l < array.length; l++) {
+						strbuf = ShiftSpace + array[l];
+						ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+					}
 				}				
             }
             else if (json_obj.order_items[i].product_type == 'T') 
@@ -197,7 +203,7 @@ function Main() {
                         }
 						
 						//智能食譜內容
-						strbuf = ShiftSpace ;
+						strbuf = "" ;
 						if (json_obj.order_items[i].material_list != null) {
 							for (var k = 0; k < json_obj.order_items[i].material_list.length; k++) {
 								var strvalue = ((parseFloat(json_obj.order_items[i].material_list[k].material_value) - parseInt(json_obj.order_items[i].material_list[k].material_value,10))>0.0) ? json_obj.order_items[i].material_list[k].material_value : (""+parseInt(json_obj.order_items[i].material_list[k].material_value,10));
@@ -211,7 +217,13 @@ function Main() {
 									strbuf = strbuf + strdata;
 								}						
 							}
-							ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+
+							//切斷列印
+							var array = String2Array(strbuf, 34);//34=分隔線字數
+							for (var l = 0; l < array.length; l++) {
+								strbuf = ShiftSpace + array[l];
+								ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+							}
 						}							
                     }
                 }

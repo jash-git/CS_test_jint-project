@@ -154,7 +154,13 @@ function Main() {
                             strbuf = strbuf + strdata;
 						}						
 					}
-					ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+
+					//切斷列印
+                    var array = String2Array(strbuf, 48);//48=分隔線字數
+					for (var l = 0; l < array.length; l++) {
+						ESC_Value.push(ecTEXT_ALIGN_LEFT + array[l] + ecFREE_LINE);
+					}					
+					
 				}
 				
             }
@@ -211,7 +217,12 @@ function Main() {
 									strbuf = strbuf + strdata;
 								}						
 							}
-							ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+							
+							//切斷列印
+							var array = String2Array(strbuf, 48);//48=分隔線字數
+							for (var l = 0; l < array.length; l++) {
+								ESC_Value.push(ecTEXT_ALIGN_LEFT + array[l] + ecFREE_LINE);
+							}
 						}						
                     }
                 }
