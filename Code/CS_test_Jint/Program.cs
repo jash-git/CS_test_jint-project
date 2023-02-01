@@ -402,7 +402,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "SMART_57mm.js"));
+                Path.DirectorySeparatorChar + "NUMBER_57mm.js"));
 
             engine.SetValue("input", StrInput);
 
@@ -415,7 +415,7 @@ namespace CS_test_Jint
             ESCPOSCommand = JsonSerializer.Deserialize<ESCPOS_OrderNew>(Jsonresult.AsString());
 
             Console.WriteLine("C# Modified ESC_Command Start");
-            if ((ESCPOSCommand != null)&&(ESCPOSCommand.state_code==0))
+            if ((ESCPOSCommand != null)&&(ESCPOSCommand.state_code==0)&&(ESCPOSCommand.value!=null)&&(ESCPOSCommand.value.Count>0))
             {
                 for (int i = 0; i < ESCPOSCommand.value.Count; i++)
                 {
