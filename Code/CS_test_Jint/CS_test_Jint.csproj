@@ -65,6 +65,12 @@
     <None Update="Script\NUMBER_80mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Script\REPORT_57mm.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Script\REPORT_80mm.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Script\SMART_57mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

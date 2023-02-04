@@ -85,6 +85,28 @@ function Wsubstring(data, start, len) {
     return strResult;
 }
 
+
+function TypesettingSpace(StrCaption,intValue,intMaxLength ) {//排版空格字串
+	var StrResult = '';
+	var intCaptionLength = Wlen(StrCaption);//計算字串長度
+	var intValueLength = Wlen(''+intValue);
+	var intLength = intMaxLength-intCaptionLength-intValueLength;
+	for(var i=0;i<intLength;i++)
+	{
+		StrResult += ' ';
+	}
+	return StrResult;
+}
+
+function DividingLine(StrDelimiter,intMaxLength ) {//分隔線字串
+	var StrResult = '';
+	for(var i=0;i<intMaxLength;i++)
+	{
+		StrResult += StrDelimiter;
+	}
+	return StrResult;
+}
+
 //---
 //純粹收集 還未使用過JS
 function decode(s) {

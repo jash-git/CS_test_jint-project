@@ -402,7 +402,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "NUMBER_57mm.js"));
+                Path.DirectorySeparatorChar + "REPORT_80mm.js"));
 
             engine.SetValue("input", StrInput);
 
@@ -448,7 +448,13 @@ namespace CS_test_Jint
                 {
                     for (int i = 0; i < ESCPOSCommand.value.Count; i++)
                     {
+                        //會亂碼  byte[] bytes = Encoding.UTF8.GetBytes(ESCPOSCommand.value[i]);
+                        //會亂碼  byte[] bytes = Encoding.Default.GetBytes(ESCPOSCommand.value[i]);
+                        //會亂碼  byte[] bytes = Encoding.ASCII.GetBytes(ESCPOSCommand.value[i]);
+                        //會亂碼  byte[] bytes = Encoding.Latin1.GetBytes(ESCPOSCommand.value[i]);
+                        //byte[] bytes = Encoding.GetEncoding("big5").GetBytes(ESCPOSCommand.value[i]);
                         m_port.Write(Encoding.GetEncoding("big5").GetBytes(ESCPOSCommand.value[i]), 0, Encoding.GetEncoding("big5").GetBytes(ESCPOSCommand.value[i]).Length);
+                        //m_port.Write(bytes, 0, bytes.Length);
                     }
                 }
                 //*/
