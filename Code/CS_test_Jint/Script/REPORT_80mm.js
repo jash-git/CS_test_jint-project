@@ -95,7 +95,7 @@ function Main() {
     year = business_day.getFullYear();
     hour = pad2(business_day.getHours());
     minute = pad2(business_day.getMinutes());
-	strbuf = ShiftSpace + '營業日: ' + year + "-" + month + "-" + day + " " + hour + ':' + minute;
+	strbuf = ShiftSpace + '營業日: ' + year + "-" + month + "-" + day ;//+ " " + hour + ':' + minute;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 
 	//執行人員;文字靠左 + 執行人員 + 換行
@@ -179,7 +179,7 @@ function Main() {
 		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);			
 	}
 
-	//收支紀錄;
+	//收支紀錄;文字靠左 + 支付方式 + 換行
 	if((json_obj.expense_info!=null) && (json_obj.expense_info.length>0))
 	{
 		strbuf = ShiftSpace + '【收支紀錄】';
@@ -196,10 +196,25 @@ function Main() {
 		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);	
 	}
 	
-	//優惠券區塊;
+	//優惠/兌換券區塊;文字靠左 + 支付方式 + 換行
+	if((json_obj.coupon_info!=null) && (json_obj.coupon_info.length>0))
+	{
+		strbuf = ShiftSpace + '【優惠/兌換券】';
+		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+
+		for(var i=0;i<json_obj.coupon_info.length;i++)
+		{
+			var StrCaption = " " + json_obj.coupon_info[i].coupon_name + ':';
+			strbuf = ShiftSpace + StrCaption + TypesettingSpace(StrCaption,json_obj.coupon_info[i].coupon_amount,MaxLength) + json_obj.coupon_info[i].coupon_amount;
+			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);		
+		}
+		
+		strbuf = ShiftSpace + DividingLine('=',MaxLength);
+		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);			
+	}
 	
 	
-	//發票區塊;
+	//發票區塊;文字靠左 + 支付方式 + 換行
 	if( (json_obj.inv_summery_info.details!=null) && (json_obj.inv_summery_info.details.length>0) )
 	{
 		var intsale_quantity = parseInt(json_obj.inv_summery_info.sale_quantity);
@@ -271,11 +286,11 @@ function Main() {
 		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);		
 	}
 	
-	//列印軟體版本
+	//列印軟體版本;文字靠左 + 支付方式 + 換行
 	strbuf = ShiftSpace + 'Version: ' + json_obj.version;
 	ESC_Value.push(ecFREE_LINE + ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	
-	//列印時間
+	//列印時間;文字靠左 + 支付方式 + 換行
     var now = new Date();
     month = pad2(now.getMonth() + 1);//months (0-11)
     day = pad2(now.getDate());//day (1-31)
