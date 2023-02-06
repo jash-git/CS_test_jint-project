@@ -73,7 +73,7 @@ function Main() {
     year = order_start_time.getFullYear();
     hour = pad2(order_start_time.getHours());
     minute = pad2(order_start_time.getMinutes());
-	strbuf = ShiftSpace + '訂單時間: ' + year + "-" + month + "-" + day + " " + hour + ':' + minute;
+	strbuf = ShiftSpace + '訂單時間: ' + year + "-" + month + "-" + day + " " + hour + ':' + minute + ' ~ ';
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	var order_end_time = new Date(json_obj.order_end_time*1000);
     month = pad2(order_end_time.getMonth() + 1);//months (0-11)
@@ -192,7 +192,7 @@ function Main() {
 			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 		}
 		
-		strbuf = ShiftSpace + DividingLine('=',MaxLength);;	
+		strbuf = ShiftSpace + DividingLine('=',MaxLength);
 		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);	
 	}
 	
@@ -200,7 +200,76 @@ function Main() {
 	
 	
 	//發票區塊;
+	if( (json_obj.inv_summery_info.details!=null) && (json_obj.inv_summery_info.details.length>0) )
+	{
+		var intsale_quantity = parseInt(json_obj.inv_summery_info.sale_quantity);
+		var intcancel_quantity = parseInt(json_obj.inv_summery_info.cancel_quantity);
+		var intCount = 0;
+		//開立
+		if(intsale_quantity>0)
+		{
+			strbuf = ShiftSpace + '發票開立張數:' + TypesettingSpace('發票開立張數:',json_obj.inv_summery_info.sale_quantity,MaxLength) + json_obj.inv_summery_info.sale_quantity;
+			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+			strbuf = ShiftSpace + '發票開立金額:' + TypesettingSpace('發票開立金額:',json_obj.inv_summery_info.sale_amount,MaxLength) + json_obj.inv_summery_info.sale_amount;
+			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);	
+			strbuf = ShiftSpace + '發票開立清單:';
+			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);	
+			intCount = 0;
+			
+			for(var i=0;i<json_obj.inv_summery_info.details.length;i++)
+			{
+				if(json_obj.inv_summery_info.details[i].inv_type == '1')
+				{			
+					var StrCaption = ' ' + json_obj.inv_summery_info.details[i].track + json_obj.inv_summery_info.details[i].begin_no + ' - ' + json_obj.inv_summery_info.details[i].track + json_obj.inv_summery_info.details[i].end_no;
+					strbuf = ShiftSpace + StrCaption + TypesettingSpace(StrCaption,json_obj.inv_summery_info.details[i].quantity,MaxLength) + json_obj.inv_summery_info.details[i].quantity;
+					ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+					
+					intCount+= json_obj.inv_summery_info.details[i].quantity;
+					if(intsale_quantity == intCount)
+					{
+						break;
+					}
+				}
+			}
+		}
+		
+		if((intsale_quantity>0) && (intcancel_quantity>0))
+		{
+			strbuf = ShiftSpace + DividingLine('-',MaxLength);;	
+			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);				
+		}
 
+		//作廢
+		if(intcancel_quantity>0)
+		{
+			strbuf = ShiftSpace + '發票作廢張數:' + TypesettingSpace('發票作廢張數:',json_obj.inv_summery_info.cancel_quantity,MaxLength) + json_obj.inv_summery_info.cancel_quantity;
+			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+			strbuf = ShiftSpace + '發票作廢金額:' + TypesettingSpace('發票作廢金額:',json_obj.inv_summery_info.cancel_amount,MaxLength) + json_obj.inv_summery_info.cancel_amount;
+			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);	
+			strbuf = ShiftSpace + '發票作廢清單:';
+			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+			intCount = 0;
+			
+			for(var i=0;i<json_obj.inv_summery_info.details.length;i++)
+			{
+				if(json_obj.inv_summery_info.details[i].inv_type == '2')
+				{
+					var StrCaption = ' ' + json_obj.inv_summery_info.details[i].track + json_obj.inv_summery_info.details[i].begin_no + ' - ' + json_obj.inv_summery_info.details[i].track + json_obj.inv_summery_info.details[i].end_no;
+					strbuf = ShiftSpace + StrCaption + TypesettingSpace(StrCaption,json_obj.inv_summery_info.details[i].quantity,MaxLength) + json_obj.inv_summery_info.details[i].quantity;
+					ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+					
+					intCount+= json_obj.inv_summery_info.details[i].quantity;			
+					if(intcancel_quantity == intCount)
+					{
+						break;
+					}					
+				}				
+			}
+		}
+		
+		strbuf = ShiftSpace + DividingLine('=',MaxLength);
+		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);		
+	}
 	
 	//列印軟體版本
 	strbuf = ShiftSpace + 'Version: ' + json_obj.version;
