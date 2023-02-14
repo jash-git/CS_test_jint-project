@@ -76,3 +76,5 @@ C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\n
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\NUMBER_80mm.js
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\REPORT_57mm.js
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\REPORT_80mm.js
+C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\WORK_57mm.js
+C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\WORK_80mm.js
