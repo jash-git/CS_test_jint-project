@@ -284,6 +284,28 @@ function Main() {
 		strbuf = ShiftSpace + DividingLine('=',MaxLength);
 		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);		
 	}
+
+	//商品類別銷售統計;文字靠左 + 支付方式 + 換行
+	if( (json_obj.category_sale_info!=null) && (json_obj.category_sale_info.length>0) )
+	{
+		strbuf = ShiftSpace + '【商品類別銷售統計】';
+		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);	
+		
+		for(var i=0;i<json_obj.category_sale_info.length;i++)
+		{
+			var intSpaceLen = 16 - Wlen(json_obj.category_sale_info[i].category_name) -1;
+			strbuf = ShiftSpace + json_obj.category_sale_info[i].category_name  + ':' +  DividingLine(' ',intSpaceLen);
+			strbuf += 'x';
+			var intSpaceLen = 6 - Wlen(''+json_obj.category_sale_info[i].quantity);
+			strbuf += DividingLine(' ',intSpaceLen) + json_obj.category_sale_info[i].quantity;
+			var intSpaceLen = 11 - Wlen(''+json_obj.category_sale_info[i].subtotal);
+			strbuf += DividingLine(' ',intSpaceLen) + json_obj.category_sale_info[i].subtotal;
+			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);	
+		}
+			
+		strbuf = ShiftSpace + DividingLine('=',MaxLength);
+		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);				
+	}
 	
 	//列印軟體版本;文字靠左 + 支付方式 + 換行
 	strbuf = ShiftSpace + 'Version: ' + json_obj.version;
