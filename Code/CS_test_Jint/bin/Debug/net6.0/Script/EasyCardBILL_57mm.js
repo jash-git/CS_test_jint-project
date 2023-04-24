@@ -63,7 +63,7 @@ function Main() {
     var hour = pad2(date.getHours());
     var minute = pad2(date.getMinutes());
 	var seconds = pad2(date.getSeconds());
-    strbuf = ShiftSpace + '交易日期: ' + year + "-" + month + "-" + day + " " + hour + ':' + minute + ':' + seconds;
+    strbuf = ShiftSpace + '交易時間: ' + year + "-" + month + "-" + day + " " + hour + ':' + minute + ':' + seconds;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 
 	//悠遊卡卡號;文字靠左 + 悠遊卡卡號 + 換行
