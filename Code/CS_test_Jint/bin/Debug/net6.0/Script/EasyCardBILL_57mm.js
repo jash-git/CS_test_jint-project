@@ -43,12 +43,16 @@ function Main() {
 	//標題;文字至中 + 粗體+放大 + 悠遊卡交易憑證(顧客聯) + 換行
     ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + '悠遊卡交易憑證(顧客聯)' + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
 	
-	//門    市;文字靠左 + 交易序號 + 換行
+	//門    市;文字靠左 + 門    市 + 換行
     strbuf = ShiftSpace + '門    市: ' + json_obj.TMLocationID;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 
-	//收銀機號;文字靠左 + 交易序號 + 換行 [Trans_Info.Pos_ID]	
+	//收銀機號;文字靠左 + 收銀機號 + 換行
     strbuf = ShiftSpace + '收銀機號: ' + json_obj.Pos_ID;
+    ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+
+	//交易序號;文字靠左 + 交易序號 + 換行
+    strbuf = ShiftSpace + '交易序號: ' + PrefixInteger(json_obj.Pos_Trans_Num,6);
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	
 	//分隔線;文字靠左 + 分隔線 + 換行(80mm分隔線48的符號)

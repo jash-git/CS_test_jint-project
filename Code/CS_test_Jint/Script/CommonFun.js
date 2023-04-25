@@ -17,6 +17,12 @@ const ecTEXT_ALIGN_CENTER = ecESC + "a" + "\u0049";//文字至中
 //---建立 ESC/POS Command
 
 /*
+*數字補N位0 ~ https://blog.csdn.net/qq_41854291/article/details/115344291
+*/
+function PrefixInteger(num, length) {
+    return (Array(length).join('0') + num).slice(-length);
+}
+/*
 *數字補齊兩位
 */
 function pad2(n) {

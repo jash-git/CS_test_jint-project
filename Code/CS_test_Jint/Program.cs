@@ -402,7 +402,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "EasyCardBILL_57mm.js"));
+                Path.DirectorySeparatorChar + "EasyCardCHECKOUT_57mm.js"));
 
             engine.SetValue("store_name", "VTEAM測試店家");
             engine.SetValue("input", StrInput);
