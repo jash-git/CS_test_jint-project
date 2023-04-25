@@ -67,7 +67,8 @@ function Main() {
     var hour = pad2(date.getHours());
     var minute = pad2(date.getMinutes());
 	var seconds = pad2(date.getSeconds());
-    strbuf = ShiftSpace + '交易時間: ' + year + "-" + month + "-" + day + " " + hour + ':' + minute + ':' + seconds;
+	var time = year + "-" + month + "-" + day + " " + hour + ':' + minute + ':' + seconds;
+    strbuf = ShiftSpace + '交易時間: ' + TypesettingSpace('交易時間: ',time,MaxLength) + time;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 
 	//平帳;文字靠左 + 平帳 + 換行
