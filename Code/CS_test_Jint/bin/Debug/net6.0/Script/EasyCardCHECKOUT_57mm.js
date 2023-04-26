@@ -40,8 +40,8 @@ function Main() {
 	//C# 單獨指定 store_name 變數值
     ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
 
-	//標題;文字至中 + 粗體+放大 + 悠遊卡交易憑證(顧客聯) + 換行
-    ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + '悠遊卡交易憑證(顧客聯)' + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
+	//標題;文字至中 + 粗體+放大 + 悠遊卡結帳憑證 + 換行
+    ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + '悠遊卡結帳憑證 ' + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
 	
 	//門    市;文字靠左 + 門    市 + 換行
     strbuf = ShiftSpace + '門    市: ' + json_obj.TMLocationID;
