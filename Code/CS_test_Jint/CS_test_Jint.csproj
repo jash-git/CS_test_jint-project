@@ -68,6 +68,9 @@
     <None Update="Script\Lable_40mm_60mm_RS232.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Script\NcccBILL_57mm.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Script\NUMBER_57mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
