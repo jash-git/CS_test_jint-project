@@ -2,8 +2,8 @@
 function Main() {
     //JSON資料顯示格式轉換: https://jsonformatter.org/
     /*
-    //測試資料來源: C:\Users\devel\Desktop\GITHUB\公司GIT\127\vteam_pos_sys\vteam_pos\VPOS\Json2Class\EasyCardAPIMsg.cs
-    var input = '{"SID":"6D03CBCC5F234669887675F6D85D663C","Message_Type":"0200","Trans_Code":"DEDUCT","Trans_Date":"20230421","Trans_Time":1682058565,"Trans_Amount":50,"Auto_Add_Value":0,"TMLocationID":"0000000001","Store_ID":"00010907","Pos_ID":"01","Employee_ID":"0001","Pos_Trans_Num":213,"Host_Serial_Num":220013,"Batch_No":"23042104","Dongle_Device_ID":"06100D9B2A00","New_Device_ID":"0001090701304102","Precessing_Code":"811599","Precessing_Name":"購貨","RRN":"23042122001261","Card_Info":{"Physical_ID":"1719511104","Purse_ID":"","Receipt_Card_ID":"1719511104","Effective_Date":"20250810","Card_Type":"00","Balance_Amount":103,"Befer_Amount":153,"Serial_Num":""},"Checkout_ID":"","Retry_Nex_Flag":"N","Trans_Success":"Y","Trans_Msg":"OK"}';
+    //測試資料來源:
+    var input = '{"ECR_Response_Code":"0000","ECR_Response_Msg":"\u4EA4\u6613\u6210\u529F","ECR_Indicator":"E","ECR_Version_Date":"220916","Trans_Type":"01","CUP_SP_ESVC_Indicator":"N","Host_ID":"03","Receipt_No":"000013","Card_No":"524108******7158","Trans_Amount":"100000","Trans_Date":"230504","Trans_Time":"101907","Approval_No":"001004","Wave_Card_Indicator":"M","Merchant_ID":"1407002492","Terminal_ID":"23512081","Card_Type":"03","Batch_No":"000003","Bank_Code":"999"}';
     */
 	var MaxLength = 34;
 	var ShiftSpace = '       ';//(80mm(48字)-57mm(34字))/2(對稱) + 1(美觀)= 7字
@@ -31,7 +31,7 @@ function Main() {
     }
     else {
 		Trans_Amount = parseInt(json_obj.Trans_Amount, 10)/100;;
-		if(Trans_Amount<=1000)
+		if((Trans_Amount<=1000) && (json_obj.Trans_Type=="01") &&(json_obj.ECR_Response_Code=="0000"))
 		{
 			Result.state_code = 0;
 			ESC_Value.push(ecINITIALIZE_PRINTER);//印表機初始化			
