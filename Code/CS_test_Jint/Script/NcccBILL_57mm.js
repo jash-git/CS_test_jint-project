@@ -3,7 +3,7 @@ function Main() {
     //JSON資料顯示格式轉換: https://jsonformatter.org/
     /*
     //測試資料來源:
-    var input = '{"ECR_Response_Code":"0000","ECR_Response_Msg":"\u4EA4\u6613\u6210\u529F","ECR_Indicator":"E","ECR_Version_Date":"220916","Trans_Type":"01","CUP_SP_ESVC_Indicator":"N","Host_ID":"03","Receipt_No":"000013","Card_No":"524108******7158","Trans_Amount":"100000","Trans_Date":"230504","Trans_Time":"101907","Approval_No":"001004","Wave_Card_Indicator":"M","Merchant_ID":"1407002492","Terminal_ID":"23512081","Card_Type":"03","Batch_No":"000003","Bank_Code":"999"}';
+    var input = '{"Device_Titel":"聯合信用卡小額交易持卡人存根","ECR_Response_Code":"0000","ECR_Response_Msg":"\u4EA4\u6613\u6210\u529F","ECR_Indicator":"E","ECR_Version_Date":"220916","Trans_Type":"01","CUP_SP_ESVC_Indicator":"N","Host_ID":"03","Receipt_No":"000013","Card_No":"524108******7158","Trans_Amount":"100000","Trans_Date":"230504","Trans_Time":"101907","Approval_No":"001004","Wave_Card_Indicator":"M","Merchant_ID":"1407002492","Terminal_ID":"23512081","Card_Type":"03","Batch_No":"000003","Bank_Code":"999"}';
     */
 	var MaxLength = 34;
 	var ShiftSpace = '       ';//(80mm(48字)-57mm(34字))/2(對稱) + 1(美觀)= 7字
@@ -51,7 +51,7 @@ function Main() {
     ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
 
 	//標題;文字至中 + 粗體+放大 + 聯合信用卡小額交易持卡人存根 + 換行
-    ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + '聯合信用卡小額交易持卡人存根' + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
+    ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.Device_Titel + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
 	
 	//卡號&卡別;文字靠左 + 卡號        卡別:  + 換行
 	strCardType = "";
