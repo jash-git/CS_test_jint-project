@@ -33,16 +33,16 @@ function Main() {
     var AllCount = json_obj.item_count;//產品總數量
 	var space = "";
 	var spaceCount = 0;
-	var Num =0;//目前在第幾號產品
+	//var Num =0;//目前在第幾號產品
     //---
     //產品+配料
     if (json_obj.order_items != null) {
         for (var i = 0; i < json_obj.order_items.length; i++) {			
-			Num = 0;
+			//Num = 0;
 			for(var l=0;l<json_obj.order_items[i].count;l++) {				
 				space = "";
 				spaceCount = 0;
-				Num = l+1;
+				//Num = l+1;
 				
 				if ((json_obj.order_items[i].product_type == 'P') || (json_obj.order_items[i].product_type == 'K')) 
 				{//一般產品和包材	
@@ -54,7 +54,7 @@ function Main() {
 					strbuf = ShiftSpace + '----------------------------------';
 					ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 			
-					var count = json_obj.order_items[i].count + "-" + Num;//單一產品數量值轉字串
+					var count = "";//json_obj.order_items[i].count + "-" + Num;//單一產品數量值轉字串
 					spaceCount = 6 - Wlen(count) - 2;//計算數量欄位的空白數= 該欄位總長度6 - 數量字串長度 - X符號長度
 					for (var j = 0; j < spaceCount; j++){
 						space += " ";//產生對應空白字串
@@ -124,7 +124,7 @@ function Main() {
 						for (var j = 0; j < json_obj.order_items[i].set_meals.length; j++) {
 							for(var m=0;m<json_obj.order_items[i].set_meals.count;m++) {	
 								space = "";
-								Num = m+1;
+								//Num = m+1;
 								
 								//交易序號;文字靠左 + 交易序號 + 換行
 								strbuf = ShiftSpace + '交易序號: ' + json_obj.order_no;
@@ -134,7 +134,7 @@ function Main() {
 								strbuf = ShiftSpace + '----------------------------------';
 								ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 								
-								var count = json_obj.order_items[i].count + "-" + Num;//單一產品數量值轉字串
+								var count = "";//json_obj.order_items[i].count + "-" + Num;//單一產品數量值轉字串
 								spaceCount = 6 - Wlen(count) - 2;//計算數量欄位的空白數= 該欄位總長度6 - 數量字串長度 - X符號長度
 								for (var j = 0; j < spaceCount; j++){
 									space += " ";//產生對應空白字串
