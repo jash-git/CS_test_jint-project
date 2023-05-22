@@ -1,4 +1,4 @@
-//EasyCardBILL_57mm 
+//EasyCardBILL_57mm
 function Main() {
     //JSON資料顯示格式轉換: https://jsonformatter.org/
     /*
