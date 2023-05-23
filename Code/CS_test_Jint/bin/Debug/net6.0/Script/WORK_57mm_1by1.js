@@ -45,7 +45,11 @@ function Main() {
 				//Num = l+1;
 				
 				if ((json_obj.order_items[i].product_type == 'P') || (json_obj.order_items[i].product_type == 'K')) 
-				{//一般產品和包材	
+				{//一般產品和包材
+
+					//店名;文字至中 + 粗體+放大 + 店名 + 換行
+					ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
+			
 					//交易序號;文字靠左 + 交易序號 + 換行
 					strbuf = ShiftSpace + '交易序號: ' + json_obj.order_no;
 					ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
