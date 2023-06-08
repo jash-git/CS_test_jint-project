@@ -14,7 +14,6 @@ const ecBIG_ON = ecGS + "!" + "\u0001";//文字放大1倍_start // big sized tex
 const ecBIG_OFF = ecGS + "!" + "\0";//文字放大1倍_end
 const ecTEXT_ALIGN_LEFT = ecESC + "a" + "\u0048";//文字靠左
 const ecTEXT_ALIGN_CENTER = ecESC + "a" + "\u0049";//文字至中
-const ecTEXT_SPACE = ecESC + "\u0033" + "\u00FF";//文字間距
 //---建立 ESC/POS Command
 
 /*
