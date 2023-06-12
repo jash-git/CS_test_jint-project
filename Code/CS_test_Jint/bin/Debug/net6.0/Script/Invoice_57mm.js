@@ -40,7 +40,7 @@ function Main() {
 	
 	//---
 	//設定 頁面模式 & 紙張大小	
-	var Page_Width = 456; // n * 0.125 = 紙張寬度 mm  Ex: 448 * 0.125 = 57mm
+	var Page_Width = 552; //57mm
 	var Page_Height = 1180;// 設定紙張長度  // 目前找到的依據 (n / 2) * 0.125 = 紙張長度 mm  Ex: (1120 / 2) * 0.125 = 70mm
 	var First_Position = 0;//96 // 要扣除掉Logo位置的部分
 
@@ -49,21 +49,22 @@ function Main() {
 
 	var dyL = (Page_Height % 256);// 紙張長度
 	var dyH = parseInt(Page_Height/256);
-	str_debug_buf = "Page_Width:" + Page_Width +" ;Page_Height:" + Page_Height +" ;dxL:"+ dxL + " ;dxH:" + dxH + " ;dyL:" + dyL + " ;dyH:" + dyH;
+	//str_debug_buf = "Page_Width:" + Page_Width +" ;Page_Height:" + Page_Height +" ;dxL:"+ dxL + " ;dxH:" + dxH + " ;dyL:" + dyL + " ;dyH:" + dyH;
 	var nL = 0; 
 	var nH = 0;
 	var	pX = 0;
 
 	ESC_Value.push("\x1B\x4C");//选择页模式 ESC L
-	ESC_Value.push("\x1B\x57\x41\x00\x00\x00"+ String.fromCharCode(dxL) + String.fromCharCode(dxH) + String.fromCharCode(dyL) + String.fromCharCode(dyH));//在页模式下设置打印区域 ESC W xL xH yL yH dxL dxH dyL dyH
+	ESC_Value.push("\x1B\x57\x10\x00\x00\x00"+ String.fromCharCode(dxL) + String.fromCharCode(dxH) + String.fromCharCode(dyL) + String.fromCharCode(dyH));//在页模式下设置打印区域 ESC W xL(16) xH(0) yL(0) yH(0) dxL(200) dxH(1) dyL(156) dyH(4)
 	ESC_Value.push("\x1B\x54\x00");//选择字符代码表 ESC T n ; HEX 1B 54 00	
 	//---設定 頁面模式 & 紙張大小	
 	
 	//---
 	//店家名 & LOGO
-	nL = 60;
-	nH = 0;
-	ESC_Value.push(ecGS + "$" + String.fromCharCode(nL) + String.fromCharCode(nH)); // 垂直起始位置		
+	nL = 45;
+	nH = 1;
+	ESC_Value.push(ecGS + "$" + String.fromCharCode(nL) + String.fromCharCode(nH)); // 垂直起始位置	(nL+(nH*256))*0.125=60*0.125=7.5mm	
+	
 	pX = Wlen(json_obj.store_name) * 25; // 大字形，每個英數字佔用 25 dot
 	if (pX > Page_Width)
 	{
@@ -72,21 +73,36 @@ function Main() {
 	}
 	else
 	{
-		strbuf = ecDOUBLE_ON + json_obj.store_name + ecDOUBLE_OFF;
-	}
-	
-	nL = (parseInt(Page_Width / 2) - parseInt(pX / 2)) % 256;
-	nH = parseInt((parseInt(Page_Width / 2) - parseInt(pX / 2)) / 256);
+		strbuf = ecDOUBLE_ON + json_obj.store_name + ecDOUBLE_OFF;	
+	}	
+	nL = (parseInt(Page_Width / 2) - parseInt(pX / 2)) % 256;//116
+	nH = parseInt((parseInt(Page_Width / 2) - parseInt(pX / 2)) / 256);//0
 	ESC_Value.push(ecESC + "$" + String.fromCharCode(nL) + String.fromCharCode(nH)); // 水平位置	
 	
 	ESC_Value.push(strbuf);
 	//---店家名 & LOGO
+/*
+	//---
+	//電子發票證明聯
+	pX = 128;
+	nL = pX % 256;
+	nH = parseInt(pX/256);
+	ESC_Value.push(ecGS + "$" + String.fromCharCode(nL) + String.fromCharCode(nH)); // 垂直起始位置	(nL+(nH*256))*0.125=60*0.125=7.5mm	
+	
+	pX = Wlen("電子發票證明聯") * 25; // 大字形，每個英數字佔用 25 dot
+	
+	nL = (parseInt(Page_Width / 2) - parseInt(pX / 2)) % 256;//116
+	nH = parseInt((parseInt(Page_Width / 2) - parseInt(pX / 2)) / 256);//0
+	ESC_Value.push(ecESC + "$" + String.fromCharCode(nL) + String.fromCharCode(nH)); // 水平位置		
 
+	ESC_Value.push(ecDOUBLE_ON + "電子發票證明聯" + ecDOUBLE_OFF);
+	//---電子發票證明聯
+*/
 	
 	ESC_Value.push(ecESC + "\x0C");//打印并回到标准模式（在页模式下）
 	ESC_Value.push("\x1B\x53");//Select standard mode [ESC S] 
 	
-	str_debug_buf += " ;nL:" + nL + " ;nH:" + nH;
+	
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + "DEBUG: "+ str_debug_buf);
 	
 	ESC_Value.push(ecCUT_PAPER);//切紙

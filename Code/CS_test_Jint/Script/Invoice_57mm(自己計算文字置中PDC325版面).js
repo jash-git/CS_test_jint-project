@@ -49,7 +49,7 @@ function Main() {
 
 	var dyL = (Page_Height % 256);// 紙張長度
 	var dyH = parseInt(Page_Height/256);
-	//str_debug_buf = "Page_Width:" + Page_Width +" ;Page_Height:" + Page_Height +" ;dxL:"+ dxL + " ;dxH:" + dxH + " ;dyL:" + dyL + " ;dyH:" + dyH;
+	str_debug_buf = "Page_Width:" + Page_Width +" ;Page_Height:" + Page_Height +" ;dxL:"+ dxL + " ;dxH:" + dxH + " ;dyL:" + dyL + " ;dyH:" + dyH;
 	var nL = 0; 
 	var nH = 0;
 	var	pX = 0;
@@ -61,10 +61,9 @@ function Main() {
 	
 	//---
 	//店家名 & LOGO
-	nL = 45;
-	nH = 1;
+	nL = 50;
+	nH = 0;
 	ESC_Value.push(ecGS + "$" + String.fromCharCode(nL) + String.fromCharCode(nH)); // 垂直起始位置	(nL+(nH*256))*0.125=60*0.125=7.5mm	
-	
 	pX = Wlen(json_obj.store_name) * 25; // 大字形，每個英數字佔用 25 dot
 	if (pX > Page_Width)
 	{
@@ -73,36 +72,21 @@ function Main() {
 	}
 	else
 	{
-		strbuf = ecDOUBLE_ON + json_obj.store_name + ecDOUBLE_OFF;	
-	}	
+		strbuf = ecDOUBLE_ON + json_obj.store_name + ecDOUBLE_OFF;
+	}
+	
 	nL = (parseInt(Page_Width / 2) - parseInt(pX / 2)) % 256;//116
 	nH = parseInt((parseInt(Page_Width / 2) - parseInt(pX / 2)) / 256);//0
 	ESC_Value.push(ecESC + "$" + String.fromCharCode(nL) + String.fromCharCode(nH)); // 水平位置	
 	
 	ESC_Value.push(strbuf);
 	//---店家名 & LOGO
-/*
-	//---
-	//電子發票證明聯
-	pX = 128;
-	nL = pX % 256;
-	nH = parseInt(pX/256);
-	ESC_Value.push(ecGS + "$" + String.fromCharCode(nL) + String.fromCharCode(nH)); // 垂直起始位置	(nL+(nH*256))*0.125=60*0.125=7.5mm	
-	
-	pX = Wlen("電子發票證明聯") * 25; // 大字形，每個英數字佔用 25 dot
-	
-	nL = (parseInt(Page_Width / 2) - parseInt(pX / 2)) % 256;//116
-	nH = parseInt((parseInt(Page_Width / 2) - parseInt(pX / 2)) / 256);//0
-	ESC_Value.push(ecESC + "$" + String.fromCharCode(nL) + String.fromCharCode(nH)); // 水平位置		
 
-	ESC_Value.push(ecDOUBLE_ON + "電子發票證明聯" + ecDOUBLE_OFF);
-	//---電子發票證明聯
-*/
 	
 	ESC_Value.push(ecESC + "\x0C");//打印并回到标准模式（在页模式下）
 	ESC_Value.push("\x1B\x53");//Select standard mode [ESC S] 
 	
-	
+	str_debug_buf += " ;nL:" + nL + " ;nH:" + nH;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + "DEBUG: "+ str_debug_buf);
 	
 	ESC_Value.push(ecCUT_PAPER);//切紙

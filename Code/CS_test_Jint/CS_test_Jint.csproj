@@ -62,6 +62,9 @@
     <None Update="Script\Invoice_57mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Script\Invoice_57mm_X.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Script\Lable_40mm_25mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

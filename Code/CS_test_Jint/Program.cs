@@ -18,6 +18,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Net.Sockets;
 using System.Reflection;
+using System.Security.Cryptography;
 
 namespace CS_test_Jint
 {
@@ -402,7 +403,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "Invoice_57mm.js"));
+                Path.DirectorySeparatorChar + "Invoice_57mm_X.js"));
 
             engine.SetValue("store_name", "VTEAM測試店家");
             engine.SetValue("input", StrInput);
@@ -411,7 +412,7 @@ namespace CS_test_Jint
             String StrFunName = "Main()";
             var Jsonresult = engine.Execute(StrFunName).GetCompletionValue();
 
-            
+
             ESCPOS_OrderNew ESCPOSCommand = new ESCPOS_OrderNew();
             ESCPOSCommand = JsonSerializer.Deserialize<ESCPOS_OrderNew>(Jsonresult.AsString());
 
@@ -430,7 +431,8 @@ namespace CS_test_Jint
             if ((m_comports.Length > 0) && (!m_port.IsOpen))
             {
                 m_port.PortName = m_comports[0];
-                m_port.BaudRate = 19200;
+                //m_port.BaudRate = 115200;//RP-700  ;
+                m_port.BaudRate = 19200;//PDC325
                 m_port.DataBits = 8;
                 m_port.StopBits = StopBits.One;
                 m_port.Parity = Parity.None;
@@ -756,24 +758,103 @@ namespace CS_test_Jint
         static void Main(string[] args)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);//載入.net Big5編解碼函數庫(System.Text.Encoding.CodePages)
-
-            //Console.WriteLine(DoubleCall());
-
-            //CommandMode();
-            //LoadFileCommandMode();
-            //ESC_POS_JS2Data_RS232Print();//單純JS輸出ESC資料RS232列印
+            ///*
             StreamReader sr = new StreamReader(@"C:\Users\devel\Desktop\ALL.json");
             string StrInput = sr.ReadLine();
             sr.Close();// 關閉串流
             ESCPOS_Receipt_RS232Print(StrInput);
+            //*/
+            /*
+            int Page_Width = 552; //57mm
+            int Page_Height = 1180;// 設定紙張長度
+            int First_Position = 0;
+            int dxL = (Page_Width % 256); // 紙張寬度
+            int dxH = (Page_Width / 256);
+            int dyL = (Page_Height % 256);// 紙張長度
+            int dyH = (Page_Height / 256);
+            int nL = 0;
+            int nH = 0;
+            int pX = 0;
 
-            //StreamReader sr01 = new StreamReader(@"C:\Users\devel\Desktop\product_memo.json");
-            //string StrMemo = sr01.ReadLine();
-            //sr01.Close();// 關閉串流
-            //ESCPOS_Lable_RS232Print(StrInput,StrMemo);
 
-            //ESCPOS_Receipt_RS232Print(StrInput);//收據
-            //ESCPOS_PaymentDetails_RS232Print(StrInput);//付款明細
+            string strCmd = "";
+            string[] m_comports;//= SerialPort.GetPortNames();
+            m_comports = SerialPort.GetPortNames();
+            if ((m_comports.Length > 0) && (!m_port.IsOpen))
+            {
+                m_port.PortName = m_comports[0];
+                m_port.BaudRate = 19200;
+                m_port.DataBits = 8;
+                m_port.StopBits = StopBits.One;
+                m_port.Parity = Parity.None;
+                m_port.ReadTimeout = 1;
+                m_port.ReadTimeout = 3000; //单位毫秒
+                m_port.WriteTimeout = 3000; //单位毫秒
+                                            //串口控件成员变量，字面意思为接收字节阀值，
+                                            //串口对象在收到这样长度的数据之后会触发事件处理函数
+                                            //一般都设为1
+                m_port.ReceivedBytesThreshold = 1;
+                m_port.DataReceived += new SerialDataReceivedEventHandler(CommDataReceived); //设置数据接收事件（监听）
+                m_port.Open();
+
+                Console.WriteLine("ESC_Command to Printer Start");
+                
+                //---
+                //設定 頁面模式 & 紙張大小	
+                strCmd = "\x1B\x4C";//选择页模式 ESC L
+                byte[] data = Encoding.GetEncoding("big5").GetBytes(strCmd);
+                m_port.Write(data, 0, data.Length);
+
+                strCmd = "\x1B\x57\x10\x00\x00\x00" + (char)dxL + (char)dxH + (char)dyL + (char)dyH;//在页模式下设置打印区域 ESC W xL(16) xH(0) yL(0) yH(0) dxL(200) dxH(1) dyL(156) dyH(4)
+                data = Encoding.GetEncoding("big5").GetBytes(strCmd);
+                m_port.Write(data, 0, data.Length);
+
+                strCmd = "\x1B\x54\x00";//选择字符代码表 ESC T n ; HEX 1B 54 00	
+                data = Encoding.GetEncoding("big5").GetBytes(strCmd);
+                m_port.Write(data, 0, data.Length);
+                //---設定 頁面模式 & 紙張大小
+
+                //---
+                //店家名 & LOGO
+                nL = 130;
+                nH = 0;
+                strCmd = "\x1d" + "$" + (char)nL + (char)nH; // 垂直起始位置	(nL+(nH*256))*0.125=60*0.125=7.5mm	
+                data = Encoding.GetEncoding("big5").GetBytes(strCmd);
+                m_port.Write(data, 0, data.Length);
+
+                pX = 12 * 25; // 大字形，每個英數字佔用 25 dot [中英文12字]
+                nL = ((Page_Width / 2) - (pX / 2)) % 256;//116
+                nH = (((Page_Width / 2) - (pX / 2)) / 256);//0
+                strCmd = "\x1B" + "$" + (char)nL + (char)nH; // 水平位置	
+                data = Encoding.GetEncoding("big5").GetBytes(strCmd);
+                m_port.Write(data, 0, data.Length);
+
+                strCmd = "\x1D" + "!" + "\x11" + "VTEAM-茶飲店" + "\x1D" + "!" + "\x00";//店家名稱輸出
+                data = Encoding.GetEncoding("big5").GetBytes(strCmd);
+                m_port.Write(data, 0, data.Length);
+                //---店家名 & LOGO
+
+                strCmd = "\x1B" + "\x0C";//打印并回到标准模式（在页模式下）
+                data = Encoding.GetEncoding("big5").GetBytes(strCmd);
+                m_port.Write(data, 0, data.Length);
+
+                strCmd = "\x1B\x53";//Select standard mode [ESC S] 
+                data = Encoding.GetEncoding("big5").GetBytes(strCmd);
+                m_port.Write(data, 0, data.Length);
+
+                strCmd = "\x1D" + "\x56" + "\x41" + "\x00";//切紙
+                data = Encoding.GetEncoding("big5").GetBytes(strCmd);
+                m_port.Write(data, 0, data.Length);
+                
+                Console.WriteLine("ESC_Command to Printer End");
+            }
+            else
+            {
+                m_port.Close();
+            }
+            */
+
+
             pause();
         }
     }
