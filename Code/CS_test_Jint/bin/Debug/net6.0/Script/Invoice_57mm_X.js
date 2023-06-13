@@ -12,6 +12,14 @@ const ecBAR_CODE_HIGHT = ecGS + "\u0068" + "\u0031";//设置条形码高度 GS h
 const ecBAR_CODE_HEAD = ecGS + "\u006B" + "\u0004"//打印条形码     GS   k   m    d1...dk   NUL [29   107  4    d1...dk   0 ]  
 const ecBAR_CODE_END = "\0";//打印条形码     GS   k   m    d1...dk   NUL [29   107  4    d1...dk   0 ]
 
+/*
+C# 對應
+	engine.SetValue("Business_Name", "VTEAM-茶飲店(營業登記名稱)");//SqliteDataAccess.m_company[0].business_name;
+	engine.SetValue("Com_EIN", "28537502");//SqliteDataAccess.m_company[0].EIN;//統一編號
+	engine.SetValue("Reprint","Y");//補印
+	engine.SetValue("Sandbox","Y");//測試
+	engine.SetValue("input", StrInput);
+*/
 function Main() {
 	var ShiftSpace = '       ';//(80mm(48字)-57mm(34字))/2(對稱) + 1(美觀)= 7字
     var Result = {};//最終結果物件
@@ -40,15 +48,36 @@ function Main() {
         ESC_Value.push(ecINITIALIZE_PRINTER);//印表機初始化
 		ESC_Value.push(ecTEXT_SPACE);//文字間距
     }
-    //---判斷記錄輸入資料是否合法	
+    //---判斷記錄輸入資料是否合法
+	
 	//---
 	//店家名 & LOGO
-	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + json_obj.store_name + ecDOUBLE_OFF + ecFREE_LINE);
+	if(Wlen(Business_Name)<=18)
+	{
+		ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + Business_Name + ecDOUBLE_OFF + ecFREE_LINE);
+	}
+	else
+	{
+		ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBIG_ON + Business_Name + ecBIG_OFF + ecFREE_LINE);
+	}
 	//---店家名 & LOGO
+
+	var Invoice_Title = "電子發票證明聯";
+	if(Reprint=="Y")
+	{
+		Invoice_Title = Invoice_Title + "補印";
+	}
+	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + Invoice_Title + ecDOUBLE_OFF + ecFREE_LINE);
 	
-	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + "電子發票證明聯" + ecDOUBLE_OFF + ecFREE_LINE);
-	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + "104年1-4月" + ecDOUBLE_OFF + ecFREE_LINE);
-	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + "UZ-17690872(測)" + ecDOUBLE_OFF + ecFREE_LINE);
+	var Inv_Period = (json_obj.invoice_data.inv_period.substr(0, 4) - 1911) + "年" + (json_obj.invoice_data.inv_period.substr(4, 2) - 1) + "-" + json_obj.invoice_data.inv_period.substr(4, 2) + "月";
+	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + Inv_Period + ecDOUBLE_OFF + ecFREE_LINE);
+	
+	var Invoice_NO = json_obj.invoice_data.inv_no.substr(0, 2) + "-" + json_obj.invoice_data.inv_no.substr(2, 8);
+	if(Sandbox=="Y")
+	{
+		Invoice_NO = Invoice_NO + "(測)";
+	}
+	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + Invoice_NO + ecDOUBLE_OFF + ecFREE_LINE);
 
 	//---
 	//列印時間;文字靠左 + 列印時間 + 換行
@@ -64,10 +93,10 @@ function Main() {
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 列印時間 + 換行
 	//---列印時間;文字靠左 + 列印時間 + 換行
 	
-	strbuf = ShiftSpace + "隨機碼: " + "0122" + "       總計: " + "220";
+	strbuf = ShiftSpace + "隨機碼: " + json_obj.invoice_data.random_code + "       總計: " + json_obj.amount;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 隨機碼&總計 + 換行
 	
-	strbuf = ShiftSpace + "賣方: " + "28537502" + "     買方: " + "";
+	strbuf = ShiftSpace + "賣方: " + Com_EIN + "     買方: " + json_obj.invoice_data.cust_ein;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 統編 + 換行	
 	
 	
@@ -86,7 +115,7 @@ function Main() {
 	ESC_Value.push(ecBAR_CODE_HIGHT);	
 	ESC_Value.push(ecBAR_CODE_WIDTH);
 	
-	var StrBarCode = "10404UZ176908720122";//年月-發票號碼-隨機嗎
+	var StrBarCode =  (json_obj.invoice_data.inv_period.substr(0, 4) - 1911) + json_obj.invoice_data.inv_period.substr(4, 2) + json_obj.invoice_data.inv_no + json_obj.invoice_data.random_code;//發票期別-發票號碼-隨機嗎
 	//ESC_Value.push(ecTEXT_ALIGN_CENTER);
 	ESC_Value.push(ecBAR_CODE_HEAD + StrBarCode + ecBAR_CODE_END);//BarCode Code39
 	//---BarCode
@@ -113,7 +142,23 @@ function Main() {
 	ESC_Value.push("\x1D\x28\x6B\x03\x00\x31\x43\x05");//GS ( k <Function 167> QR Code: Set the size of module ; GS ( k pL pH cn fn n
 	ESC_Value.push("\x1D\x28\x6B\x03\x00\x31\x45\x31");//GS ( k <Function 169> QR Code: Select the error correction level  ; GS ( k pL pH cn fn n 	
 	
-	StrQrData = "**OjE6MTA1OuWPo+e9qToxOjIxMDrniZvlpbY6MToyNQ==                                     ";
+	StrQrData = "**";
+	if (json_obj.order_items != null)
+	{
+		for (var i = 0; i < json_obj.order_items.length; i++)
+		{
+			strbuf = (i+1) + ":" + json_obj.order_items[i].count + ":" + json_obj.order_items[i].amount + ":" ;	
+			StrQrData = StrQrData + strbuf;
+		}
+	}
+	
+	var space = "";
+	for (var j = 0; j < (220-StrQrData.length); j++)
+	{
+		space += " ";//產生對應空白字串
+	}
+	StrQrData +=space;
+	
 	var numberOfBytes = (Wlen(StrQrData)+3);
 	var pL = intToChar(numberOfBytes % 256);
 	var pH = intToChar(parseInt(numberOfBytes/256));
@@ -127,10 +172,10 @@ function Main() {
 	
 	//---
 	//最後資訊
-	strbuf = ShiftSpace + "店家: ";
+	strbuf = ShiftSpace + "店家: " + json_obj.store_name;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 
-	strbuf = ShiftSpace + "機號: ";
+	strbuf = ShiftSpace + "機號: " + json_obj.terminal_sid;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);	
 	//---最後資訊
 	
