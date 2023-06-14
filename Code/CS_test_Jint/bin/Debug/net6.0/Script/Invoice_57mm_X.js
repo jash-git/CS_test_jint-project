@@ -19,6 +19,9 @@ C# 對應
 	engine.SetValue("Reprint","Y");//補印
 	engine.SetValue("Sandbox","Y");//測試
 	engine.SetValue("input", StrInput);
+	engine.SetValue("QRCode_Value_1","LC100425701120613531300000064000000640000000028537502QLOOx0nzLcX0LCfop8gLRA==\u0000:**********:2:2:1:");
+	engine.SetValue("QRCode_Value_2","**波霸紅茶:1:50:養樂多綠(大):1:50:");
+	engine.SetValue("BarCode_Value","11206LC100425705313");
 */
 function Main() {
 	var ShiftSpace = '       ';//(80mm(48字)-57mm(34字))/2(對稱) + 1(美觀)= 7字
@@ -104,7 +107,7 @@ function Main() {
 	//紙張設定
 	ESC_Value.push("\x1B\x4C");//选择页模式 ESC L
 	ESC_Value.push("\x1B\x57\x00\x00\x00\x00\x80\x02\x00\x02");//在页模式下设置打印区域 ESC W xL xH yL yH dxL dxH dyL dyH; [456%256=200(C8) 456/256=1(01) [57mm]; 480%256=244(F4) 480/256=1(01)[30mm]
-	ESC_Value.push("\x1B\x54\x00");//选择字符代码表 ESC T n ; HEX 1B 54 00	
+	//ESC_Value.push("\x1B\x54\x00");//选择字符代码表 ESC T n ; HEX 1B 54 00	
 	//---紙張設定		
 	
 	//---
@@ -115,9 +118,8 @@ function Main() {
 	ESC_Value.push(ecBAR_CODE_HIGHT);	
 	ESC_Value.push(ecBAR_CODE_WIDTH);
 	
-	var StrBarCode =  (json_obj.invoice_data.inv_period.substr(0, 4) - 1911) + json_obj.invoice_data.inv_period.substr(4, 2) + json_obj.invoice_data.inv_no + json_obj.invoice_data.random_code;//發票期別-發票號碼-隨機嗎
-	//ESC_Value.push(ecTEXT_ALIGN_CENTER);
-	ESC_Value.push(ecBAR_CODE_HEAD + StrBarCode + ecBAR_CODE_END);//BarCode Code39
+	//var StrBarCode =  (json_obj.invoice_data.inv_period.substr(0, 4) - 1911) + json_obj.invoice_data.inv_period.substr(4, 2) + json_obj.invoice_data.inv_no + json_obj.invoice_data.random_code;//發票期別-發票號碼-隨機嗎
+	ESC_Value.push(ecBAR_CODE_HEAD + BarCode_Value + ecBAR_CODE_END);//BarCode Code39
 	//---BarCode
 	
 	//---
@@ -129,7 +131,7 @@ function Main() {
 	ESC_Value.push("\x1D\x28\x6B\x03\x00\x31\x43\x05");//GS ( k <Function 167> QR Code: Set the size of module ; GS ( k pL pH cn fn n
 	ESC_Value.push("\x1D\x28\x6B\x03\x00\x31\x45\x31");//GS ( k <Function 169> QR Code: Select the error correction level  ; GS ( k pL pH cn fn n 	
 	
-	var StrQrData = "AB112233441020523999900000144000001540000000001234567ydXZt4LAN1UHN/j1juVcRA==:**********:3:3:2:5Lm+6Zu75rGg";
+	var StrQrData = QRCode_Value_1;
 	var numberOfBytes = (Wlen(StrQrData)+3);
 	var pL = intToChar(numberOfBytes % 256);
 	var pH = intToChar(parseInt(numberOfBytes/256));
@@ -142,18 +144,9 @@ function Main() {
 	ESC_Value.push("\x1D\x28\x6B\x03\x00\x31\x43\x05");//GS ( k <Function 167> QR Code: Set the size of module ; GS ( k pL pH cn fn n
 	ESC_Value.push("\x1D\x28\x6B\x03\x00\x31\x45\x31");//GS ( k <Function 169> QR Code: Select the error correction level  ; GS ( k pL pH cn fn n 	
 	
-	StrQrData = "**";
-	if (json_obj.order_items != null)
-	{
-		for (var i = 0; i < json_obj.order_items.length; i++)
-		{
-			strbuf = (i+1) + ":" + json_obj.order_items[i].count + ":" + json_obj.order_items[i].amount + ":" ;	
-			StrQrData = StrQrData + strbuf;
-		}
-	}
-	
+	StrQrData = QRCode_Value_2;
 	var space = "";
-	for (var j = 0; j < (220-StrQrData.length); j++)
+	for (var j = 0; j < (200-StrQrData.length); j++)
 	{
 		space += " ";//產生對應空白字串
 	}
