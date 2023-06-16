@@ -202,6 +202,8 @@ function Main() {
 		var AllCount = 0;
 		var space = "";
 		var spaceCount = 0;
+		var AllAmount = 0;
+		var AllTax_Fee = 0;
 		//---
 		//產品+配料
 		if (invoice_obj.Items != null) {
@@ -210,6 +212,8 @@ function Main() {
 				spaceCount = 0;
 				
 				AllCount += invoice_obj.Items[i].Quantity;//總數量統計
+				AllAmount+= invoice_obj.Items[i].Amount;//含稅總金額
+				AllTax_Fee+= invoice_obj.Items[i].Tax_Fee;//總稅額
 				
 				var count = "" + invoice_obj.Items[i].Quantity;//單一產品數量值轉字串
 				spaceCount = 6 - Wlen(count) - 2;//計算數量欄位的空白數= 該欄位總長度6 - 數量字串長度 - X符號長度
@@ -258,44 +262,73 @@ function Main() {
 		strbuf = ShiftSpace + '----------------------------------';
 		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
 		
+		//---
+		//小計列
 		space = "";
-		spaceCount = 34 - Wlen("小計: ") - Wlen(invoice_obj.Total_Amount + " TX");
+		spaceCount = 34 - Wlen("小計: ") - Wlen(invoice_obj.Total_Amount + " TX");//總長度為34字元
 		for (var l = 0; l < spaceCount; l++){
 			space += " ";//產生對應空白字串
 		}		
 		strbuf = ShiftSpace + "小計: " + space + invoice_obj.Total_Amount + "   ";
 		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
-		
-		//服務費
-		if(json_obj.service_fee>0)
-		{
-			strbuf = ShiftSpace + '----------------------------------';
-			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
-		
-			space = "";
-			spaceCount = 34 - Wlen("服務費(" + json_obj.service_rate + "%): ") - Wlen(""+json_obj.service_fee);
-			for (var l = 0; l < spaceCount; l++){
-				space += " ";//產生對應空白字串
-			}	
-			strbuf = ShiftSpace + "服務費(" + json_obj.service_rate + "%): " + space + json_obj.service_fee;
-			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
-		}
+		//---小計列
 		
 		strbuf = ShiftSpace + '----------------------------------';
+		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行				
+		
+		//---
+		//稅別列
+		strbuf = ShiftSpace + '稅別    應稅總額    稅額      總計';//34=8[中文4個字]+14+4[中文2個字]+4+4[中文2個字]
 		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
 		
-		//總計
+
+		var Untaxed = AllAmount- AllTax_Fee;//應稅總額
+		strbuf = ShiftSpace + ' TX     ';
 		space = "";
-		spaceCount = 34 - Wlen("總計: ") - Wlen(""+json_obj.amount);
+		spaceCount = 8 - Wlen(""+Untaxed);
 		for (var l = 0; l < spaceCount; l++){
 			space += " ";//產生對應空白字串
-		}	
-		strbuf = ShiftSpace + "總計: " + space + json_obj.amount
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE)
+		}
+		strbuf += space + Untaxed;
+		
+		space = "";
+		spaceCount = 8 - Wlen(""+AllTax_Fee);
+		for (var l = 0; l < spaceCount; l++){
+			space += " ";//產生對應空白字串
+		}		
+		strbuf += space + AllTax_Fee;
+		
+	    space = "";
+		spaceCount = 10 - Wlen(""+AllAmount);
+		for (var l = 0; l < spaceCount; l++){
+			space += " ";//產生對應空白字串
+		}
+		strbuf += space + AllAmount;		
+		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 		
 		strbuf = ShiftSpace + '----------------------------------';
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+		//---稅別列
+
+		//---
+		//合計列
+		strbuf = ShiftSpace +"合計:";
+		space = "";
+		spaceCount = 10 - Wlen(""+AllCount);
+		for (var l = 0; l < spaceCount; l++){
+			space += " ";//產生對應空白字串
+		}
+		strbuf += space + AllCount + "項";
 		
+		strbuf+="  金額:";
+		space = "";
+		spaceCount = 9 - Wlen(""+AllAmount);
+		for (var l = 0; l < spaceCount; l++){
+			space += " ";//產生對應空白字串
+		}
+		strbuf += space + AllAmount;			
+		ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+		//---合計列
 	}
 	//---必須列印銷貨明細
 	
