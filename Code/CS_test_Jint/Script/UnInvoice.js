@@ -7,9 +7,7 @@ C# 對應
 	engine.SetValue("Sandbox", "Y");//測試
 	engine.SetValue("input", StrInput);
 	engine.SetValue("Invoice", StrInvoice);
-	engine.SetValue("QRCode_Value_1", "LC100425701120613531300000064000000640000000028537502QLOOx0nzLcX0LCfop8gLRA==\u0000:**********:2:2:1:");
-	engine.SetValue("QRCode_Value_2", "**5rOi6Zy457SF6Iy2OjE6NTA66aSK5qiC5aSa57agKOWkpyk6MTo1MDo=");//**波霸紅茶:1:50:養樂多綠(大):1:50:
-	engine.SetValue("BarCode_Value", "11206LC100425705313");
+
 */
 function Main() {
 	var ShiftSpace = '       ';//(80mm(48字)-57mm(34字))/2(對稱) + 1(美觀)= 7字
