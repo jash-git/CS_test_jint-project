@@ -76,7 +76,7 @@ function Main() {
 	}
 	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + Invoice_Title + ecDOUBLE_OFF + ecFREE_LINE);
 	
-	var Inv_Period = (json_obj.invoice_data.inv_period.substr(0, 4) - 1911) + "年" + (json_obj.invoice_data.inv_period.substr(4, 2) - 1) + "-" + json_obj.invoice_data.inv_period.substr(4, 2) + "月";
+	var Inv_Period = (json_obj.invoice_data.inv_period.substr(0, 4) - 1911) + "年" + (json_obj.invoice_data.inv_period.substr(4, 2) - 1) + "-" + (json_obj.invoice_data.inv_period.substr(4, 2) - 0) + "月";
 	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + Inv_Period + ecDOUBLE_OFF + ecFREE_LINE);
 	
 	var Invoice_NO = json_obj.invoice_data.inv_no.substr(0, 2) + "-" + json_obj.invoice_data.inv_no.substr(2, 8);
@@ -149,13 +149,6 @@ function Main() {
 	ESC_Value.push("\x1D\x28\x6B\x03\x00\x31\x45\x31");//GS ( k <Function 169> QR Code: Select the error correction level  ; GS ( k pL pH cn fn n 	
 	
 	StrQrData = QRCode_Value_2;
-	var space = "";
-	for (var j = 0; j < (200-StrQrData.length); j++)
-	{
-		space += " ";//產生對應空白字串
-	}
-	StrQrData +=space;
-	
 	var numberOfBytes = (Wlen(StrQrData)+3);
 	var pL = intToChar(numberOfBytes % 256);
 	var pH = intToChar(parseInt(numberOfBytes/256));
