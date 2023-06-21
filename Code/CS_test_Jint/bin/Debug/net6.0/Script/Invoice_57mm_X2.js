@@ -25,12 +25,9 @@ C# 對應
 	engine.SetValue("BarCode_Value", "11206LC100425705313");
 */
 function Main() {
-	var ShiftSpace = '       ';//(80mm(48字)-57mm(34字))/2(對稱) + 1(美觀)= 7字
-    var Result = {};//最終結果物件
     var json_obj = {};//輸入字串的JSON物件
 	var invoice_obj = {};//輸入invoice字串的JSON物件
-    var ESC_Value = [];//存放記錄所有產出的列印資訊陣列
-    var strbuf = '';//字串資料暫存變數
+	var Result = "";//最終JSON字串
 	
     //---
     //將輸入文字轉成JSON物件
@@ -42,8 +39,19 @@ function Main() {
         json_obj = null;
 		invoice_obj = null;
     }
-    //---將輸入文字轉成JSON物件
+	//---將輸入文字轉成JSON物件
+	
+	Result = Refund(json_obj,invoice_obj);//Sell(json_obj,invoice_obj);
+	return Result;
+}
 
+function Sell(json_obj,invoice_obj)
+{
+	var ShiftSpace = '       ';//(80mm(48字)-57mm(34字))/2(對稱) + 1(美觀)= 7字
+    var Result = {};//最終結果物件
+    var ESC_Value = [];//存放記錄所有產出的列印資訊陣列
+    var strbuf = '';//字串資料暫存變數	
+	
     //---
     //判斷記錄輸入資料是否合法
     if ((json_obj == null) || (invoice_obj == null)) {
@@ -328,9 +336,72 @@ function Main() {
 	ESC_Value.push(ecCUT_PAPER);//切紙
 	
     Result.value = ESC_Value;
-    return JSON.stringify(Result);	
+    return JSON.stringify(Result);		
 }
 
+function Refund(json_obj,invoice_obj)
+{
+	var ShiftSpace = '       ';//(80mm(48字)-57mm(34字))/2(對稱) + 1(美觀)= 7字
+    var Result = {};//最終結果物件
+    var ESC_Value = [];//存放記錄所有產出的列印資訊陣列
+    var strbuf = '';//字串資料暫存變數	
+	
+    //---
+    //判斷記錄輸入資料是否合法
+    if ((json_obj == null) || (invoice_obj == null)) {
+        Result.state_code = 1;
+        return JSON.stringify(Result);
+    }
+    else {
+        Result.state_code = 0;
+        ESC_Value.push(ecINITIALIZE_PRINTER);//印表機初始化
+    }
+    //---判斷記錄輸入資料是否合法
+	
+	//---
+	//店家名
+	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBIG_ON +  Business_Name + ecBIG_OFF + ecFREE_LINE);
+	//---店家名
+	
+	strbuf = '營業人銷貨退回、進貨退出或';
+	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBIG_ON +  strbuf + ecBIG_OFF + ecFREE_LINE);
+	
+	strbuf = '折讓證明單';
+	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBIG_ON +  strbuf + ecBIG_OFF + ecFREE_LINE + ecFREE_LINE);
+	
+	//---
+	//列印時間;文字靠左 + 列印時間 + 換行
+    var now = new Date();
+    var month = pad2(now.getMonth() + 1);//months (0-11)
+    var day = pad2(now.getDate());//day (1-31)
+    var year = now.getFullYear();
+    var hour = pad2(now.getHours());
+    var minute = pad2(now.getMinutes());
+	var second = pad2(now.getSeconds());
+    strbuf = year + "-" + month + "-" + day;
+    ESC_Value.push(ecTEXT_ALIGN_CENTER + strbuf + ecFREE_LINE + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 列印時間 + 換行
+	//---列印時間;文字靠左 + 列印時間 + 換行	
+
+	strbuf = ShiftSpace + "賣方統編: " + Com_EIN;
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 統編 + 換行
+
+	strbuf = ShiftSpace + "賣方名稱: " + Business_Name;
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 統編 + 換行	
+
+    var date = new Date(invoice_obj.Inv_Time * 1000);//json_obj.order_time (sec) -> ms, https://www.fooish.com/javascript/date/
+    month = pad2(date.getMonth() + 1);//months (0-11)
+    day = pad2(date.getDate());//day (1-31)
+    year = date.getFullYear();
+    hour = pad2(date.getHours());
+    minute = pad2(date.getMinutes());
+	strbuf = ShiftSpace + "開立發票日期: " + year + "-" + month + "-" + day ;
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 統編 + 換行	
+	
+	ESC_Value.push(ecCUT_PAPER);//切紙
+	
+    Result.value = ESC_Value;
+    return JSON.stringify(Result);			
+}
 
 function intToChar(integer) {
   return String.fromCharCode(integer)

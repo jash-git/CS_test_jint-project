@@ -403,7 +403,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "Invoice_57mm_X.js"));
+                Path.DirectorySeparatorChar + "Invoice_57mm_X2.js"));
 
             StreamReader sr = new StreamReader(@"C:\Users\devel\Desktop\Invoice.json");
             string StrInvoice = sr.ReadLine();
@@ -416,7 +416,7 @@ namespace CS_test_Jint
             engine.SetValue("input", StrInput);
             engine.SetValue("Invoice", StrInvoice);
             engine.SetValue("QRCode_Value_1", "LC100425701120613531300000064000000640000000028537502QLOOx0nzLcX0LCfop8gLRA==\u0000:**********:2:2:1:");
-            engine.SetValue("QRCode_Value_2", "**5rOi6Zy457SF6Iy2OjE6NTA66aSK5qiC5aSa57agKOWkpyk6MTo1MDo=");//**波霸紅茶:1:50:養樂多綠(大):1:50:
+            engine.SetValue("QRCode_Value_2", "**".PadRight(250,' '));//**波霸紅茶:1:50:養樂多綠(大):1:50:
             engine.SetValue("BarCode_Value", "11206LC100425705313");
 
             Console.WriteLine("Create ESC_Command...");
