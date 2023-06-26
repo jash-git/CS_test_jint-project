@@ -41,7 +41,15 @@ function Main() {
     }
 	//---將輸入文字轉成JSON物件
 	
-	Result = Refund(json_obj,invoice_obj);//Sell(json_obj,invoice_obj);
+	if(invoice_obj.Invalid_Flag=="Y")
+	{
+		Result = Refund(json_obj,invoice_obj);
+	}
+	else
+	{
+		Result = Sell(json_obj,invoice_obj);
+	}
+	
 	return Result;
 }
 
@@ -382,12 +390,15 @@ function Refund(json_obj,invoice_obj)
     ESC_Value.push(ecTEXT_ALIGN_CENTER + strbuf + ecFREE_LINE + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 列印時間 + 換行
 	//---列印時間;文字靠左 + 列印時間 + 換行	
 
+	//---
+	//賣方資訊
 	strbuf = ShiftSpace + "賣方統編: " + Com_EIN;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 統編 + 換行
 
 	strbuf = ShiftSpace + "賣方名稱: " + Business_Name;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 統編 + 換行	
-
+	//---賣方資訊
+	
     var date = new Date(invoice_obj.Inv_Time * 1000);//json_obj.order_time (sec) -> ms, https://www.fooish.com/javascript/date/
     month = pad2(date.getMonth() + 1);//months (0-11)
     day = pad2(date.getDate());//day (1-31)
@@ -396,6 +407,159 @@ function Refund(json_obj,invoice_obj)
     minute = pad2(date.getMinutes());
 	strbuf = ShiftSpace + "開立發票日期: " + year + "-" + month + "-" + day ;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 統編 + 換行	
+	
+	//---
+	//發票號碼
+	var Invoice_NO = ShiftSpace + json_obj.invoice_data.inv_no.substr(0, 2) + "-" + json_obj.invoice_data.inv_no.substr(2, 8);
+	if(Sandbox=="Y")
+	{
+		Invoice_NO = Invoice_NO + "(測)";
+	}
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + Invoice_NO + ecBIG_OFF + ecFREE_LINE + ecFREE_LINE);
+	//---發票號碼
+	
+	//---
+	//買方資訊
+	strbuf = ShiftSpace + "買方統編: " + json_obj.invoice_data.cust_ein;
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 統編 + 換行
+
+	strbuf = ShiftSpace + "買方名稱: " + "";
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 統編 + 換行	
+	//---買方資訊
+
+	var AllCount = 0;
+	var space = "";
+	var spaceCount = 0;
+	var AllAmount = 0;
+	var AllTax_Fee = 0;
+	//---
+	//產品+配料
+	if (invoice_obj.Items != null) {
+		for (var i = 0; i < invoice_obj.Items.length; i++) {
+			space = "";
+			spaceCount = 0;
+			
+			AllCount += invoice_obj.Items[i].Quantity;//總數量統計
+			AllAmount+= invoice_obj.Items[i].Amount;//含稅總金額
+			AllTax_Fee+= invoice_obj.Items[i].Tax_Fee;//總稅額
+			
+			var count = "" + invoice_obj.Items[i].Quantity;//單一產品數量值轉字串
+			spaceCount = 6 - Wlen(count) - 2;//計算數量欄位的空白數= 該欄位總長度6 - 數量字串長度 - X符號長度
+			for (var j = 0; j < spaceCount; j++){
+				space += " ";//產生對應空白字串
+			}
+			count = "X" + space + invoice_obj.Items[i].Quantity;
+
+			space = "";
+			spaceCount = 0;
+			var amount = "" + invoice_obj.Items[i].Price + " TX";//單一產品價格值轉字串
+			spaceCount = 6 - Wlen(amount);//計算價格欄位的空白數= 該欄位總長度6 - 數量字串長度
+			for (var j = 0; j < spaceCount; j++) {
+				space += " ";
+			}
+			amount = space  + invoice_obj.Items[i].Price + " TX"
+
+			//產品&包材;文字靠左 + 放大 + 產品 + 換行
+			space = "";
+			spaceCount = 0;
+			
+			var product_name = invoice_obj.Items[i].Product_Name;
+			var product_name_len = Wlen(product_name);//計算產品名稱字串長度
+			var product_name_show ='';
+			if(product_name_len>20)//20是產品名稱欄位最大寬度
+			{
+				intWStrPoint = 0;//初始化Wsubstring函數的旗標
+				product_name_show = Wsubstring(product_name,0,20);
+			}
+			else
+			{
+				product_name_show = product_name;
+			}
+			
+			spaceCount = 34 - Wlen(product_name_show) - Wlen(count) - 2 - Wlen(amount);//該列總長度-產品民長度-數量長度-2-價格長度
+			for (var j = 0; j < spaceCount; j++) {
+				space += " ";
+			}
+			strbuf = ShiftSpace + product_name_show + space + count + "  " + amount;
+			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);				
+
+		}
+	}
+	//---產品+配料
+
+	strbuf = ShiftSpace + '----------------------------------';
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+	
+	//---
+	//小計列
+	space = "";
+	spaceCount = 34 - Wlen("小計: ") - Wlen(invoice_obj.Total_Amount + " TX");//總長度為34字元
+	for (var l = 0; l < spaceCount; l++){
+		space += " ";//產生對應空白字串
+	}		
+	strbuf = ShiftSpace + "小計: " + space + invoice_obj.Total_Amount + "   ";
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+	//---小計列
+	
+	strbuf = ShiftSpace + '----------------------------------';
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行				
+	
+	//---
+	//稅別列
+	strbuf = ShiftSpace + '稅別    應稅總額    稅額      總計';//34=8[中文4個字]+14+4[中文2個字]+4+4[中文2個字]
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+	
+
+	var Untaxed = AllAmount- AllTax_Fee;//應稅總額
+	strbuf = ShiftSpace + ' TX     ';
+	space = "";
+	spaceCount = 8 - Wlen(""+Untaxed);
+	for (var l = 0; l < spaceCount; l++){
+		space += " ";//產生對應空白字串
+	}
+	strbuf += space + Untaxed;
+	
+	space = "";
+	spaceCount = 8 - Wlen(""+AllTax_Fee);
+	for (var l = 0; l < spaceCount; l++){
+		space += " ";//產生對應空白字串
+	}		
+	strbuf += space + AllTax_Fee;
+	
+	space = "";
+	spaceCount = 10 - Wlen(""+AllAmount);
+	for (var l = 0; l < spaceCount; l++){
+		space += " ";//產生對應空白字串
+	}
+	strbuf += space + AllAmount;		
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+	
+	strbuf = ShiftSpace + '----------------------------------';
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+	//---稅別列
+
+	//---
+	//合計列
+	strbuf = ShiftSpace +"合計:";
+	space = "";
+	spaceCount = 10 - Wlen(""+AllCount);
+	for (var l = 0; l < spaceCount; l++){
+		space += " ";//產生對應空白字串
+	}
+	strbuf += space + AllCount + "項";
+	
+	strbuf+="  金額:";
+	space = "";
+	spaceCount = 9 - Wlen(""+AllAmount);
+	for (var l = 0; l < spaceCount; l++){
+		space += " ";//產生對應空白字串
+	}
+	strbuf += space + AllAmount;			
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE + ecFREE_LINE + ecFREE_LINE);
+	//---合計列
+	
+	strbuf = ShiftSpace + '  簽收人:';//
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 分隔線 + 換行	
 	
 	ESC_Value.push(ecCUT_PAPER);//切紙
 	
