@@ -41,7 +41,15 @@ function Main() {
     }
 	//---將輸入文字轉成JSON物件
 	
-	Result = Refund(json_obj,invoice_obj);//Sell(json_obj,invoice_obj);
+	if(invoice_obj.Invalid_Flag=="Y")
+	{
+		Result = Refund(json_obj,invoice_obj);
+	}
+	else
+	{
+		Result = Sell(json_obj,invoice_obj);
+	}
+	
 	return Result;
 }
 

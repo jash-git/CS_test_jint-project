@@ -122,53 +122,46 @@ function Main() {
 					ESC_Value.push(ecCUT_PAPER);//切紙
 				}
 				else if (json_obj.order_items[i].product_type == 'T') 
-				{//套餐類型
-					if ((json_obj.order_items[i].set_meals != null) && (json_obj.order_items[i].set_meals.length > 0)) {
-						for (var j = 0; j < json_obj.order_items[i].set_meals.length; j++) {
-							for(var m=0;m<json_obj.order_items[i].count;m++) {	
-								space = "";
-								//Num = m+1;
-	
-								//交易序號;文字靠左 + 交易序號 + 換行
-								strbuf = ShiftSpace + '交易序號: ' + json_obj.order_no;
-								ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+				{//套餐類型			
+					if ((json_obj.order_items[i].set_meals != null) && (json_obj.order_items[i].set_meals.length > 0))
+					{
+						for(var j=0;j<json_obj.order_items[i].set_meals.length;j++)
+						{
+							if((json_obj.order_items[i].set_meals[j].product!=null) && (json_obj.order_items[i].set_meals[j].product.length>0))
+							{
+								for(var l=0;l<json_obj.order_items[i].set_meals[j].product.length;l++)
+								{
+									//店名;文字至中 + 粗體+放大 + 店名 + 換行
+									ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
+							
+									//交易序號;文字靠左 + 交易序號 + 換行
+									strbuf = '交易序號: ' + json_obj.order_no;
+									ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 
-								//分隔線;文字靠左 + 分隔線 + 換行(80mm分隔線48的符號)
-								strbuf = ShiftSpace + '----------------------------------';
-								ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
-								
-								var count = "";//json_obj.order_items[i].count + "-" + Num;//單一產品數量值轉字串
-								spaceCount = 6 - Wlen(count) - 2;//計算數量欄位的空白數= 該欄位總長度6 - 數量字串長度 - X符號長度
-								for (var j = 0; j < spaceCount; j++){
-									space += " ";//產生對應空白字串
-								}
-								count = space + count;
-
-								var product_name = json_obj.order_items[i].set_meals[j].product_name;
-								//48字
-								space = "";
-								spaceCount = 48 - Wlen(product_name) - Wlen(count);
-								for (var k = 0; k < spaceCount; k++) {
-									space += " ";
-								}
-								strbuf = product_name + space + count;
-								ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);//文字靠左 + 放大 + 產品 + 換行
-
-								strbuf = "  (";
-								if (json_obj.order_items[i].set_meals[j].condiments != null) {
-									for (var k = 0; k < json_obj.order_items[i].set_meals[j].condiments.length; k++) {
-										if (k > 0) {
-											strbuf = strbuf + "," + json_obj.order_items[i].set_meals[j].condiments[k].condiment_name;
+									//分隔線;文字靠左 + 分隔線 + 換行(80mm分隔線48的符號)
+									strbuf = '------------------------------------------------';
+									ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+							
+									var product_name = json_obj.order_items[i].set_meals[j].product[l].name;
+									strbuf = product_name;
+									ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+									
+									//配料;文字靠左 + 配料 + 換行
+									strbuf = "  (";
+									if (json_obj.order_items[i].set_meals[j].product[l].condiments != null) {
+										for (var k = 0; k < json_obj.order_items[i].set_meals[j].product[l].condiments.length; k++) {
+											if (k > 0) {
+												strbuf = strbuf + "," + json_obj.order_items[i].set_meals[j].product[l].condiments[k].condiment_name;
+											}
+											else {
+												strbuf = strbuf + json_obj.order_items[i].set_meals[j].product[l].condiments[k].condiment_name;
+											}
 										}
-										else {
-											strbuf = strbuf + json_obj.order_items[i].set_meals[j].condiments[k].condiment_name;
-										}
+										strbuf = strbuf + ")"
+										ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 									}
-									strbuf = strbuf + ")"
-									ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 配料 + 換行
+									ESC_Value.push(ecCUT_PAPER);//切紙
 								}
-								
-								ESC_Value.push(ecCUT_PAPER);//切紙
 							}
 						}
 					}
