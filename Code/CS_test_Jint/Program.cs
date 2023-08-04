@@ -403,7 +403,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "WORK_57mm_1by1.js"));
+                Path.DirectorySeparatorChar + "QrCode_57mm.js"));
 
             engine.SetValue("input", StrInput);
 

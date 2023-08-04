@@ -86,6 +86,9 @@
     <None Update="Script\NUMBER_80mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Script\QrCode_57mm.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Script\REPORT_57mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
