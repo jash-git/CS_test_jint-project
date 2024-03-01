@@ -755,10 +755,43 @@ namespace CS_test_Jint
         }
         //---ESC_POS_JS2Data & RS232 Print
 
+        static void add()
+        {
+            Console.WriteLine("Init Jint...");
+            var engine = new Engine();
+            engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
+                Path.DirectorySeparatorChar + "add.js"));
+
+            Console.WriteLine("Create ESC_Command...");
+            String StrFunName = "Main()";
+            var Jsonresult = engine.Execute(StrFunName).GetCompletionValue();
+
+            String StrResult = Jsonresult.AsString();
+        }
+        static void add(int a,int b)
+        {
+            Console.WriteLine("Init Jint...");
+            var engine = new Engine();
+            engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
+                Path.DirectorySeparatorChar + "add.js"));
+
+            String[] StrVarName = { "intadd01", "intadd02" };
+            engine.SetValue(StrVarName[0], a);
+            engine.SetValue(StrVarName[1], b);
+
+            Console.WriteLine("Create ESC_Command...");
+            String StrFunName = "Main()";
+            var Jsonresult = engine.Execute(StrFunName).GetCompletionValue();
+
+            String StrResult = Jsonresult.AsString();
+        }
+
         static void Main(string[] args)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);//載入.net Big5編解碼函數庫(System.Text.Encoding.CodePages)
-            ///*
+            add();
+            add(50, 60);
+            /*
             StreamReader sr = new StreamReader(@"C:\Users\devel\Desktop\Input.json");
             string StrInput = sr.ReadLine();
             sr.Close();// 關閉串流
