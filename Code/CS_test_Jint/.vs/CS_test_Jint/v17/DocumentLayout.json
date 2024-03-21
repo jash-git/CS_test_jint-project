@@ -1,0 +1,108 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\commonfun.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\commonfun.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\bill_80mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\bill_80mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\bill_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\bill_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3fd5e0cc-709a-4f8c-94c3-7f0f8dff5bb2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{873151d0-cf2e-48cc-b4bf-ad0394f6a3c3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BILL_80mm.js",
+              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\BILL_80mm.js",
+              "RelativeDocumentMoniker": "Script\\BILL_80mm.js",
+              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\BILL_80mm.js",
+              "RelativeToolTip": "Script\\BILL_80mm.js",
+              "ViewState": "AQIAACAAAAAAAAAAAAAAwDIAAABeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-21T07:14:12.297Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BILL_57mm.js",
+              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\BILL_57mm.js",
+              "RelativeDocumentMoniker": "Script\\BILL_57mm.js",
+              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\BILL_57mm.js",
+              "RelativeToolTip": "Script\\BILL_57mm.js",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAAwDIAAABeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-21T05:24:52.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CommonFun.js",
+              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\CommonFun.js",
+              "RelativeDocumentMoniker": "Script\\CommonFun.js",
+              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\CommonFun.js",
+              "RelativeToolTip": "Script\\CommonFun.js",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAgwAsAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-21T06:26:57.216Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAANEBAAAAAAAAAAArwN0BAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-01-04T05:28:34.168Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

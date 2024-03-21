@@ -63,7 +63,7 @@ namespace CS_test_Jint
             {
                 Console.Write("> ");
                 var Command = Console.ReadLine();
-                var Result = engine.Execute(Command).GetCompletionValue();
+                var Result = engine.Evaluate(Command);
                 Console.WriteLine(Result);
             }
 
@@ -91,7 +91,7 @@ namespace CS_test_Jint
             {
                 Console.Write("> ");
                 var Command = Console.ReadLine();
-                var Result = engine.Execute(Command).GetCompletionValue();
+                var Result = engine.Evaluate(Command);
                 Console.WriteLine(Result);
             }
             //*/
@@ -103,9 +103,12 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
 
-            var result = engine.Execute("GetSum(" + x + "," + y + ")").GetCompletionValue();
+            String StrFunName = "GetSum";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call(x,y);//執行範本運算 3.0.1
 
-            return Convert.ToInt32(result.AsNumber());
+            return Convert.ToInt32(StrJsonResult.AsNumber());
         }
 
         static string Echo(string str = "DONMA")
@@ -118,9 +121,12 @@ namespace CS_test_Jint
 
             engine.SetValue("str", str);
 
-            var result = engine.Execute("Echo()").GetCompletionValue();
+            String StrFunName = "Echo";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call();//執行範本運算 3.0.1
 
-            return result.AsString();
+            return StrJsonResult.AsString();
         }
 
         static string DoubleCall(string str = "當麻")
@@ -133,10 +139,12 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
 
-            var result = engine.Execute("testapi.GetStringFromClassFunction('" + str + "')").GetCompletionValue();
+            String StrFunName = "testapi.GetStringFromClassFunction";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call(str);//執行範本運算 3.0.1
 
-
-            return result.AsString();
+            return StrJsonResult.AsString();
         }
 
         static String CallSum(int x = 19, int y = 46)
@@ -146,9 +154,12 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
 
-            var result = engine.Execute("JSCallJS(" + x + "," + y + ")").GetCompletionValue();
+            String StrFunName = "JSCallJS";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call(x,y);//執行範本運算 3.0.1
 
-            return result.AsString();
+            return StrJsonResult.AsString();
         }
 
         static String JS_ParseJson()
@@ -165,9 +176,12 @@ namespace CS_test_Jint
 
             engine.SetValue("json_data", text);
 
-            var result = engine.Execute("parseJson()").GetCompletionValue();
+            String StrFunName = "parseJson";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call();//執行範本運算 3.0.1
 
-            return result.AsString();
+            return StrJsonResult.AsString();
         }
 
         static String JS_CreateJsonString()
@@ -184,9 +198,12 @@ namespace CS_test_Jint
 
             engine.SetValue("json_data", text);
 
-            var result = engine.Execute("obj2JsonString()").GetCompletionValue();
+            String StrFunName = "obj2JsonString";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call();//執行範本運算 3.0.1
 
-            return result.AsString();
+            return StrJsonResult.AsString();
         }
 
         static String JS_EnglishString2HexString(String StrData)
@@ -196,10 +213,12 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
 
-            String StrFunName = "ascii_to_hex('" + StrData + "')";
-            var result = engine.Execute(StrFunName).GetCompletionValue();
+            String StrFunName = "ascii_to_hex";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call(StrData);//執行範本運算 3.0.1
 
-            return result.AsString();
+            return StrJsonResult.AsString();
         }
 
         static String JS_UnicodeString2HexString(String StrData)
@@ -209,10 +228,12 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
 
-            String StrFunName = "unicode_to_hex('" + StrData + "')";
-            var result = engine.Execute(StrFunName).GetCompletionValue();
+            String StrFunName = "unicode_to_hex";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call(StrData);//執行範本運算 3.0.1
 
-            return result.AsString();
+            return StrJsonResult.AsString();
         }
 
         static String JS_Utf8String2HexString(String StrData)
@@ -222,10 +243,12 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
 
-            String StrFunName = "utf8_to_hex('" + StrData + "')";
-            var result = engine.Execute(StrFunName).GetCompletionValue();
+            String StrFunName = "utf8_to_hex";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName, StrData).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call();//執行範本運算 3.0.1
 
-            return result.AsString();
+            return StrJsonResult.AsString();
         }
 
         static String JS_Create_ESCPOS_test()
@@ -235,10 +258,12 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
 
-            String StrFunName = "Create_ESCPOS_test()";
-            var result = engine.Execute(StrFunName).GetCompletionValue();
+            String StrFunName = "Create_ESCPOS_test";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call();//執行範本運算 3.0.1
 
-            return result.AsString();
+            return StrJsonResult.AsString();
         }
         //---Jint 相關
 
@@ -337,12 +362,14 @@ namespace CS_test_Jint
             engine.SetValue("memo", StrMemo);
 
             Console.WriteLine("Create ESC_Command...");
-            String StrFunName = "Main()";
-            var Jsonresult = engine.Execute(StrFunName).GetCompletionValue();
+            String StrFunName = "Main";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call();//執行範本運算 3.0.1
 
 
             ESCPOS_OrderNew ESCPOSCommand = new ESCPOS_OrderNew();
-            ESCPOSCommand = JsonSerializer.Deserialize<ESCPOS_OrderNew>(Jsonresult.AsString());
+            ESCPOSCommand = JsonSerializer.Deserialize<ESCPOS_OrderNew>(StrJsonResult.AsString());
 
             Console.WriteLine("C# Modified ESC_Command Start");
             if ((ESCPOSCommand != null) && (ESCPOSCommand.state_code == 0))
@@ -390,7 +417,7 @@ namespace CS_test_Jint
             }
         }
 
-        static void ESCPOS_Receipt_RS232Print(String StrInput="")//收據
+        static void ESCPOS_Receipt_RS232Print(String StrInput="",String StrTemplateVar="")//收據
         {
             Console.WriteLine("Init Jint...");
             var engine = new Engine();
@@ -403,18 +430,20 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "QrCode_57mm.js"));
+                Path.DirectorySeparatorChar + "BILL_57mm.js"));
 
             engine.SetValue("input", StrInput);
-
+            engine.SetValue("TemplateVar", StrTemplateVar);
 
             Console.WriteLine("Create ESC_Command...");
-            String StrFunName = "Main()";
-            var Jsonresult = engine.Execute(StrFunName).GetCompletionValue();
+            String StrFunName = "Main";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call();//執行範本運算 3.0.1
 
 
             ESCPOS_OrderNew ESCPOSCommand = new ESCPOS_OrderNew();
-            ESCPOSCommand = JsonSerializer.Deserialize<ESCPOS_OrderNew>(Jsonresult.AsString());
+            ESCPOSCommand = JsonSerializer.Deserialize<ESCPOS_OrderNew>(StrJsonResult.AsString());
 
             Console.WriteLine("C# Modified ESC_Command Start");
             if ((ESCPOSCommand != null)&&(ESCPOSCommand.state_code==0)&&(ESCPOSCommand.value!=null)&&(ESCPOSCommand.value.Count>0))
@@ -487,12 +516,14 @@ namespace CS_test_Jint
             engine.SetValue("input", StrInput);
 
             Console.WriteLine("Create ESC_Command...");
-            String StrFunName = "Main()";
-            var Jsonresult = engine.Execute(StrFunName).GetCompletionValue();
+            String StrFunName = "Main";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call();//執行範本運算 3.0.1
 
 
             ESCPOS_OrderNew ESCPOSCommand = new ESCPOS_OrderNew();
-            ESCPOSCommand = JsonSerializer.Deserialize<ESCPOS_OrderNew>(Jsonresult.AsString());
+            ESCPOSCommand = JsonSerializer.Deserialize<ESCPOS_OrderNew>(StrJsonResult.AsString());
 
             Console.WriteLine("C# Modified ESC_Command Start");
             if ((ESCPOSCommand != null) && (ESCPOSCommand.state_code == 0))
@@ -763,10 +794,12 @@ namespace CS_test_Jint
                 Path.DirectorySeparatorChar + "add.js"));
 
             Console.WriteLine("Create ESC_Command...");
-            String StrFunName = "Main()";
-            var Jsonresult = engine.Execute(StrFunName).GetCompletionValue();
+            String StrFunName = "Main";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call();//執行範本運算 3.0.1
 
-            String StrResult = Jsonresult.AsString();
+            String StrResult = StrJsonResult.AsString();
         }
         static void add(int a,int b)
         {
@@ -780,22 +813,28 @@ namespace CS_test_Jint
             engine.SetValue(StrVarName[1], b);
 
             Console.WriteLine("Create ESC_Command...");
-            String StrFunName = "Main()";
-            var Jsonresult = engine.Execute(StrFunName).GetCompletionValue();
+            String StrFunName = "Main";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call();//執行範本運算 3.0.1
 
-            String StrResult = Jsonresult.AsString();
+            String StrResult = StrJsonResult.AsString();
         }
 
         static void Main(string[] args)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);//載入.net Big5編解碼函數庫(System.Text.Encoding.CodePages)
-            add();
-            add(50, 60);
-            /*
+            //add();
+            //add(50, 60);
+            //Sum();
+            //*
             StreamReader sr = new StreamReader(@"C:\Users\devel\Desktop\Input.json");
             string StrInput = sr.ReadLine();
             sr.Close();// 關閉串流
-            ESCPOS_Receipt_RS232Print(StrInput);
+            sr = new StreamReader(@"C:\Users\devel\Desktop\TemplateVar.json");
+            string StrTemplateVar = sr.ReadLine();
+            sr.Close();// 關閉串流
+            ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
             //*/
             /*
             int Page_Width = 552; //57mm

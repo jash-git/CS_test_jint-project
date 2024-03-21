@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "r+YzoQKGyYooQNtW26WjFRr7zKe9D7XxUugv1HXojtBo2JIyiBruzKHAmFmwDgfTLHNGaGQ3uk4PVA7J2ju7cA==",
+  "dgSpecHash": "LDVLiLOr9htUWLeORGnX+FQhut7Z8a6ld34JQEELBTi74tGwRd2NqFGM8FZb9JBT66yvXjC63P9J9ZvXnx+PdQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\CS_test_Jint.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\devel\\.nuget\\packages\\jint\\2.11.58\\jint.2.11.58.nupkg.sha512",
+    "C:\\Users\\devel\\.nuget\\packages\\esprima\\3.0.4\\esprima.3.0.4.nupkg.sha512",
+    "C:\\Users\\devel\\.nuget\\packages\\jint\\3.0.1\\jint.3.0.1.nupkg.sha512",
     "C:\\Users\\devel\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
     "C:\\Users\\devel\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
     "C:\\Users\\devel\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",

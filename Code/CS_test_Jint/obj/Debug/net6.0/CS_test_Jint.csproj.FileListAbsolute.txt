@@ -54,7 +54,6 @@ C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\n
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\CS_test_Jint.AssemblyInfoInputs.cache
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\CS_test_Jint.AssemblyInfo.cs
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\CS_test_Jint.csproj.CoreCompileInputs.cache
-C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\CS_test_Jint.csproj.CopyComplete
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\CS_test_Jint.dll
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\refint\CS_test_Jint.dll
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\CS_test_Jint.pdb
@@ -90,3 +89,5 @@ C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\n
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\QrCode_57mm.js
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\add.js
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\CS_test_Jint.sourcelink.json
+C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\CS_test_.D8537D1B.Up2Date
+C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Esprima.dll

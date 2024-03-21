@@ -32,16 +32,27 @@ function Main() {
         ESC_Value.push(ecINITIALIZE_PRINTER);//印表機初始化
     }
     //---判斷記錄輸入資料是否合法
+	
+	GlobalVariable_Init();//解析C#傳送過來的印表參數並修改對應全域變數
     
 	//---
     //新增列印主體內容
-	
+
 	//店名;文字至中 + 粗體+放大 + 店名 + 換行
     ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
 
-	//單號;文字靠左 + 放大 + 單號 + 換行
-	var order_noAry = json_obj.order_no.split('-');
-    strbuf = ShiftSpace + '單號(' + json_obj.order_type_name + ') :' + ((order_noAry.length>1) ? order_noAry[1] : order_noAry[0]);//json_obj.call_num
+    //取餐號加大
+    if (gstrbig_callnum != "N") {
+        ESC_Value.push(ecTEXT_ALIGN_CENTER + ecFOUR_ON + json_obj.call_num + ecFOUR_OFF + ecFREE_LINE + ecFREE_LINE);
+    }
+
+    //訂單類型加大
+    if (gstrbig_order_type != "N") {
+        ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + json_obj.order_type_name + ecDOUBLE_OFF + ecFREE_LINE + ecFREE_LINE);
+    }
+
+	//單號;文字靠左 + 放大 + 單號 + 
+    strbuf = ShiftSpace + '單號(' + json_obj.order_type_name + ') :' + json_obj.call_num;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
 
 	//桌號;文字靠左 + 放大 + 桌號 + 換行
@@ -154,86 +165,44 @@ function Main() {
             }
             else if (json_obj.order_items[i].product_type == 'T') 
 			{//套餐類型
-                AllCount += json_obj.order_items[i].count;//總數量統計
-				
-                var count = "" + json_obj.order_items[i].count;//單一產品數量值轉字串
-                spaceCount = 6 - Wlen(count) - 2;//計算數量欄位的空白數= 該欄位總長度6 - 數量字串長度 - X符號長度
-                for (var j = 0; j < spaceCount; j++){
-                    space += " ";//產生對應空白字串
-                }
-                count = "X" + space + json_obj.order_items[i].count;
-
-                space = "";
-				spaceCount = 0;
-                var amount = "" + json_obj.order_items[i].amount;//單一產品價格值轉字串
-                spaceCount = 6 - Wlen(amount);//計算價格欄位的空白數= 該欄位總長度6 - 數量字串長度
-                for (var j = 0; j < spaceCount; j++) {
-                    space += " ";
-                }
-                amount = space + json_obj.order_items[i].amount;
-
-				//產品&包材;文字靠左 + 放大 + 產品 + 換行
-                space = "";
-				spaceCount = 0;
-				
-				var product_name = json_obj.order_items[i].product_name;
-				var product_name_len = Wlen(product_name);//計算產品名稱字串長度
-				var product_name_show ='';
-				if(product_name_len>20)//20是產品名稱欄位最大寬度
-				{
-					intWStrPoint = 0;//初始化Wsubstring函數的旗標
-					product_name_show = Wsubstring(product_name,0,20);
-				}
-				else
-				{
-					product_name_show = product_name;
-				}
-				
-                spaceCount = 34 - Wlen(product_name_show) - Wlen(count) - 2 - Wlen(amount);//該列總長度-產品民長度-數量長度-2-價格長度
-                for (var j = 0; j < spaceCount; j++) {
-                    space += " ";
-                }
-                strbuf = ShiftSpace + product_name_show + space + count + "  " + amount;
-                ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
-				
-				if(Wlen(product_name_show) != Wlen(product_name))
-				{
-					var sublen = Wlen(product_name)-20;//20是產品名稱欄位最大寬度
-					strbuf = Wsubstring(product_name,intWStrPoint,sublen);//從上次切斷點繼續往後擷取
-					ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
-				}
-				
-                if ((json_obj.order_items[i].set_meals != null) && (json_obj.order_items[i].set_meals.length > 0))
-				{
-					for(var j=0;j<json_obj.order_items[i].set_meals.length;j++)
-					{
-						if((json_obj.order_items[i].set_meals[j].product!=null) && (json_obj.order_items[i].set_meals[j].product.length>0))
-						{
-							for(var l=0;l<json_obj.order_items[i].set_meals[j].product.length;l++)
-							{
-								var product_name = json_obj.order_items[i].set_meals[j].product[l].name;
-								strbuf =ShiftSpace + '  '+product_name;
-								ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
-								
-								//配料;文字靠左 + 配料 + 換行
-								strbuf =ShiftSpace + "    (";
-								if (json_obj.order_items[i].set_meals[j].product[l].condiments != null) {
-									for (var k = 0; k < json_obj.order_items[i].set_meals[j].product[l].condiments.length; k++) {
-										if (k > 0) {
-											strbuf = strbuf + "," + json_obj.order_items[i].set_meals[j].product[l].condiments[k].condiment_name;
-										}
-										else {
-											strbuf = strbuf + json_obj.order_items[i].set_meals[j].product[l].condiments[k].condiment_name;
-										}
-									}
-									strbuf = strbuf + ")"
-									ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
-								}								
-							}
+                if ((json_obj.order_items[i].set_meals != null) && (json_obj.order_items[i].set_meals.length > 0)) {
+                    for (var j = 0; j < json_obj.order_items[i].set_meals.length; j++) {
+						AllCount += json_obj.order_items[i].set_meals[j].count;
+						
+						var count = "" + json_obj.order_items[i].count;//單一產品數量值轉字串
+						spaceCount = 6 - Wlen(count) - 2;//計算數量欄位的空白數= 該欄位總長度6 - 數量字串長度 - X符號長度
+						for (var j = 0; j < spaceCount; j++){
+							space += " ";//產生對應空白字串
 						}
-					}
-                }		
-			}
+						count = "X" + space + json_obj.order_items[i].count;
+
+                        var product_name = json_obj.order_items[i].set_meals[j].product_name;
+                        //34字
+                        space = "";
+                        spaceCount = 34 - Wlen(product_name) - Wlen(count);
+                        for (var k = 0; k < spaceCount; k++) {
+                            space += " ";
+                        }
+                        strbuf = ShiftSpace + product_name + space + count;
+                        ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);//文字靠左 + 放大 + 產品 + 換行
+
+                        strbuf = ShiftSpace + "  (";
+                        if (json_obj.order_items[i].set_meals[j].condiments != null) {
+                            for (var k = 0; k < json_obj.order_items[i].set_meals[j].condiments.length; k++) {
+                                if (k > 0) {
+                                    strbuf = strbuf + "," + json_obj.order_items[i].set_meals[j].condiments[k].condiment_name;
+                                }
+                                else {
+                                    strbuf = strbuf + json_obj.order_items[i].set_meals[j].condiments[k].condiment_name;
+                                }
+                            }
+                            strbuf = strbuf + ")"
+                            ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 配料 + 換行
+                        }
+                    }
+                }
+            }
+
         }
     }
     //---產品+配料

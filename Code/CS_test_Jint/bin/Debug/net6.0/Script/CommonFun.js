@@ -8,14 +8,37 @@ const ecINITIALIZE_PRINTER = ecESC + "@";//印表機初始化
 const ecCUT_PAPER = ecGS + "\u0056" + "\u0041" + "\u0000";//切紙
 const ecBOLD_ON = ecESC + "E" + "\u0001";//文字粗體_start
 const ecBOLD_OFF = ecESC + "E" + "\0";//文字粗體_end
-const ecDOUBLE_ON = ecGS + "!" + "\u0011";//文字放大2倍_start // 2x sized text (double-high + double-wide)
+const ecDOUBLE_ON = ecGS + "!" + "\u0022";//文字放大2倍_start // 2x sized text (double-high + double-wide)
 const ecDOUBLE_OFF = ecGS + "!" + "\0";//文字放大2倍_end
+const ecTRIPLE_ON = ecGS + "!" + "\u0033";//文字放大3倍_start // 4x sized text (double-high + double-wide)
+const ecTRIPLE_OFF = ecGS + "!" + "\0";//文字放大3倍_end
+const ecFOUR_ON = ecGS + "!" + "\u0044";//文字放大4倍_start // 4x sized text (double-high + double-wide)
+const ecFOUR_OFF = ecGS + "!" + "\0";//文字放大4倍_end
 const ecBIG_ON = ecGS + "!" + "\u0001";//文字放大1倍_start // big sized text (double-high + normal-wide)
 const ecBIG_OFF = ecGS + "!" + "\0";//文字放大1倍_end
 const ecTEXT_ALIGN_LEFT = ecESC + "a" + "\u0048";//文字靠左
 const ecTEXT_ALIGN_CENTER = ecESC + "a" + "\u0049";//文字至中
-const ecTEXT_SPACE = ecESC + "\u0033" + "\u00FF";//文字間距
 //---建立 ESC/POS Command
+
+//---
+//全域外部參數
+var gstrprint_logo = "N";//企業Logo
+var gstrconn_cash_box = "N";
+var gstrprint_barcode = "N";//列印條碼
+var gstrstart_buzzer = "N";//開啟提示音
+var gstrexternal_buzzer = "N";//外接蜂鳴器
+var gstrbig_callnum = "N";//取餐號加大
+var gstrbig_order_type = "N";//訂單類型加大
+var gstrbig_takeaways_no = "N";//外賣單號加大
+var gstrbig_table = "N";//桌號加大
+var gstrprint_product_price = "N";//列印商品金額
+var gstrproduct_single_cut = "N";//一菜一切
+var gstrmerge_product = "N";//商品合併列印
+var gstrsingle_report = "N";//只印簡表
+var gstrno_print_price = "N";//不印價格
+var gstrprint_ticket_memo = "N";//列印備註
+var gstrlabel_bottom_info = "";//底部列印資訊
+//---全域外部參數
 
 /*
 *數字補N位0 ~ https://blog.csdn.net/qq_41854291/article/details/115344291
@@ -313,4 +336,55 @@ function Test_String2Array()
 	Wlen('0中文字')	
 	*/
 	
+}
+
+function GlobalVariable_Init()
+{//解析C#傳送過來的印表參數並修改對應全域變數
+
+    //---
+    //將輸入文字轉成JSON物件
+    try {
+        json_obj = JSON.parse(TemplateVar);
+    }
+    catch (e) {
+        json_obj = null;
+    }
+    //---將輸入文字轉成JSON物件
+	
+    if (json_obj == null) {
+		gstrprint_logo = "N";
+		gstrconn_cash_box = "N";
+		gstrprint_barcode = "N";
+		gstrstart_buzzer = "N";
+		gstrexternal_buzzer = "N";
+		gstrbig_callnum = "N";
+		gstrbig_order_type = "N";
+		gstrbig_takeaways_no = "N";
+		gstrbig_table = "N";
+		gstrprint_product_price = "N";
+		gstrproduct_single_cut = "N";
+		gstrmerge_product = "N";
+		gstrsingle_report = "N";
+		gstrno_print_price = "N";
+		gstrprint_ticket_memo = "N";
+		gstrlabel_bottom_info = "";//底部列印資訊
+    }
+    else {
+		gstrprint_logo = json_obj.print_logo;
+		gstrconn_cash_box = json_obj.conn_cash_box;
+		gstrprint_barcode = json_obj.print_barcode;
+		gstrstart_buzzer = json_obj.external_buzzer;
+		gstrexternal_buzzer = json_obj.external_buzzer;
+		gstrbig_callnum = json_obj.big_callnum;
+		gstrbig_order_type = json_obj.big_order_type;
+		gstrbig_takeaways_no = json_obj.big_takeaways_no;
+		gstrbig_table = json_obj.big_table;
+		gstrprint_product_price = json_obj.print_product_price;
+		gstrproduct_single_cut = json_obj.product_single_cut;
+		gstrmerge_product = json_obj.merge_product;
+		gstrsingle_report = json_obj.single_report;
+		gstrno_print_price = json_obj.no_print_price;
+		gstrprint_ticket_memo = json_obj.print_ticket_memo;
+		gstrlabel_bottom_info = json_obj.label_bottom_info;//底部列印資訊		
+	}		
 }
