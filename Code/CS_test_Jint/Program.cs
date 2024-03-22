@@ -426,7 +426,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "esc_pos01.js"));
             */
-            
+
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
@@ -468,9 +468,9 @@ namespace CS_test_Jint
                 m_port.ReadTimeout = 1;
                 m_port.ReadTimeout = 3000; //单位毫秒
                 m_port.WriteTimeout = 3000; //单位毫秒
-                                            //串口控件成员变量，字面意思为接收字节阀值，
-                                            //串口对象在收到这样长度的数据之后会触发事件处理函数
-                                            //一般都设为1
+                //串口控件成员变量，字面意思为接收字节阀值，
+                //串口对象在收到这样长度的数据之后会触发事件处理函数
+                //一般都设为1
                 m_port.ReceivedBytesThreshold = 1;
                 m_port.DataReceived += new SerialDataReceivedEventHandler(CommDataReceived); //设置数据接收事件（监听）
                 m_port.Open();

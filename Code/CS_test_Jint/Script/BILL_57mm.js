@@ -42,13 +42,34 @@ function Main() {
     ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
 
     //取餐號加大
-    if (gstrbig_callnum != "N") {
+    if (PrinterParms.big_callnum != "N") {
         ESC_Value.push(ecTEXT_ALIGN_CENTER + ecFOUR_ON + json_obj.call_num + ecFOUR_OFF + ecFREE_LINE + ecFREE_LINE);
     }
 
+    //桌號加大
+    if (PrinterParms.big_table != "N") {
+        ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + json_obj.table_name + ecDOUBLE_OFF + ecFREE_LINE + ecFREE_LINE);
+    }
+
     //訂單類型加大
-    if (gstrbig_order_type != "N") {
+    if (PrinterParms.big_order_type != "N") {
         ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + json_obj.order_type_name + ecDOUBLE_OFF + ecFREE_LINE + ecFREE_LINE);
+    }
+
+    //列印條碼
+    if (PrinterParms.print_barcode != "N") {
+        ESC_Value.push(ecTEXT_ALIGN_CENTER);
+        
+        //---
+        //BarCode
+        //BarCode
+        ESC_Value.push(ecGS + "H" + '\x00');//条形文字
+        ESC_Value.push(ecGS + "\u0068" + "\x50");//设置条形码高度
+        ESC_Value.push(ecGS + "\u0077" + "\x01");//设置条形码宽度
+
+        //var StrBarCode =  (json_obj.invoice_data.inv_period.substr(0, 4) - 1911) + json_obj.invoice_data.inv_period.substr(4, 2) + json_obj.invoice_data.inv_no + json_obj.invoice_data.random_code;//發票期別-發票號碼-隨機嗎
+        ESC_Value.push(ecBAR_CODE_HEAD + json_obj.order_no + ecBAR_CODE_END);//BarCode Code39
+        //---BarCode
     }
 
 	//單號;文字靠左 + 放大 + 單號 + 

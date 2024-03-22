@@ -18,26 +18,24 @@ const ecBIG_ON = ecGS + "!" + "\u0001";//文字放大1倍_start // big sized tex
 const ecBIG_OFF = ecGS + "!" + "\0";//文字放大1倍_end
 const ecTEXT_ALIGN_LEFT = ecESC + "a" + "\u0048";//文字靠左
 const ecTEXT_ALIGN_CENTER = ecESC + "a" + "\u0049";//文字至中
+
+const ecTEXT_SPACE70 = ecESC + "\u0033" + "\u0046";//文字間距60
+
+const ecPAGE_MODE = ecESC + "\u004C";//选择页模式 ESC L
+const ecMOTION_UNITS = ecGS + "\u0050" + "\u0000" + "\u00CB"; //设置水平和垂直运动单位 GS P x y ;  // For 203 Dpi 
+const ecAREA_SIZE = ecESC + "\u0057" + "\u0000" + "\u0000" + "\u0000" + "\u0000" + "\u00A0" + "\u0001" + "\u0058" + "\u0002";//在页模式下设置打印区域 ESC W xL xH yL yH dxL dxH dyL dyH
+const ecTEXT_CODE = ecESC + "\u0054" + "\u0000";//选择字符代码表 ESC T n ; HEX 1B 54 00 
+const ecRESET_PAGE_MODE = ecESC + "\u000C";//打印并回到标准模式（在页模式下）
+
+const ecBAR_CODE_WIDTH = ecGS + "\u0077" + "\u0001";//设置条形码宽度 GS w n [29   119   4]
+const ecBAR_CODE_HIGHT = ecGS + "\u0068" + "\u0032";//设置条形码高度 GS h n [29   104   50]
+const ecBAR_CODE_HEAD = ecGS + "\u006B" + "\u0004"//打印条形码     GS   k   m    d1...dk   NUL [29   107  4    d1...dk   0 ]  
+const ecBAR_CODE_END = "\0";//打印条形码     GS   k   m    d1...dk   NUL [29   107  4    d1...dk   0 ]
 //---建立 ESC/POS Command
 
 //---
 //全域外部參數
-var gstrprint_logo = "N";//企業Logo
-var gstrconn_cash_box = "N";
-var gstrprint_barcode = "N";//列印條碼
-var gstrstart_buzzer = "N";//開啟提示音
-var gstrexternal_buzzer = "N";//外接蜂鳴器
-var gstrbig_callnum = "N";//取餐號加大
-var gstrbig_order_type = "N";//訂單類型加大
-var gstrbig_takeaways_no = "N";//外賣單號加大
-var gstrbig_table = "N";//桌號加大
-var gstrprint_product_price = "N";//列印商品金額
-var gstrproduct_single_cut = "N";//一菜一切
-var gstrmerge_product = "N";//商品合併列印
-var gstrsingle_report = "N";//只印簡表
-var gstrno_print_price = "N";//不印價格
-var gstrprint_ticket_memo = "N";//列印備註
-var gstrlabel_bottom_info = "";//底部列印資訊
+var PrinterParms = {};//全域印表參數
 //---全域外部參數
 
 /*
@@ -352,39 +350,24 @@ function GlobalVariable_Init()
     //---將輸入文字轉成JSON物件
 	
     if (json_obj == null) {
-		gstrprint_logo = "N";
-		gstrconn_cash_box = "N";
-		gstrprint_barcode = "N";
-		gstrstart_buzzer = "N";
-		gstrexternal_buzzer = "N";
-		gstrbig_callnum = "N";
-		gstrbig_order_type = "N";
-		gstrbig_takeaways_no = "N";
-		gstrbig_table = "N";
-		gstrprint_product_price = "N";
-		gstrproduct_single_cut = "N";
-		gstrmerge_product = "N";
-		gstrsingle_report = "N";
-		gstrno_print_price = "N";
-		gstrprint_ticket_memo = "N";
-		gstrlabel_bottom_info = "";//底部列印資訊
+        PrinterParms.print_logo = "N";//企業Logo
+        PrinterParms.conn_cash_box = "N";
+        PrinterParms.print_barcode = "N";//列印條碼
+        PrinterParms.start_buzzer = "N";//開啟提示音
+        PrinterParms.external_buzzer = "N";//外接蜂鳴器
+        PrinterParms.big_callnum = "N";//取餐號加大
+        PrinterParms.big_order_type = "N";//訂單類型加大
+        PrinterParms.big_takeaways_no = "N";//外賣單號加大
+        PrinterParms.big_table = "N";//桌號加大
+        PrinterParms.print_product_price = "N";//列印商品金額
+        PrinterParms.product_single_cut = "N";//一菜一切
+        PrinterParms.merge_product = "N";//商品合併列印
+        PrinterParms.single_report = "N";//只印簡表
+        PrinterParms.no_print_price = "N";//不印價格
+        PrinterParms.print_ticket_memo = "N";//列印備註
+        PrinterParms.label_bottom_info = "";//底部列印資訊
     }
     else {
-		gstrprint_logo = json_obj.print_logo;
-		gstrconn_cash_box = json_obj.conn_cash_box;
-		gstrprint_barcode = json_obj.print_barcode;
-		gstrstart_buzzer = json_obj.external_buzzer;
-		gstrexternal_buzzer = json_obj.external_buzzer;
-		gstrbig_callnum = json_obj.big_callnum;
-		gstrbig_order_type = json_obj.big_order_type;
-		gstrbig_takeaways_no = json_obj.big_takeaways_no;
-		gstrbig_table = json_obj.big_table;
-		gstrprint_product_price = json_obj.print_product_price;
-		gstrproduct_single_cut = json_obj.product_single_cut;
-		gstrmerge_product = json_obj.merge_product;
-		gstrsingle_report = json_obj.single_report;
-		gstrno_print_price = json_obj.no_print_price;
-		gstrprint_ticket_memo = json_obj.print_ticket_memo;
-		gstrlabel_bottom_info = json_obj.label_bottom_info;//底部列印資訊		
+        PrinterParms = json_obj;
 	}		
 }
