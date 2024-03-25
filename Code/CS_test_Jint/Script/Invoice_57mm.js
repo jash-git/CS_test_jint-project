@@ -1,17 +1,4 @@
 //Invoice~57mm
-const ecTEXT_SPACE70 = ecESC + "\u0033" + "\u0046";//文字間距60
-
-const ecPAGE_MODE = ecESC + "\u004C";//选择页模式 ESC L
-const ecMOTION_UNITS = ecGS + "\u0050" + "\u0000" + "\u00CB"; //设置水平和垂直运动单位 GS P x y ;  // For 203 Dpi 
-const ecAREA_SIZE = ecESC + "\u0057" + "\u0000" + "\u0000" + "\u0000" + "\u0000" + "\u00A0" + "\u0001" + "\u0058" + "\u0002";//在页模式下设置打印区域 ESC W xL xH yL yH dxL dxH dyL dyH
-const ecTEXT_CODE = ecESC + "\u0054" + "\u0000";//选择字符代码表 ESC T n ; HEX 1B 54 00 
-const ecRESET_PAGE_MODE = ecESC + "\u000C";//打印并回到标准模式（在页模式下）
-
-const ecBAR_CODE_WIDTH = ecGS + "\u0077" + "\u0001";//设置条形码宽度 GS w n [29   119   4]
-const ecBAR_CODE_HIGHT = ecGS + "\u0068" + "\u0031";//设置条形码高度 GS h n [29   104   50]
-const ecBAR_CODE_HEAD = ecGS + "\u006B" + "\u0004"//打印条形码     GS   k   m    d1...dk   NUL [29   107  4    d1...dk   0 ]  
-const ecBAR_CODE_END = "\0";//打印条形码     GS   k   m    d1...dk   NUL [29   107  4    d1...dk   0 ]
-
 /*
 C# 對應
 	engine.SetValue("Business_Name", "VTEAM-茶飲店(營業登記名稱)");//SqliteDataAccess.m_company[0].business_name;

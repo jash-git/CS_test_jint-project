@@ -31,6 +31,8 @@ const ecBAR_CODE_WIDTH = ecGS + "\u0077" + "\u0001";//设置条形码宽度 GS w
 const ecBAR_CODE_HIGHT = ecGS + "\u0068" + "\u0032";//设置条形码高度 GS h n [29   104   50]
 const ecBAR_CODE_HEAD = ecGS + "\u006B" + "\u0004"//打印条形码     GS   k   m    d1...dk   NUL [29   107  4    d1...dk   0 ]  
 const ecBAR_CODE_END = "\0";//打印条形码     GS   k   m    d1...dk   NUL [29   107  4    d1...dk   0 ]
+
+const CashCommand = ecESC + "\u0070" + "\u0000" + "\u006A" + "\u006A"; //指令: ESC p 0 100 100 [收銀機/抽屜]
 //---建立 ESC/POS Command
 
 //---

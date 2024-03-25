@@ -31,11 +31,39 @@ function Main() {
     }
     //---判斷記錄輸入資料是否合法
 
+    GlobalVariable_Init();//解析C#傳送過來的印表參數並修改對應全域變數
+
     //---
     //新增列印主體內容
 	
 	//店名;文字至中 + 粗體+放大 + 店名 + 換行
     ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
+
+    //取餐號加大
+    if (PrinterParms.big_callnum != "N") {
+        ESC_Value.push(ecTEXT_ALIGN_CENTER + ecFOUR_ON + json_obj.call_num + ecFOUR_OFF + ecFREE_LINE + ecFREE_LINE);
+    }
+
+    //列印條碼
+    if (PrinterParms.print_barcode != "N") {
+        ESC_Value.push(ecTEXT_ALIGN_CENTER);
+
+        //---
+        //BarCode
+        //BarCode
+        ESC_Value.push(ecGS + "H" + '\x00');//条形文字
+        ESC_Value.push(ecGS + "\u0068" + "\x50");//设置条形码高度
+        ESC_Value.push(ecGS + "\u0077" + "\x01");//设置条形码宽度
+
+        //var StrBarCode =  (json_obj.invoice_data.inv_period.substr(0, 4) - 1911) + json_obj.invoice_data.inv_period.substr(4, 2) + json_obj.invoice_data.inv_no + json_obj.invoice_data.random_code;//發票期別-發票號碼-隨機嗎
+        ESC_Value.push(ecBAR_CODE_HEAD + json_obj.order_no + ecBAR_CODE_END);//BarCode Code39
+        //---BarCode
+    }
+
+    //開啟提示音
+    if (PrinterParms.gstrstart_buzzer != "N") {
+        ESC_Value.push(CashCommand);//指令: ESC p 0 100 100 [收銀機/抽屜]
+    }
 
 	//單號;文字靠左 + 放大 + 單號 + 換行
 	var order_noAry = json_obj.order_no.split('-');
@@ -64,7 +92,7 @@ function Main() {
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	
 	//列印軟體版本
-	strbuf = 'Version: ' + json_obj.version;
+    strbuf = 'Version: ' + json_obj.pos_ver;
 	ESC_Value.push(ecFREE_LINE + ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	
 	//列印時間

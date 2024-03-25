@@ -72,6 +72,11 @@ function Main() {
         //---BarCode
     }
 
+    //開啟提示音
+    if (PrinterParms.gstrstart_buzzer != "N") {
+        ESC_Value.push(CashCommand);//指令: ESC p 0 100 100 [收銀機/抽屜]
+    }
+
 	//單號;文字靠左 + 放大 + 單號 + 
     strbuf = ShiftSpace + '單號(' + json_obj.order_type_name + ') :' + json_obj.call_num;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
