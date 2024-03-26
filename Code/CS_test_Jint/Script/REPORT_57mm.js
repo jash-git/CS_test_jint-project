@@ -31,7 +31,9 @@ function Main() {
 		}		
         ESC_Value.push(ecINITIALIZE_PRINTER);//印表機初始化		
     }
-    //---判斷記錄輸入資料是否合法
+	//---判斷記錄輸入資料是否合法
+
+	GlobalVariable_Init();//解析C#傳送過來的印表參數並修改對應全域變數
     
 	//---
     //新增列印主體內容

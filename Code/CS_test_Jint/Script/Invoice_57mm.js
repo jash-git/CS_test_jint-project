@@ -28,6 +28,8 @@ function Main() {
 	}
 	//---將輸入文字轉成JSON物件
 
+	GlobalVariable_Init();//解析C#傳送過來的印表參數並修改對應全域變數
+
 	if (invoice_obj.Invalid_Flag == "Y") {
 		Result = Refund(json_obj, invoice_obj);
 	}
