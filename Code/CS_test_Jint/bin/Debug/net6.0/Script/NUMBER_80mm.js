@@ -35,9 +35,15 @@ function Main() {
 
     //---
     //新增列印主體內容
-	
-	//店名;文字至中 + 粗體+放大 + 店名 + 換行
-    ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
+
+    //企業Logo
+    if (PrinterParms.print_logo != "N") {
+        ESC_Value.push(ecTEXT_ALIGN_CENTER + ecLOGO);
+    }
+    else {
+        //店名;文字至中 + 粗體+放大 + 店名 + 換行
+        ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
+    }
 
     //取餐號加大
     if (PrinterParms.big_callnum != "N") {
@@ -58,6 +64,16 @@ function Main() {
         //var StrBarCode =  (json_obj.invoice_data.inv_period.substr(0, 4) - 1911) + json_obj.invoice_data.inv_period.substr(4, 2) + json_obj.invoice_data.inv_no + json_obj.invoice_data.random_code;//發票期別-發票號碼-隨機嗎
         ESC_Value.push(ecBAR_CODE_HEAD + json_obj.order_no + ecBAR_CODE_END);//BarCode Code39
         //---BarCode
+    }
+
+    //開啟提示音
+    if (PrinterParms.start_buzzer != "N") {
+        ESC_Value.push(ecSTART_BUZZER);
+    }
+
+    //外接蜂鳴器
+    if (PrinterParms.external_buzzer != "N") {
+        ESC_Value.push(ecEXTERNAL_BUZZER);
     }
 
 	//單號;文字靠左 + 放大 + 單號 + 換行

@@ -59,11 +59,16 @@ function Sell(json_obj, invoice_obj) {
 
 	//---
 	//店家名 & LOGO
-	if (Wlen(Business_Name) <= 18) {
-		ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + Business_Name + ecDOUBLE_OFF + ecFREE_LINE);
+	if (PrinterParms.print_logo != "N") {
+		ESC_Value.push(ecTEXT_ALIGN_CENTER + ecLOGO);
 	}
 	else {
-		ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBIG_ON + Business_Name + ecBIG_OFF + ecFREE_LINE);
+		if (Wlen(Business_Name) <= 18) {
+			ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + Business_Name + ecDOUBLE_OFF + ecFREE_LINE);
+		}
+		else {
+			ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBIG_ON + Business_Name + ecBIG_OFF + ecFREE_LINE);
+		}
 	}
 	//---店家名 & LOGO
 

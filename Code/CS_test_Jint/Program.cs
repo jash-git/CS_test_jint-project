@@ -430,7 +430,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "NUMBER_57mm.js"));
+                Path.DirectorySeparatorChar + "BILL_57mm.js"));
 
             engine.SetValue("input", StrInput);
             engine.SetValue("TemplateVar", StrTemplateVar);

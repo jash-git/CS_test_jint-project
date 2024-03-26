@@ -3,28 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\number_80mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\number_80mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\script\\commonfun.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\commonfun.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\number_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\number_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\script\\bill_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\bill_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\invoice_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\invoice_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\script\\bill_80mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\bill_80mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\script\\commonfun.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\commonfun.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\report_80mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\report_80mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\report_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\report_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\number_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\number_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\script\\bill_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\bill_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\number_80mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\number_80mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,72 +70,111 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "NUMBER_80mm.js",
-              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\NUMBER_80mm.js",
-              "RelativeDocumentMoniker": "Script\\NUMBER_80mm.js",
-              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\NUMBER_80mm.js",
-              "RelativeToolTip": "Script\\NUMBER_80mm.js",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAAwBgAAAAgAAAA",
+              "DocumentIndex": 3,
+              "Title": "REPORT_80mm.js",
+              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\REPORT_80mm.js",
+              "RelativeDocumentMoniker": "Script\\REPORT_80mm.js",
+              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\REPORT_80mm.js",
+              "RelativeToolTip": "Script\\REPORT_80mm.js",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAgwEAAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-03-25T08:03:35.725Z",
+              "WhenOpened": "2024-03-26T06:09:02.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "REPORT_57mm.js",
+              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\REPORT_57mm.js",
+              "RelativeDocumentMoniker": "Script\\REPORT_57mm.js",
+              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\REPORT_57mm.js",
+              "RelativeToolTip": "Script\\REPORT_57mm.js",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAgwDgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-26T06:09:01.107Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Invoice_57mm.js",
+              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Invoice_57mm.js",
+              "RelativeDocumentMoniker": "Script\\Invoice_57mm.js",
+              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Invoice_57mm.js",
+              "RelativeToolTip": "Script\\Invoice_57mm.js",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAQwDcAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-26T03:24:04.094Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "NUMBER_57mm.js",
               "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\NUMBER_57mm.js",
               "RelativeDocumentMoniker": "Script\\NUMBER_57mm.js",
               "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\NUMBER_57mm.js",
               "RelativeToolTip": "Script\\NUMBER_57mm.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAJAAAA",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAAAEUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-03-25T08:03:10.515Z",
+              "WhenOpened": "2024-03-26T03:19:30.882Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
+              "Title": "NUMBER_80mm.js",
+              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\NUMBER_80mm.js",
+              "RelativeDocumentMoniker": "Script\\NUMBER_80mm.js",
+              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\NUMBER_80mm.js",
+              "RelativeToolTip": "Script\\NUMBER_80mm.js",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAgwE0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-26T03:19:29.421Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "BILL_80mm.js",
               "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\BILL_80mm.js",
               "RelativeDocumentMoniker": "Script\\BILL_80mm.js",
               "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\BILL_80mm.js",
               "RelativeToolTip": "Script\\BILL_80mm.js",
-              "ViewState": "AQIAAEQAAAAAAAAAAAAAwEwAAABCAAAA",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAYwFEAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-03-21T07:14:12.297Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "BILL_57mm.js",
               "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\BILL_57mm.js",
               "RelativeDocumentMoniker": "Script\\BILL_57mm.js",
               "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\BILL_57mm.js",
               "RelativeToolTip": "Script\\BILL_57mm.js",
-              "ViewState": "AQIAAEAAAAAAAAAAAAAAAEwAAABCAAAA",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAAwFMAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-03-21T05:24:52.938Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "CommonFun.js",
               "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\CommonFun.js",
               "RelativeDocumentMoniker": "Script\\CommonFun.js",
               "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\CommonFun.js",
               "RelativeToolTip": "Script\\CommonFun.js",
-              "ViewState": "AQIAABsAAAAAAAAAAAAAACIAAABJAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABcAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-03-21T06:26:57.216Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -131,7 +182,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAANUBAAAAAAAAAAASwN0BAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-01-04T05:28:34.168Z",
+              "WhenOpened": "2024-03-26T04:58:03.037Z",
               "EditorCaption": ""
             }
           ]

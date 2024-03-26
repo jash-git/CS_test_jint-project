@@ -31,8 +31,14 @@ function Main() {
 	//---
     //新增列印主體內容
 	
-	//店名;文字至中 + 粗體+放大 + 店名 + 換行
-    ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
+    //企業Logo
+    if (PrinterParms.print_logo != "N") {
+        ESC_Value.push(ecTEXT_ALIGN_CENTER + ecLOGO);
+    }
+    else {
+        //店名;文字至中 + 粗體+放大 + 店名 + 換行
+        ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
+    }
 
 	//單號;文字靠左 + 放大 + 單號 + 換行
 	var order_noAry = json_obj.order_no.split('-');

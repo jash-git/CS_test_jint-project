@@ -36,8 +36,24 @@ function Main() {
 	//---
     //新增列印主體內容
 	
-	//店名;文字至中 + 粗體+放大 + 店名 + 換行
-    ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
+	//企業Logo
+	if (PrinterParms.print_logo != "N") {
+		ESC_Value.push(ecTEXT_ALIGN_CENTER + ecLOGO);
+	}
+	else {
+		//店名;文字至中 + 粗體+放大 + 店名 + 換行
+		ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
+	}
+
+	//開啟提示音
+	if (PrinterParms.start_buzzer != "N") {
+		ESC_Value.push(ecSTART_BUZZER);
+	}
+
+	//外接蜂鳴器
+	if (PrinterParms.external_buzzer != "N") {
+		ESC_Value.push(ecEXTERNAL_BUZZER);
+	}
 
 	//設備編號;文字靠左+ 設備編號 + 換行
 	strbuf = ShiftSpace + '設備編號: ' + json_obj.terminal_sid;

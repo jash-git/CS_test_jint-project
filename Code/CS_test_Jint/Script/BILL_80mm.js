@@ -38,8 +38,14 @@ function Main() {
     //---
     //新增列印主體內容
 
-	//店名;文字至中 + 粗體+放大 + 店名 + 換行
-    ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
+    //企業Logo
+    if (PrinterParms.print_logo != "N") {
+        ESC_Value.push(ecTEXT_ALIGN_CENTER + ecLOGO);
+    }
+    else {
+        //店名;文字至中 + 粗體+放大 + 店名 + 換行
+        ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
+    }
 
     //取餐號加大
     if (PrinterParms.big_callnum != "N") {
@@ -73,8 +79,13 @@ function Main() {
     }
 
     //開啟提示音
-    if (PrinterParms.gstrstart_buzzer != "N") {
-        ESC_Value.push(CashCommand);//指令: ESC p 0 100 100 [收銀機/抽屜]
+    if (PrinterParms.start_buzzer != "N") {
+        ESC_Value.push(ecSTART_BUZZER);
+    }
+
+    //外接蜂鳴器
+    if (PrinterParms.external_buzzer != "N") {
+        ESC_Value.push(ecEXTERNAL_BUZZER);
     }
 
 	//單號;文字靠左 + 放大 + 單號 + 換行

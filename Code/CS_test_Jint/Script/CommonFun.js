@@ -2,13 +2,14 @@
 //建立 ESC/POS Command
 const ecESC = "\u001B";
 const ecGS = "\u001D";
+const ecFS = "\u001C";
 const ecSET_BIG5 = ecESC + "\u0039" + "\u0003"; //設定中文
 const ecFREE_LINE = "\u000A";//單純換行
 const ecINITIALIZE_PRINTER = ecESC + "@";//印表機初始化
 const ecCUT_PAPER = ecGS + "\u0056" + "\u0041" + "\u0000";//切紙
 const ecBOLD_ON = ecESC + "E" + "\u0001";//文字粗體_start
 const ecBOLD_OFF = ecESC + "E" + "\0";//文字粗體_end
-const ecDOUBLE_ON = ecGS + "!" + "\u0022";//文字放大2倍_start // 2x sized text (double-high + double-wide)
+const ecDOUBLE_ON = ecGS + "!" + "\u0011";//文字放大2倍_start // 2x sized text (double-high + double-wide)
 const ecDOUBLE_OFF = ecGS + "!" + "\0";//文字放大2倍_end
 const ecTRIPLE_ON = ecGS + "!" + "\u0033";//文字放大3倍_start // 4x sized text (double-high + double-wide)
 const ecTRIPLE_OFF = ecGS + "!" + "\0";//文字放大3倍_end
@@ -19,7 +20,8 @@ const ecBIG_OFF = ecGS + "!" + "\0";//文字放大1倍_end
 const ecTEXT_ALIGN_LEFT = ecESC + "a" + "\u0048";//文字靠左
 const ecTEXT_ALIGN_CENTER = ecESC + "a" + "\u0049";//文字至中
 
-const ecTEXT_SPACE70 = ecESC + "\u0033" + "\u0046";//文字間距60
+const ecTEXT_SPACE70 = ecESC + "\u0033" + "\u0046";//文字間距70
+const ecTEXT_SPACE = ecESC + "\u0033" + "\u000A";//文字間距10
 
 const ecPAGE_MODE = ecESC + "\u004C";//选择页模式 ESC L
 const ecMOTION_UNITS = ecGS + "\u0050" + "\u0000" + "\u00CB"; //设置水平和垂直运动单位 GS P x y ;  // For 203 Dpi 
@@ -32,7 +34,10 @@ const ecBAR_CODE_HIGHT = ecGS + "\u0068" + "\u0032";//设置条形码高度 GS h
 const ecBAR_CODE_HEAD = ecGS + "\u006B" + "\u0004"//打印条形码     GS   k   m    d1...dk   NUL [29   107  4    d1...dk   0 ]  
 const ecBAR_CODE_END = "\0";//打印条形码     GS   k   m    d1...dk   NUL [29   107  4    d1...dk   0 ]
 
-const CashCommand = ecESC + "\u0070" + "\u0000" + "\u006A" + "\u006A"; //指令: ESC p 0 100 100 [收銀機/抽屜]
+const ecLOGO = ecFS + "\x70" + "\x01" + "\x00";//列印LOGO: FS p 1 0
+const ecSTART_BUZZER = ecESC + "\x42" + "\x03" + "\x04"//設定蜂鳴器(Set beep tone): ESC B n t ([Range] 1<=n<=9，1<=t<=9) [n:蜂鳴器叫的次數 ，t:蜂鳴器每次鳴叫的時間(tx100)毫秒]
+const ecEXTERNAL_BUZZER = ecESC + "\x70" + "\x00" + "\u012C" + "\u01F4";//外接蜂鳴器(Generate pulse): ESC p m t1 t2(ESC p 0 300 500)
+const ecCASH_BOX = ecESC + "\u0070" + "\u0000" + "\u006A" + "\u006A"; //收銀機/抽屜指令: ESC p m t1 t2(ESC p 0 100 100) 
 //---建立 ESC/POS Command
 
 //---
