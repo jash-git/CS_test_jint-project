@@ -56,6 +56,8 @@ function Main() {
     }
     //---判斷記錄輸入資料是否合法
 
+	GlobalVariable_Init();//解析C#傳送過來的印表參數並修改對應全域變數
+
     //---
     //新增列印主體內容
 
@@ -89,7 +91,8 @@ function Main() {
     //---新增列印主體內容
 
 
-    Result.value = CMD_Value;
+	Result.value = CMD_Value;
+	Result.log = Log_Value;
     return JSON.stringify(Result);
 }
 

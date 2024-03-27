@@ -347,6 +347,7 @@ function Main() {
     //---新增列印主體內容
 
     ESC_Value.push(ecCUT_PAPER);//切紙
-    Result.value = ESC_Value;
+	Result.value = ESC_Value;
+	Result.log = Log_Value;
     return JSON.stringify(Result);
 }

@@ -37,7 +37,9 @@ function Main() {
 		//ESC_Value.push(ecINITIALIZE_PRINTER);//印表機初始化
     }
     //---判斷記錄輸入資料是否合法
-	
+
+	請問支票開好了嗎 ?
+
 	//---
 	//設定 頁面模式 & 紙張大小	
 	var Page_Width = 552; //57mm
@@ -92,7 +94,8 @@ function Main() {
 	ESC_Value.push(ecCUT_PAPER);//切紙
 
 	
-    Result.value = ESC_Value;
+	Result.value = ESC_Value;
+	Result.log = Log_Value;
     return JSON.stringify(Result);	
 }
 

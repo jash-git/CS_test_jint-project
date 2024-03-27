@@ -49,6 +49,8 @@ function Main() {
     }
     //---判斷記錄輸入資料是否合法
 
+    GlobalVariable_Init();//解析C#傳送過來的印表參數並修改對應全域變數
+
     //---
     //新增列印主體內容
     ESC_Value.push(TextAlignCenter + BoldOn + BigOn + json_obj.store_name + BigOff + BoldOff + FreeLine + FreeLine);//文字至中 + 粗體+放大 + 店名 + 換行
@@ -164,6 +166,7 @@ function Main() {
 
     ESC_Value.push(CutPaper);//切紙
     Result.value = ESC_Value;
+    Result.log = Log_Value;
     return JSON.stringify(Result);
 }
 

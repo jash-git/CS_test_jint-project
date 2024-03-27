@@ -42,7 +42,9 @@ function Main() {
 			return JSON.stringify(Result);			
 		}
     }
-    //---判斷記錄輸入資料是否合法
+	//---判斷記錄輸入資料是否合法
+
+	GlobalVariable_Init();//解析C#傳送過來的印表參數並修改對應全域變數
     
 	//---
     //新增列印主體內容
@@ -121,6 +123,7 @@ function Main() {
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	
     ESC_Value.push(ecCUT_PAPER);//切紙
-    Result.value = ESC_Value;
+	Result.value = ESC_Value;
+	Result.log = Log_Value;
     return JSON.stringify(Result);
 }

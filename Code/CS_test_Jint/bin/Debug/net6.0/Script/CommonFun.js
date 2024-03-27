@@ -9,7 +9,7 @@ const ecINITIALIZE_PRINTER = ecESC + "@";//印表機初始化
 const ecCUT_PAPER = ecGS + "\u0056" + "\u0041" + "\u0000";//切紙
 const ecBOLD_ON = ecESC + "E" + "\u0001";//文字粗體_start
 const ecBOLD_OFF = ecESC + "E" + "\0";//文字粗體_end
-const ecDOUBLE_ON = ecGS + "!" + "\u0022";//文字放大2倍_start // 2x sized text (double-high + double-wide)
+const ecDOUBLE_ON = ecGS + "!" + "\u0011";//文字放大2倍_start // 2x sized text (double-high + double-wide)
 const ecDOUBLE_OFF = ecGS + "!" + "\0";//文字放大2倍_end
 const ecTRIPLE_ON = ecGS + "!" + "\u0033";//文字放大3倍_start // 4x sized text (double-high + double-wide)
 const ecTRIPLE_OFF = ecGS + "!" + "\0";//文字放大3倍_end
@@ -20,7 +20,8 @@ const ecBIG_OFF = ecGS + "!" + "\0";//文字放大1倍_end
 const ecTEXT_ALIGN_LEFT = ecESC + "a" + "\u0048";//文字靠左
 const ecTEXT_ALIGN_CENTER = ecESC + "a" + "\u0049";//文字至中
 
-const ecTEXT_SPACE70 = ecESC + "\u0033" + "\u0046";//文字間距60
+const ecTEXT_SPACE70 = ecESC + "\u0033" + "\u0046";//文字間距70
+const ecTEXT_SPACE = ecESC + "\u0033" + "\u000A";//文字間距10
 
 const ecPAGE_MODE = ecESC + "\u004C";//选择页模式 ESC L
 const ecMOTION_UNITS = ecGS + "\u0050" + "\u0000" + "\u00CB"; //设置水平和垂直运动单位 GS P x y ;  // For 203 Dpi 
@@ -42,6 +43,7 @@ const ecCASH_BOX = ecESC + "\u0070" + "\u0000" + "\u006A" + "\u006A"; //收銀�
 //---
 //全域外部參數
 var PrinterParms = {};//全域印表參數
+var Log_Value = [];//所有除錯用Log物件
 //---全域外部參數
 
 /*
@@ -349,8 +351,10 @@ function GlobalVariable_Init()
     //將輸入文字轉成JSON物件
     try {
         json_obj = JSON.parse(TemplateVar);
+        WriteLog("GlobalVariable_Init 解析成功")
     }
     catch (e) {
+        WriteLog("GlobalVariable_Init 解析錯誤")
         json_obj = null;
     }
     //---將輸入文字轉成JSON物件
@@ -376,4 +380,9 @@ function GlobalVariable_Init()
     else {
         PrinterParms = json_obj;
 	}		
+}
+
+function WriteLog(Messages) {
+    var time = new Date();
+    Log_Value.push(time.toLocaleString() +" : " + Messages);
 }

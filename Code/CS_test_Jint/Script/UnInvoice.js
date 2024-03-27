@@ -29,6 +29,8 @@ function Main() {
     }
     //---將輸入文字轉成JSON物件
 
+	GlobalVariable_Init();//解析C#傳送過來的印表參數並修改對應全域變數
+
     //---
     //判斷記錄輸入資料是否合法
     if ((json_obj == null) || (invoice_obj == null)) {
@@ -319,7 +321,8 @@ function Main() {
 	
 	ESC_Value.push(ecCUT_PAPER);//切紙
 	
-    Result.value = ESC_Value;
+	Result.value = ESC_Value;
+	Result.log = Log_Value;
     return JSON.stringify(Result);	
 }
 

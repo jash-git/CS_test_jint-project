@@ -31,7 +31,9 @@ function Main() {
 		}		
         ESC_Value.push(ecINITIALIZE_PRINTER);//印表機初始化		
     }
-    //---判斷記錄輸入資料是否合法
+	//---判斷記錄輸入資料是否合法
+
+	GlobalVariable_Init();//解析C#傳送過來的印表參數並修改對應全域變數
     
 	//---
     //新增列印主體內容
@@ -43,6 +45,16 @@ function Main() {
 	else {
 		//店名;文字至中 + 粗體+放大 + 店名 + 換行
 		ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
+	}
+
+	//開啟提示音
+	if (PrinterParms.start_buzzer != "N") {
+		ESC_Value.push(ecSTART_BUZZER);
+	}
+
+	//外接蜂鳴器
+	if (PrinterParms.external_buzzer != "N") {
+		ESC_Value.push(ecEXTERNAL_BUZZER);
 	}
 
 	//設備編號;文字靠左+ 設備編號 + 換行
@@ -335,6 +347,7 @@ function Main() {
     //---新增列印主體內容
 
     ESC_Value.push(ecCUT_PAPER);//切紙
-    Result.value = ESC_Value;
+	Result.value = ESC_Value;
+	Result.log = Log_Value;
     return JSON.stringify(Result);
 }

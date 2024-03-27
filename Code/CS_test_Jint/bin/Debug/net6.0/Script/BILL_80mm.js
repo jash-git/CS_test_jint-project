@@ -360,5 +360,6 @@ function Main() {
 
     ESC_Value.push(ecCUT_PAPER);//切紙
     Result.value = ESC_Value;
+    Result.log = Log_Value;
     return JSON.stringify(Result);
 }

@@ -329,6 +329,7 @@ function Sell(json_obj, invoice_obj) {
 	ESC_Value.push(ecCUT_PAPER);//切紙
 
 	Result.value = ESC_Value;
+	Result.log = Log_Value;
 	return JSON.stringify(Result);
 }
 
@@ -546,6 +547,7 @@ function Refund(json_obj, invoice_obj) {
 	ESC_Value.push(ecCUT_PAPER);//切紙
 
 	Result.value = ESC_Value;
+	Result.log = Log_Value;
 	return JSON.stringify(Result);
 }
 

@@ -8,6 +8,7 @@ function Main() {
 	ESC_Value.push(ecCASH_BOX);
 	
 	Result.state_code = 0;	
-    Result.value = ESC_Value;
+	Result.value = ESC_Value;
+	Result.log = Log_Value;
     return JSON.stringify(Result);
 }

@@ -30,6 +30,7 @@ namespace CS_test_Jint
     {
         public int state_code { get; set; }
         public List<string> value { get; set; }
+        public List<string> log { get; set; }
     }
 
     public class TestClass

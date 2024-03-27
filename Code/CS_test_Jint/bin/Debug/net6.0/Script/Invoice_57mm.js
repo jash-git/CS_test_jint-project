@@ -28,6 +28,8 @@ function Main() {
 	}
 	//---將輸入文字轉成JSON物件
 
+	GlobalVariable_Init();//解析C#傳送過來的印表參數並修改對應全域變數
+
 	if (invoice_obj.Invalid_Flag == "Y") {
 		Result = Refund(json_obj, invoice_obj);
 	}
@@ -327,6 +329,7 @@ function Sell(json_obj, invoice_obj) {
 	ESC_Value.push(ecCUT_PAPER);//切紙
 
 	Result.value = ESC_Value;
+	Result.log = Log_Value;
 	return JSON.stringify(Result);
 }
 
@@ -544,6 +547,7 @@ function Refund(json_obj, invoice_obj) {
 	ESC_Value.push(ecCUT_PAPER);//切紙
 
 	Result.value = ESC_Value;
+	Result.log = Log_Value;
 	return JSON.stringify(Result);
 }
 

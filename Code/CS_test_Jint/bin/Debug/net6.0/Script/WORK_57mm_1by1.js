@@ -27,7 +27,9 @@ function Main() {
         ESC_Value.push(ecINITIALIZE_PRINTER);//印表機初始化
     }
     //---判斷記錄輸入資料是否合法
-    
+
+	GlobalVariable_Init();//解析C#傳送過來的印表參數並修改對應全域變數
+
 	//---
     //新增列印主體內容	
     var AllCount = json_obj.item_count;//產品總數量
@@ -172,6 +174,7 @@ function Main() {
     }
     //---產品+配料
 
-    Result.value = ESC_Value;
+	Result.value = ESC_Value;
+	Result.log = Log_Value;
     return JSON.stringify(Result);
 }

@@ -43,6 +43,7 @@ const ecCASH_BOX = ecESC + "\u0070" + "\u0000" + "\u006A" + "\u006A"; //收銀�
 //---
 //全域外部參數
 var PrinterParms = {};//全域印表參數
+var Log_Value = [];//所有除錯用Log物件
 //---全域外部參數
 
 /*
@@ -350,8 +351,10 @@ function GlobalVariable_Init()
     //將輸入文字轉成JSON物件
     try {
         json_obj = JSON.parse(TemplateVar);
+        WriteLog("GlobalVariable_Init 解析成功")
     }
     catch (e) {
+        WriteLog("GlobalVariable_Init 解析錯誤")
         json_obj = null;
     }
     //---將輸入文字轉成JSON物件
@@ -377,4 +380,9 @@ function GlobalVariable_Init()
     else {
         PrinterParms = json_obj;
 	}		
+}
+
+function WriteLog(Messages) {
+    var time = new Date();
+    Log_Value.push(time.toLocaleString() +" : " + Messages);
 }
