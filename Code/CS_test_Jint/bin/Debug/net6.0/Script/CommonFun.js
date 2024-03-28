@@ -382,7 +382,7 @@ function GlobalVariable_Init()
 	}		
 }
 
-function WriteLog(Messages) {
+function WriteLog(Messages) {//將想要紀錄資訊寫在記憶體中，有需要時拿出來分析判讀(韌體除錯技巧)
     var time = new Date();
     Log_Value.push(time.toLocaleString() +" : " + Messages);
 }

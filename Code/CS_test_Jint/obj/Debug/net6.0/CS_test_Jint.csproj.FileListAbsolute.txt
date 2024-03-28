@@ -91,3 +91,5 @@ C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\n
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\CS_test_Jint.sourcelink.json
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\CS_test_.D8537D1B.Up2Date
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Esprima.dll
+C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\WORK_ALL_57mm.js
+C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\WORK_ALL_80mm.js

@@ -141,17 +141,19 @@ function Main() {
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	strbuf = ShiftSpace + '非營業日訂單作廢金額: ' + TypesettingSpace('非營業日訂單作廢金額: ',json_obj.other_cancel_total,MaxLength) + json_obj.other_cancel_total;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
-	strbuf = ShiftSpace + '折扣總金額: ' + TypesettingSpace('折扣總金額: ',json_obj.discount_total,MaxLength) + json_obj.discount_total;
+	strbuf = ShiftSpace + '折扣/讓總金額: ' + TypesettingSpace('折扣/讓總金額: ',json_obj.discount_total,MaxLength) + json_obj.discount_total;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
-	strbuf = ShiftSpace + '促銷折扣總金額: ' + TypesettingSpace('促銷折扣總金額: ',json_obj.promotion_total,MaxLength) + json_obj.promotion_total;
+	strbuf = ShiftSpace + '促銷優惠總金額: ' + TypesettingSpace('促銷優惠總金額: ',json_obj.promotion_total,MaxLength) + json_obj.promotion_total;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
-	strbuf = ShiftSpace + '優惠/兌換券金額: ' + TypesettingSpace('優惠/兌換券金額: ',json_obj.coupon_total,MaxLength) + json_obj.coupon_total;
+	strbuf = ShiftSpace + '兌換券金額: ' + TypesettingSpace('兌換券金額: ',json_obj.coupon_total,MaxLength) + json_obj.coupon_total;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	strbuf = ShiftSpace + '商品寄庫金額: ' + TypesettingSpace('商品寄庫金額: ',json_obj.stock_push_amount,MaxLength) + json_obj.stock_push_amount;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	strbuf = ShiftSpace + '寄庫商品領取金額: ' + TypesettingSpace('寄庫商品領取金額: ',json_obj.stock_pull_amount,MaxLength) + json_obj.stock_pull_amount;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	strbuf = ShiftSpace + '服務費總金額: ' + TypesettingSpace('服務費總金額: ',json_obj.tax_total,MaxLength) + json_obj.tax_total;
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+	strbuf = ShiftSpace + '外送費總金額: ' + TypesettingSpace('外送費總金額: ', json_obj.delivery_total, MaxLength) + json_obj.delivery_total;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	strbuf = ShiftSpace + '交易沖正金額: ' + TypesettingSpace('交易沖正金額: ',json_obj.trans_reversal,MaxLength) + json_obj.trans_reversal;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
@@ -305,7 +307,7 @@ function Main() {
 	}
 
 	//商品類別銷售統計;文字靠左 + 支付方式 + 換行
-	if( (json_obj.category_sale_info!=null) && (json_obj.category_sale_info.length>0) )
+	if ( (PrinterParms.single_report == "N") && (json_obj.category_sale_info!=null) && (json_obj.category_sale_info.length>0) )
 	{
 		strbuf = ShiftSpace + '【商品類別銷售統計】';
 		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);	
@@ -327,7 +329,7 @@ function Main() {
 	}
 	
 	//列印軟體版本;文字靠左 + 支付方式 + 換行
-	strbuf = ShiftSpace + 'Version: ' + json_obj.version;
+	strbuf = ShiftSpace + 'Version: ' + json_obj.pos_ver;
 	ESC_Value.push(ecFREE_LINE + ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	
 	//列印時間;文字靠左 + 支付方式 + 換行
