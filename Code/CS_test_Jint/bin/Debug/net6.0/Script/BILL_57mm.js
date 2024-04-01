@@ -80,7 +80,6 @@ function Main() {
 
     //開啟提示音
     if (PrinterParms.start_buzzer != "N") {
-        ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
         ESC_Value.push(ecSTART_BUZZER);
     }
 

@@ -85,7 +85,8 @@ function String2Array(strInput, len) {
 /*
 *具有中文字的字串 列印寬度計算
 */
-function Wlen(str) {
+function Wlen(val) {
+    var str = "" + val;
     return str.replace(/[^\x00-\xff]/g, "xx").length;
 }
 
@@ -346,6 +347,7 @@ function Test_String2Array()
 
 function GlobalVariable_Init()
 {//解析C#傳送過來的印表參數並修改對應全域變數
+    var json_obj = {};//輸入字串的JSON物件
 
     //---
     //將輸入文字轉成JSON物件
