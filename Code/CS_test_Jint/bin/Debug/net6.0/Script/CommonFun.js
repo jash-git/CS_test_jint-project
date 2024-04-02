@@ -20,13 +20,15 @@ const ecBIG_OFF = ecGS + "!" + "\0";//文字放大1倍_end
 const ecTEXT_ALIGN_LEFT = ecESC + "a" + "\u0048";//文字靠左
 const ecTEXT_ALIGN_CENTER = ecESC + "a" + "\u0049";//文字至中
 
-const ecTEXT_SPACE70 = ecESC + "\u0033" + "\u0046";//文字間距70
-const ecTEXT_SPACE = ecESC + "\u0033" + "\u000A";//文字間距10
+const ecTEXT_SPACE255 = ecESC + "\u0033" + "\u00FF";//文字間距255
+const ecTEXT_SPACE100 = ecESC + "\u0033" + "\u0064";//文字間距100
+const ecTEXT_SPACE70 = ecESC + "\u0033" + "\u0046";//文字間距70 ~ ESC 3 n [1B 33 n]
+const ecTEXT_SPACE = ecESC + "\u0032";//恢復預設間距 ESC 2 [1B 32]
 
 const ecPAGE_MODE = ecESC + "\u004C";//选择页模式 ESC L
 const ecMOTION_UNITS = ecGS + "\u0050" + "\u0000" + "\u00CB"; //设置水平和垂直运动单位 GS P x y ;  // For 203 Dpi 
 const ecAREA_SIZE = ecESC + "\u0057" + "\u0000" + "\u0000" + "\u0000" + "\u0000" + "\u00A0" + "\u0001" + "\u0058" + "\u0002";//在页模式下设置打印区域 ESC W xL xH yL yH dxL dxH dyL dyH
-const ecTEXT_CODE = ecESC + "\u0054" + "\u0000";//选择字符代码表 ESC T n ; HEX 1B 54 00 
+const ecTEXT_CODE = ecESC + "\u0054" + "\u0000";//在页模式下选择打印方向 ESC T n ; HEX 1B 54 00
 const ecRESET_PAGE_MODE = ecESC + "\u000C";//打印并回到标准模式（在页模式下）
 
 const ecBAR_CODE_WIDTH = ecGS + "\u0077" + "\u0001";//设置条形码宽度 GS w n [29   119   4]
@@ -86,7 +88,7 @@ function String2Array(strInput, len) {
 *具有中文字的字串 列印寬度計算
 */
 function Wlen(val) {
-    var str = "" + val;
+    var str = "" + val;//確保JS一定將該變數型態其判斷為字串
     return str.replace(/[^\x00-\xff]/g, "xx").length;
 }
 
@@ -347,7 +349,7 @@ function Test_String2Array()
 
 function GlobalVariable_Init()
 {//解析C#傳送過來的印表參數並修改對應全域變數
-    var json_obj = {};//輸入字串的JSON物件
+    var json_obj = {};//輸入字串的JSON物件 區域變數
 
     //---
     //將輸入文字轉成JSON物件
@@ -387,4 +389,16 @@ function GlobalVariable_Init()
 function WriteLog(Messages) {//將想要紀錄資訊寫在記憶體中，有需要時拿出來分析判讀(韌體除錯技巧)
     var time = new Date();
     Log_Value.push(time.toLocaleString() +" : " + Messages);
+}
+
+function PageSpace(val=12) {//使用頁面模式實作文字間距功能
+    var ESC_Value = [];//存放記錄所有產出的列印資訊陣列
+    var str = String.fromCharCode(val);//number to unicode// "\u000C"
+
+    ESC_Value.push(ecPAGE_MODE);
+    ESC_Value.push(ecESC + "\u0057" + "\u0000" + "\u0000" + "\u0000" + "\u0000" + "\u0005" + "\u0000" + str + "\u0000");
+    ESC_Value.push(ecRESET_PAGE_MODE);
+    ESC_Value.push("\x1B\x53");//Select standard mode [ESC S] 
+
+    return ESC_Value;
 }

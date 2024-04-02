@@ -41,6 +41,7 @@ function Main() {
 
     strbuf = '單號(' + json_obj.order_type_name + ') :' + json_obj.call_num;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);//文字靠左 + 放大 + 單號 + 換行
+    ESC_Value = ESC_Value.concat(PageSpace());//使用頁面模式實作文字間距功能 ;使用concat成員實現陣列合併
 
     strbuf = '桌號: ' + json_obj.table_name;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);//文字靠左 + 放大 + 桌號 + 換行

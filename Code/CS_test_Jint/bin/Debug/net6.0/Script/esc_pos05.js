@@ -37,23 +37,24 @@ function Main() {
 
     //---
     //新增列印主體內容
-	
+
     //企業Logo
     if (PrinterParms.print_logo != "N") {
         ESC_Value.push(ecTEXT_ALIGN_CENTER + ecLOGO);
     }
     else {
         //店名;文字至中 + 粗體+放大 + 店名 + 換行
-        ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
+        ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE + ecFREE_LINE);
     }
 
-	//單號;文字靠左 + 放大 + 單號 + 換行
+    //單號;文字靠左 + 放大 + 單號 + 換行
     strbuf = '單號(' + json_obj.order_type_name + ') :' + json_obj.call_num;
-    ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+    ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + " " + ecFREE_LINE);
+    ESC_Value = ESC_Value.concat(PageSpace());//使用頁面模式實作文字間距功能 ;使用concat成員實現陣列合併
 
-	//桌號;文字靠左 + 放大 + 桌號 + 換行
+    //桌號;文字靠左 + 放大 + 桌號 + 換行
 	if(json_obj.table_name.length>0)
-	{
+    {
 		strbuf = '桌號: ' + json_obj.table_name;
 		ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);		
 	}

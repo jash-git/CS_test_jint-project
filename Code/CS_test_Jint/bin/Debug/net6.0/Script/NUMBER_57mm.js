@@ -81,6 +81,7 @@ function Main() {
 	var order_noAry = json_obj.order_no.split('-');
     strbuf = ShiftSpace + '單號(' + json_obj.order_type_name + ') :' + order_noAry[1];//json_obj.call_num;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+    ESC_Value = ESC_Value.concat(PageSpace());//使用頁面模式實作文字間距功能 ;使用concat成員實現陣列合併
 
 	//桌號;文字靠左 + 放大 + 桌號 + 換行
 	if(json_obj.table_name.length>0)
