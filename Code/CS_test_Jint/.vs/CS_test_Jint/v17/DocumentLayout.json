@@ -3,19 +3,27 @@
   "WorkspaceRootPath": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\lable_40mm_50mm_rs232.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\lable_40mm_50mm_rs232.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\work_all_80mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\work_all_80mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\script\\lable_40mm_25mm_rs232.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\lable_40mm_25mm_rs232.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\script\\work_all_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\work_all_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\lable_30mm_25mm_rs232.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\lable_30mm_25mm_rs232.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\script\\commonfun.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\script\\lable_40mm_60mm_rs232.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\lable_40mm_60mm_rs232.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\devel\\desktop\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\commonfun.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\commonfun.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
@@ -26,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,54 +58,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "WORK_ALL_80mm.js",
-              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\WORK_ALL_80mm.js",
-              "RelativeDocumentMoniker": "Script\\WORK_ALL_80mm.js",
-              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\WORK_ALL_80mm.js",
-              "RelativeToolTip": "Script\\WORK_ALL_80mm.js",
-              "ViewState": "AQIAAFgBAAAAAAAAAAAqwGYBAABzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-04-03T05:09:42.763Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "WORK_ALL_57mm.js",
-              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\WORK_ALL_57mm.js",
-              "RelativeDocumentMoniker": "Script\\WORK_ALL_57mm.js",
-              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\WORK_ALL_57mm.js",
-              "RelativeToolTip": "Script\\WORK_ALL_57mm.js",
-              "ViewState": "AQIAAEUBAAAAAAAAAAAQwFEBAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-04-02T07:35:56.514Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAANcBAAAAAAAAAAAcwN4BAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-26T04:58:03.037Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "CommonFun.js",
               "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\CommonFun.js",
               "RelativeDocumentMoniker": "Script\\CommonFun.js",
               "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\CommonFun.js",
               "RelativeToolTip": "Script\\CommonFun.js",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAIsBAAAgAAAA",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAYwFkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-03-28T01:06:04.477Z",
+              "WhenOpened": "2024-04-08T06:58:49.299Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Lable_40mm_50mm_RS232.js",
+              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Lable_40mm_50mm_RS232.js",
+              "RelativeDocumentMoniker": "Script\\Lable_40mm_50mm_RS232.js",
+              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Lable_40mm_50mm_RS232.js",
+              "RelativeToolTip": "Script\\Lable_40mm_50mm_RS232.js",
+              "ViewState": "AQIAADIAAAAAAAAAAAAAwAcAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-04-08T06:55:25.661Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Lable_40mm_25mm_RS232.js",
+              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Lable_40mm_25mm_RS232.js",
+              "RelativeDocumentMoniker": "Script\\Lable_40mm_25mm_RS232.js",
+              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Lable_40mm_25mm_RS232.js",
+              "RelativeToolTip": "Script\\Lable_40mm_25mm_RS232.js",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAswFIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-04-08T05:58:39.768Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Lable_30mm_25mm_RS232.js",
+              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Lable_30mm_25mm_RS232.js",
+              "RelativeDocumentMoniker": "Script\\Lable_30mm_25mm_RS232.js",
+              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Lable_30mm_25mm_RS232.js",
+              "RelativeToolTip": "Script\\Lable_30mm_25mm_RS232.js",
+              "ViewState": "AQIAAMYAAAAAAAAAAAAYwNIAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-04-08T06:59:18.325Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Lable_40mm_60mm_RS232.js",
+              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Lable_40mm_60mm_RS232.js",
+              "RelativeDocumentMoniker": "Script\\Lable_40mm_60mm_RS232.js",
+              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Lable_40mm_60mm_RS232.js",
+              "RelativeToolTip": "Script\\Lable_40mm_60mm_RS232.js",
+              "ViewState": "AQIAAEABAAAAAAAAAAAkwCsBAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-04-08T05:58:24.431Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\devel\\Desktop\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAH8BAAAAAAAAAAAawH0BAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-08T06:01:07.265Z",
               "EditorCaption": ""
             }
           ]
