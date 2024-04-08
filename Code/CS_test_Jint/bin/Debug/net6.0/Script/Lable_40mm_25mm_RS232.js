@@ -23,6 +23,12 @@ const lcEND = '\r\n';
 const lcPRINTEND = "PRINT 1,1\r\n";//指定設定列印資料對應列印張數
 //---建立 40 mm,25 mm 標籤機 Command
 
+//---
+//全域外部參數
+var PrinterParms = {};//全域印表參數
+var Log_Value = [];//所有除錯用Log物件
+//---全域外部參數
+
 //標籤40 mm,25 mm範本
 function Main() {
     //JSON資料顯示格式轉換: https://jsonformatter.org/
@@ -36,9 +42,13 @@ function Main() {
     //將輸入文字轉成JSON物件
     try {
         json_obj = JSON.parse(input);
+        WriteLog("input 解析成功");
+        WriteLog(json_obj.store_name);
     }
     catch (e) {
         json_obj = null;
+        WriteLog(e.message);
+        WriteLog("input 解析失敗");
     }
     //---將輸入文字轉成JSON物件
 
@@ -81,9 +91,9 @@ function Main() {
 				strbuf = '"' + json_obj.order_type_name + '(' + AllCount + '-' + Num + ')' + '"';
 				CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + lcPOSITION_Y + ',' + lcFONT_SIZE01 + strbuf + lcEND);
 				
-				//單號
-				var order_noAry = json_obj.order_no.split('-');
-				strbuf = '"' + order_noAry[1] + '"';
+                //單號
+                var order_noAry = json_obj.order_no.split('-');
+                strbuf = '"' + json_obj.call_num + '"';
 				var POSITION_numY =50;//單號字高
 				CMD_Value.push(lcDATA_START + lcPOSITION_HalfWidth + ',' + lcPOSITION_Y + ',' + lcFONT_SIZE02 + strbuf + lcEND);
 				
@@ -138,7 +148,12 @@ function Main() {
                 
 				//金額
 				PositionY_Buf += 25;
-				strbuf = '"$' + json_obj.order_items[i].amount + '"';			
+                if (PrinterParms.no_print_price == "N") {//不印價格
+                    strbuf = '"$' + json_obj.order_items[i].amount + '"';
+                }
+                else {
+                    strbuf = '"' + '"';
+                }		
 				CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE02 + strbuf + lcEND);
 				
 				CMD_Value.push(lcPRINTEND);//"PRINT 1,1\r\n"				
@@ -188,7 +203,8 @@ function String2Array(strInput, len) {
 /*
 *具有中文字的字串 列印寬度計算
 */
-function Wlen(str) {
+function Wlen(val) {
+    var str = "" + val;//確保JS一定將該變數型態其判斷為字串
     return str.replace(/[^\x00-\xff]/g, "xx").length;
 }
 
@@ -222,4 +238,47 @@ function Wsubstring(data, start, len) {
     }
 
     return strResult;
+}
+
+function GlobalVariable_Init() {//解析C#傳送過來的印表參數並修改對應全域變數
+    var json_obj = {};//輸入字串的JSON物件 區域變數
+
+    //---
+    //將輸入文字轉成JSON物件
+    try {
+        json_obj = JSON.parse(TemplateVar);
+        WriteLog("GlobalVariable_Init 解析成功")
+    }
+    catch (e) {
+        WriteLog("GlobalVariable_Init 解析錯誤")
+        json_obj = null;
+    }
+    //---將輸入文字轉成JSON物件
+
+    if (json_obj == null) {
+        PrinterParms.print_logo = "N";//企業Logo
+        PrinterParms.conn_cash_box = "N";
+        PrinterParms.print_barcode = "N";//列印條碼
+        PrinterParms.start_buzzer = "N";//開啟提示音
+        PrinterParms.external_buzzer = "N";//外接蜂鳴器
+        PrinterParms.big_callnum = "N";//取餐號加大
+        PrinterParms.big_order_type = "N";//訂單類型加大
+        PrinterParms.big_takeaways_no = "N";//外賣單號加大
+        PrinterParms.big_table = "N";//桌號加大
+        PrinterParms.print_product_price = "N";//列印商品金額
+        PrinterParms.product_single_cut = "N";//一菜一切
+        PrinterParms.merge_product = "N";//商品合併列印
+        PrinterParms.single_report = "N";//只印簡表
+        PrinterParms.no_print_price = "N";//不印價格
+        PrinterParms.print_ticket_memo = "N";//列印備註
+        PrinterParms.label_bottom_info = "";//底部列印資訊
+    }
+    else {
+        PrinterParms = json_obj;
+    }
+}
+
+function WriteLog(Messages) {//將想要紀錄資訊寫在記憶體中，有需要時拿出來分析判讀(韌體除錯技巧)
+    var time = new Date();
+    Log_Value.push(time.toLocaleString() + " : " + Messages);
 }

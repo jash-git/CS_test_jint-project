@@ -13,7 +13,8 @@ function Main() {
         json_obj = JSON.parse(input);
     }
     catch (e) {
-        json_obj = null;
+		json_obj = null;
+		WriteLog(e.message);
     }
     //---將輸入文字轉成JSON物件
 

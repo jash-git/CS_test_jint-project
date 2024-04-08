@@ -38,6 +38,7 @@ function Main() {
     catch (e) {
         json_obj = null;
 		invoice_obj = null;
+		WriteLog(e.message);
     }
 	//---將輸入文字轉成JSON物件
 
@@ -65,7 +66,8 @@ function Sell(json_obj,invoice_obj)
     //---
     //判斷記錄輸入資料是否合法
     if ((json_obj == null) || (invoice_obj == null)) {
-        Result.state_code = 1;
+		Result.state_code = 1;
+		Result.log = Log_Value;
         return JSON.stringify(Result);
     }
     else {
@@ -360,7 +362,8 @@ function Refund(json_obj,invoice_obj)
     //---
     //判斷記錄輸入資料是否合法
     if ((json_obj == null) || (invoice_obj == null)) {
-        Result.state_code = 1;
+		Result.state_code = 1;
+		Result.log = Log_Value;
         return JSON.stringify(Result);
     }
     else {

@@ -346,21 +346,17 @@ namespace CS_test_Jint
             }
         }
 
-        static void ESCPOS_Lable_RS232Print(String StrInput,String StrMemo)
+        static void ESCPOS_Lable_RS232Print(String StrInput="",String StrMemo="", String StrTemplateVar = "")
         {
             Console.WriteLine("Init Jint...");
             var engine = new Engine();
 
-            /*
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "esc_pos02.js"));
-            */
-
-            engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "esc_pos03.js"));
+                Path.DirectorySeparatorChar + "Lable_40mm_50mm_RS232.js"));
 
             engine.SetValue("input", StrInput);
             engine.SetValue("memo", StrMemo);
+            engine.SetValue("TemplateVar", StrTemplateVar);
 
             Console.WriteLine("Create ESC_Command...");
             String StrFunName = "Main";//"Main()";
@@ -835,7 +831,8 @@ namespace CS_test_Jint
             sr = new StreamReader(@"C:\Users\devel\Desktop\TemplateVar.json");
             string StrTemplateVar = sr.ReadLine();
             sr.Close();// 關閉串流
-            ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
+            //ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
+            ESCPOS_Lable_RS232Print(StrInput, "", StrTemplateVar);
             //*/
             /*
             int Page_Width = 552; //57mm

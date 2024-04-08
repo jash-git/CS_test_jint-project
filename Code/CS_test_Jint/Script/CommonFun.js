@@ -359,6 +359,7 @@ function GlobalVariable_Init()
     }
     catch (e) {
         WriteLog("GlobalVariable_Init 解析錯誤")
+        WriteLog(e.message);
         json_obj = null;
     }
     //---將輸入文字轉成JSON物件

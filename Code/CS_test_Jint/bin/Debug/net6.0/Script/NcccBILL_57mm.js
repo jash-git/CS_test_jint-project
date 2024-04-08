@@ -18,7 +18,8 @@ function Main() {
         json_obj = JSON.parse(input);
     }
     catch (e) {
-        json_obj = null;
+		json_obj = null;
+		WriteLog(e.message);
     }
     //---將輸入文字轉成JSON物件
 
@@ -26,7 +27,8 @@ function Main() {
     //判斷記錄輸入資料是否合法
 	Trans_Amount = 0;//交易金額變數初始化
     if (json_obj == null) {
-        Result.state_code = 1;
+		Result.state_code = 1;
+		Result.log = Log_Value;
         return JSON.stringify(Result);
     }
     else {
@@ -39,6 +41,7 @@ function Main() {
 		else
 		{
 			Result.state_code = 1;
+			Result.log = Log_Value;
 			return JSON.stringify(Result);			
 		}
     }
