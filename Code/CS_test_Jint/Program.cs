@@ -340,6 +340,7 @@ namespace CS_test_Jint
                 Byte[] readBuffer = new Byte[len];
                 m_port.Read(readBuffer, 0, len); //将数据读入缓存
                 //处理readBuffer中的数据，自定义处理过程
+                String StrMsg= System.Text.Encoding.Default.GetString(readBuffer);
             }
             catch (Exception ex)
             {

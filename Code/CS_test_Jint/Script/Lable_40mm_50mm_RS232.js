@@ -1,11 +1,11 @@
 //---
 //建立 40 mm,50 mm 標籤機 Command
 const lcPOSITION_X = 15;//起始定位座標點
-const lcPOSITION_Y = 10;//起始定位座標點
-const lcPOSITION_HalfWidth = 175;
+const lcPOSITION_Y = 8;//起始定位座標點
+const lcPOSITION_HalfWidth = 175;//紙張一半的平移座標
 const lcWORD_COUNT = 24;//(12*2)一行英文最多字數(SIZE 40 mm,50 mm)
 
-const lcSET_PAGE_SIZE = 'SIZE 40 mm,50 mm\r\n';//設定紙張大小
+const lcSET_PAGE_SIZE = 'SIZE 40 mm,50 mm\r\n';//設定紙張大小 [400(40*10) * 500(50*10)]
 const lcSET_GAP_DISTANCE = 'GAP 3 mm,0 mm\r\n';//設定紙張間隙
 const lcSET_DIRECTION = 'DIRECTION 1\r\n'; //設定紙張方向
 const lcCLEAR = 'CLS\r\n';//清除影像暫存
@@ -19,6 +19,9 @@ const lcFONT_SIZE03 = '"TST24.BF2",0,1,3,';//字型大小3 => H=75,W=13
 const lcFONT_SIZE02 = '"TST24.BF2",0,1,2,';//字型大小2 => H=50,W=13
 const lcFONT_SIZE01 = '"TST24.BF2",0,1,1,';//字型大小1 => H=25,W=13
 const lcEND = '\r\n';
+
+const lcQRCODE = 'QRCODE 93, 158, M, 4, A, 0, J1, M2, X150, S7,';//座標X(13*6+15),座標Y(108+50),纠错等级(M),模块宽度(4),编码模式(A),旋转(0),[对齐方式(J1)],模式(M2),[最大条码区域(X150)],编码数据(S7)
+//const lcQRCODE = 'QRCODE 93,158,M,4,A,0,M2,S7,';
 
 const lcPRINTEND = "PRINT 1,1\r\n";//指定設定列印資料對應列印張數
 //---建立 40 mm,50 mm 標籤機 Command
@@ -84,27 +87,18 @@ function Main() {
             for (var j = 0; j < json_obj.order_items[i].count; j++) {
                 var PositionY_Buf = 0;
                 Num++;
-                CMD_Value.push(lcCLEAR);
+                CMD_Value.push(lcCLEAR);//清除影像暫存
 
-                //訂單類型+產品編號
-                strbuf = '"' + json_obj.order_type_name + '(' + AllCount + '-' + Num + ')' + '"';
+                //[訂單類型]+單號
+                strbuf = '"[' + json_obj.order_type_name + ']' + json_obj.call_num + '"';
                 CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + lcPOSITION_Y + ',' + lcFONT_SIZE01 + strbuf + lcEND);
 
-                //單號
-                var order_noAry = json_obj.order_no.split('-');
-                strbuf = '"' + json_obj.call_num + '"';
-                var POSITION_numY = 50;//單號字高
-                CMD_Value.push(lcDATA_START + lcPOSITION_HalfWidth + ',' + lcPOSITION_Y + ',' + lcFONT_SIZE02 + strbuf + lcEND);
+                //產品編號
+                strbuf = '"' + Num + '-' + AllCount + '"';
+                var POSITION_numX = lcPOSITION_HalfWidth + ((12 - Wlen(Num + '-' + AllCount)) * 13) - lcPOSITION_X;//12:一半為12字;13:字寬
+                var POSITION_numY = 25;
+                CMD_Value.push(lcDATA_START + POSITION_numX + ',' + lcPOSITION_Y + ',' + lcFONT_SIZE01 + strbuf + lcEND);
 
-                //日期
-                strbuf = '"' + month + '/' + day + '"';
-                var POSITION_dayX = lcPOSITION_HalfWidth + (13 * Wlen(order_noAry[1]));
-                CMD_Value.push(lcDATA_START + POSITION_dayX + ',' + lcPOSITION_Y + ',' + lcFONT_SIZE01 + strbuf + lcEND);
-
-                //時間
-                strbuf = '"' + hour + ':' + minute + '"';
-                var POSITION_timeY = lcPOSITION_Y + 25;
-                CMD_Value.push(lcDATA_START + POSITION_dayX + ',' + POSITION_timeY + ',' + lcFONT_SIZE01 + strbuf + lcEND);
 
                 //---
                 //產品+配料		
@@ -112,52 +106,76 @@ function Main() {
                 //產品
                 strbuf = '"' + json_obj.order_items[i].product_name + '"'; //取出產品名稱
                 var POSITION_nameY = 50;//產品名稱字高
-                var POSITION_Y = lcPOSITION_Y + POSITION_numY;
+                var POSITION_Y = lcPOSITION_Y + POSITION_numY;//起始點+產品編號高度
                 PositionY_Buf = POSITION_Y + POSITION_nameY / 2;
                 CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + POSITION_Y + ',' + lcFONT_SIZE02 + strbuf + lcEND);
 
-                //分隔線
-                var Delimiter = '------------------------'
-                strbuf = '"' + Delimiter + '"';
-                CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE02 + strbuf + lcEND);
-
-                var POSITION_Line = 10;
-                PositionY_Buf += POSITION_Line;
-
+                var StrCondiment_code = '';
                 //配料
                 if (json_obj.order_items[i].condiments != null) {
-                    strbuf = '';
+                    strbuf = '-';
                     for (var k = 0; k < json_obj.order_items[i].condiments.length; k++) {
-                        strbuf += '(' + json_obj.order_items[i].condiments[k].condiment_name + ')';
+                        if (k == 0) {
+                            strbuf += json_obj.order_items[i].condiments[k].condiment_name;
+                            StrCondiment_code = json_obj.order_items[i].condiments[k].condiment_code;
+                        }
+                        else {
+                            strbuf += ',' + json_obj.order_items[i].condiments[k].condiment_name;
+                            StrCondiment_code += ',' + json_obj.order_items[i].condiments[k].condiment_code;
+                        }
                     }
 
                     var array = String2Array(strbuf, 24);
                     for (var l = 0; l < array.length; l++) {
-                        PositionY_Buf = lcPOSITION_Y + POSITION_numY + POSITION_nameY + POSITION_Line + (l * 25);
+                        PositionY_Buf = lcPOSITION_Y + POSITION_numY + POSITION_nameY + (l * 25);
                         strbuf = '"  ' + array[l] + '"';
                         CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE01 + strbuf + lcEND);
                     }
                 }
                 else {//沒有配料 也要有空白列 ~ 排版一致性
-                    PositionY_Buf = lcPOSITION_Y + POSITION_numY + POSITION_nameY + POSITION_Line;
+                    PositionY_Buf = lcPOSITION_Y + POSITION_numY + POSITION_nameY;
                     strbuf = '"  "';
                     CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE01 + strbuf + lcEND);
                 }
                 //---產品+配料
 
+                //QR code
+                strbuf = '"';
+                strbuf += json_obj.order_no.replace('-', '') + '|' + json_obj.order_items[i].product_code + '|' + StrCondiment_code;//訂單編號
+                strbuf += '"';
+                CMD_Value.push(lcQRCODE + strbuf + lcEND);
+
+                //time
+                var POSITION_timeY = 310;
+                strbuf = '"' + year + '-' + month + '-' + day + ' ' + hour + ':' + minute + '"';
+                CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + POSITION_timeY + ',' + lcFONT_SIZE01 + strbuf + lcEND);
+
                 //金額
-                PositionY_Buf += 25;
+                var POSITION_priceY = POSITION_timeY + 0;
+                var POSITION_priceX = 0;
                 if (PrinterParms.no_print_price == "N") {//不印價格
-                    strbuf = '"$' + json_obj.order_items[i].amount + '"';
+                    strbuf = '"TWD ' + json_obj.order_items[i].amount + '"';
+                    POSITION_priceX = lcPOSITION_HalfWidth + ((12 - Wlen(strbuf) + 2) * 13) - lcPOSITION_X;//12:一半為12字;13:字寬
                 }
                 else {
                     strbuf = '"' + '"';
                 }
-                CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE02 + strbuf + lcEND);
+                CMD_Value.push(lcDATA_START + POSITION_priceX + ',' + POSITION_priceY + ',' + lcFONT_SIZE02 + strbuf + lcEND);
 
-                CMD_Value.push(lcPRINTEND);//"PRINT 1,1\r\n"				
+                //店家名稱
+                var POSITION_storeY = POSITION_timeY + 25;
+                strbuf = '"' + json_obj.store_name + '"';
+                CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + POSITION_storeY + ',' + lcFONT_SIZE01 + strbuf + lcEND);
+
+                //標籤底部
+                var POSITION_lableY = POSITION_storeY + 25;
+                strbuf = '"' + PrinterParms.label_bottom_info + '"';
+                CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + POSITION_lableY + ',' + lcFONT_SIZE01 + strbuf + lcEND);
+
+                CMD_Value.push(lcPRINTEND);//"PRINT 1,1\r\n"
+
             }
-
+            //只印一張除錯用 break;
         }
 
     }

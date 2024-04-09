@@ -254,6 +254,7 @@ function GlobalVariable_Init() {//解析C#傳送過來的印表參數並修改�
     catch (e) {
         WriteLog("GlobalVariable_Init 解析錯誤")
         json_obj = null;
+        WriteLog(e.message);
     }
     //---將輸入文字轉成JSON物件
 
