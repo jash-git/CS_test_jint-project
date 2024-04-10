@@ -20,7 +20,7 @@ const lcFONT_SIZE02 = '"TST24.BF2",0,1,2,';//字型大小2 => H=50,W=13
 const lcFONT_SIZE01 = '"TST24.BF2",0,1,1,';//字型大小1 => H=25,W=13
 const lcEND = '\r\n';
 
-const lcQRCODE = 'QRCODE 93, 158, M, 4, A, 0, J1, M2, X150, S7,';//座標X(13*6+15),座標Y(108+50),纠错等级(M),模块宽度(4),编码模式(A),旋转(0),[对齐方式(J1)],模式(M2),[最大条码区域(X150)],编码数据(S7)
+const lcQRCODE = 'QRCODE 93, 158, M, 4, A, 0, J1, M2, X140, S7,';//座標X(13*6+15),座標Y(108+50),纠错等级(M),模块宽度(4),编码模式(A),旋转(0),[对齐方式(J1)],模式(M2),[最大条码区域(X150)],编码数据(S7)
 //const lcQRCODE = 'QRCODE 93,158,M,4,A,0,M2,S7,';
 
 const lcPRINTEND = "PRINT 1,1\r\n";//指定設定列印資料對應列印張數
