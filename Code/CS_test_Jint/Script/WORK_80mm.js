@@ -271,10 +271,14 @@ function Main() {
 	
     strbuf = '------------------------------------------------';
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
-	
-	//列印軟體版本
-	strbuf = 'Version: ' + json_obj.pos_ver;
-	ESC_Value.push(ecFREE_LINE + ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+
+    //列印軟體版本
+    strbuf = 'Version: ' + json_obj.pos_ver;
+    ESC_Value.push(ecFREE_LINE + ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+
+    //設備編號;文字靠左+ 設備編號 + 換行
+    strbuf = '設備編號: ' + json_obj.terminal_sid;
+    ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);	
 	
 	//列印時間
     var now = new Date();

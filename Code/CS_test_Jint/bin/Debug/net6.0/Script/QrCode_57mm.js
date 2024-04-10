@@ -93,15 +93,16 @@ function Main() {
 
     strbuf = ShiftSpace + '----------------------------------';
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
-	
+
+
+    //列印軟體版本
+    strbuf = ShiftSpace + 'Version: ' + json_obj.pos_ver;
+    ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+
 	//設備編號;文字靠左+ 設備編號 + 換行
 	strbuf = ShiftSpace + '設備編號: ' + json_obj.terminal_sid;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);	
-	
-	//列印軟體版本
-	strbuf = ShiftSpace + 'Version: ' + json_obj.pos_ver;
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
-	
+
 	//列印時間
     var now = new Date();
     month = pad2(now.getMonth() + 1);//months (0-11)

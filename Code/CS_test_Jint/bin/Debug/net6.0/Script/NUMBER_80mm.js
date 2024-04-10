@@ -88,7 +88,8 @@ function Main() {
 	if(json_obj.table_name.length>0)
 	{
 		strbuf = '桌號: ' + json_obj.table_name;
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);		
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+        ESC_Value = ESC_Value.concat(PageSpace());//使用頁面模式實作文字間距功能 ;使用concat成員實現陣列合併
 	}
 
 	//日期&時間;文字靠左 + 日期(時間) + 換行
@@ -108,7 +109,11 @@ function Main() {
 	//列印軟體版本
     strbuf = 'Version: ' + json_obj.pos_ver;
 	ESC_Value.push(ecFREE_LINE + ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
-	
+
+    //設備編號;文字靠左+ 設備編號 + 換行
+    strbuf = '設備編號: ' + json_obj.terminal_sid;
+    ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);	
+
 	//列印時間
     var now = new Date();
     month = pad2(now.getMonth() + 1);//months (0-11)

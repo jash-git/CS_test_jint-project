@@ -95,3 +95,5 @@ C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\n
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\WORK_ALL_80mm.js
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\Lable_30mm_25mm_RS232.js
 C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\Lable_40mm_50mm_RS232.js
+C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\ScanCodeSummary_57mm.js
+C:\Users\devel\Desktop\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\ScanCodeSummary_80mm.js

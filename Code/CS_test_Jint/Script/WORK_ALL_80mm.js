@@ -314,6 +314,10 @@ function Normal() {//正常模式
     strbuf = 'Version: ' + json_obj.pos_ver;
     ESC_Value.push(ecFREE_LINE + ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 
+    //設備編號;文字靠左+ 設備編號 + 換行
+    strbuf = '設備編號: ' + json_obj.terminal_sid;
+    ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);	
+
     //列印時間
     var now = new Date();
     month = pad2(now.getMonth() + 1);//months (0-11)
@@ -479,6 +483,10 @@ function SingleCut() {//一菜一切
                     //列印軟體版本
                     strbuf = 'Version: ' + json_obj.pos_ver;
                     ESC_Value.push(ecFREE_LINE + ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+
+                    //設備編號;文字靠左+ 設備編號 + 換行
+                    strbuf = '設備編號: ' + json_obj.terminal_sid;
+                    ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);	
 
                     //列印時間
                     var now = new Date();
