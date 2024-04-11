@@ -263,6 +263,10 @@ function Normal() {//正常模式
                     }
                 }
             }
+
+            if (PrinterParms.product_big_gap != "N") {//商品間距加大
+                ESC_Value = ESC_Value.concat(PageSpace(36));//使用頁面模式實作文字間距功能 ;使用concat成員實現陣列合併
+            }
         }
     }
     //---產品+配料

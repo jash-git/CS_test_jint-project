@@ -428,7 +428,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "ScanCodeSummary_80mm.js"));
+                Path.DirectorySeparatorChar + "WORK_ALL_57mm.js"));
 
             engine.SetValue("input", StrInput);
             engine.SetValue("TemplateVar", StrTemplateVar);
@@ -832,8 +832,8 @@ namespace CS_test_Jint
             sr = new StreamReader(@"C:\Users\devel\Desktop\TemplateVar.json");
             string StrTemplateVar = sr.ReadLine();
             sr.Close();// 關閉串流
-            ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
-            //ESCPOS_Lable_RS232Print(StrInput, "", StrTemplateVar);
+            //ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
+            ESCPOS_Lable_RS232Print(StrInput, "", StrTemplateVar);
             //*/
             /*
             int Page_Width = 552; //57mm

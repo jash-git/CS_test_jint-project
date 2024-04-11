@@ -380,6 +380,7 @@ function GlobalVariable_Init()
         PrinterParms.single_report = "N";//只印簡表
         PrinterParms.no_print_price = "N";//不印價格
         PrinterParms.print_ticket_memo = "N";//列印備註
+        PrinterParms.product_big_gap = "N";//商品間距加大
         PrinterParms.label_bottom_info = "";//底部列印資訊
     }
     else {
