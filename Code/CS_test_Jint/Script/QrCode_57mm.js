@@ -1,4 +1,4 @@
-//Work~57mm
+//QrCode ~57mm
 function Main() {
 	var ShiftSpace = '       ';//(80mm(48字)-57mm(34字))/2(對稱) + 1(美觀)= 7字
     var Result = {};//最終結果物件
@@ -40,29 +40,37 @@ function Main() {
         ESC_Value.push(ecTEXT_ALIGN_CENTER + ecLOGO);
     }
     else {
-        //店名;文字至中 + 粗體+放大 + 店名 + 換行
+        //店名;文字至中 + 粗體 + 放大 + 店名 + 換行
         ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
     }
 
-	//單號;文字靠左 + 放大 + 單號 + 換行
-	var order_noAry = json_obj.order_no.split('-');
-    strbuf = ShiftSpace + '單號(' + json_obj.order_type_name + ') :' + ((order_noAry.length>1) ? order_noAry[1] : order_noAry[0]);//json_obj.call_num
+    //掃描點單;文字至中 + 放大 + 掃描點單 + 換行
+    strbuf = ShiftSpace + '掃描點單 (' + json_obj.order_type_name + ')';
     ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
     ESC_Value = ESC_Value.concat(PageSpace());//使用頁面模式實作文字間距功能 ;使用concat成員實現陣列合併
 
-	//日期&時間;文字靠左 + 日期(時間) + 換行
+	//單號;文字靠左 + 放大 + 單號 + 換行
+	var order_noAry = json_obj.order_no.split('-');
+    strbuf = ShiftSpace + '單號 :' + json_obj.order_no;
+    ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+    ESC_Value = ESC_Value.concat(PageSpace());//使用頁面模式實作文字間距功能 ;使用concat成員實現陣列合併
+
+    //桌號;文字靠左 + 放大 + 桌號 + 換行
+    strbuf = ShiftSpace + '桌號 :' + json_obj.table_name;
+    ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+    ESC_Value = ESC_Value.concat(PageSpace());//使用頁面模式實作文字間距功能 ;使用concat成員實現陣列合併
+
+    //開單時間;文字靠左 + 放大 + 開單時間 + 換行
     var date = new Date(json_obj.order_time * 1000);//json_obj.order_time (sec) -> ms, https://www.fooish.com/javascript/date/
     var month = pad2(date.getMonth() + 1);//months (0-11)
     var day = pad2(date.getDate());//day (1-31)
     var year = date.getFullYear();
     var hour = pad2(date.getHours());
     var minute = pad2(date.getMinutes());
-    strbuf = ShiftSpace + '日期: ' + year + "-" + month + "-" + day + "  時間: " + hour + ':' + minute;
-    ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
-
-	//交易序號;文字靠左 + 交易序號 + 換行
-    strbuf = ShiftSpace + '交易序號: ' + json_obj.order_no;
-    ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+    var second = pad2(date.getSeconds());
+    strbuf = ShiftSpace + '開單時間 :' + year + "-" + month + "-" + day + " " + hour + ':' + minute + ':' + second;
+    ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+    ESC_Value = ESC_Value.concat(PageSpace());//使用頁面模式實作文字間距功能 ;使用concat成員實現陣列合併
 
 	//分隔線;文字靠左 + 分隔線 + 換行(80mm分隔線48的符號)
     strbuf = ShiftSpace + '----------------------------------';
@@ -89,7 +97,12 @@ function Main() {
 	ESC_Value.push("\x1D\x28\x6B\x03\x00\x31\x51\x30"); // GS ( k <Function 181>
 	
 	ESC_Value.push(ecESC + "\x0C");//打印并回到标准模式（在页模式下）
-	ESC_Value.push("\x1B\x53");//Select standard mode [ESC S] 	
+	ESC_Value.push("\x1B\x53");//Select standard mode [ESC S]
+
+    //請掃描 QR CODE 進行點餐，謝謝！;文字靠左 + 粗體 + 放大 + 請掃描 QR CODE 進行點餐，謝謝！ + 換行
+    strbuf = ShiftSpace + '請掃描 QR CODE 進行點餐，謝謝！';
+    ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBOLD_ON + ecBIG_ON + strbuf + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE);
+    ESC_Value = ESC_Value.concat(PageSpace());//使用頁面模式實作文字間距功能 ;使用concat成員實現陣列合併
 
     strbuf = ShiftSpace + '----------------------------------';
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
@@ -110,7 +123,8 @@ function Main() {
     year = now.getFullYear();
     hour = pad2(now.getHours());
     minute = pad2(now.getMinutes());
-    strbuf = ShiftSpace + "列印時間: " + year + "-" + month + "-" + day + " " + hour + ':' + minute;
+    second = pad2(now.getSeconds());
+    strbuf = ShiftSpace + "列印時間: " + year + "-" + month + "-" + day + " " + hour + ':' + minute + ':' + second;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 列印時間 + 換行
 	
     //---新增列印主體內容

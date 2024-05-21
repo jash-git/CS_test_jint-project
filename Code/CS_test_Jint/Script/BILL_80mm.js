@@ -315,7 +315,26 @@ function Main() {
 	
     strbuf = '------------------------------------------------';
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
-	
+
+    //---
+    //優惠/兌換券
+    if (json_obj.coupons.length > 0) {
+        strbuf = "【優惠/兌換券】";
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+        for (var i = 0; i < json_obj.coupons.length; i++) {
+            space = "";
+            spaceCount = 48 - Wlen(json_obj.coupons[i].name) - Wlen("-" + json_obj.coupons[i].amount);
+            for (var l = 0; l < spaceCount; l++) {
+                space += " ";//產生對應空白字串
+            }
+            strbuf = json_obj.coupons[i].name + space + "-" + json_obj.coupons[i].amount;
+            ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+        }
+        strbuf = '------------------------------------------------';
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+    }
+    //---優惠/兌換券
+
 	//總計
 	space = "";
 	spaceCount = 48 - Wlen("總計: ") - Wlen(""+json_obj.amount);
@@ -329,12 +348,12 @@ function Main() {
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
 	
 	strbuf = '【支付方式】';
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+    ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
 	
 	//支付方式與金額
 	for (var i = 0; i < json_obj.payments.length; i++) {
-		var payment_name = json_obj.payments[i].payment_name;
-		var payment_amount = "" + json_obj.payments[i].payment_amount;
+        var payment_name = json_obj.payments[i].payment_name + ":";
+        var payment_amount = "" + (json_obj.payments[i].payment_amount - json_obj.payments[i].coin_discount);
 		
 		space = "";
 		spaceCount = 48 - Wlen(payment_name) - Wlen(payment_amount);	
@@ -343,7 +362,21 @@ function Main() {
 		}
 		
 		strbuf = payment_name + space + payment_amount;
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);		
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+
+        //--------------
+
+        payment_name = json_obj.payments[i].payment_name + "[抵扣]:";
+        payment_amount = "" + json_obj.payments[i].coin_discount;
+
+        space = "";
+        spaceCount = 48 - Wlen(payment_name) - Wlen(payment_amount);
+        for (var l = 0; l < spaceCount; l++) {
+            space += " ";//產生對應空白字串
+        }
+
+        strbuf = payment_name + space + payment_amount;
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
 	}
 
     //列印軟體版本
