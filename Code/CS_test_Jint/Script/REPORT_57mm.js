@@ -227,7 +227,7 @@ function Main() {
 		for(var i=0;i<json_obj.coupon_info.length;i++)
 		{
 			var StrCaption = " " + json_obj.coupon_info[i].coupon_name + ':';
-			strbuf = ShiftSpace + StrCaption + TypesettingSpace(StrCaption,json_obj.coupon_info[i].coupon_amount,MaxLength) + json_obj.coupon_info[i].coupon_amount;
+			strbuf = ShiftSpace + StrCaption + TypesettingSpace(StrCaption, ("x" + json_obj.coupon_info[i].total_count), MaxLength) + "x" + json_obj.coupon_info[i].total_count;
 			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);		
 		}
 		
