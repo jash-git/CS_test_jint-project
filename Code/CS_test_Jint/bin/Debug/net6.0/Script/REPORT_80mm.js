@@ -152,7 +152,7 @@ function Main() {
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	strbuf = ShiftSpace + '寄庫商品領取金額: ' + TypesettingSpace('寄庫商品領取金額: ',json_obj.stock_pull_amount,MaxLength) + json_obj.stock_pull_amount;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
-	strbuf = ShiftSpace + '服務費總金額: ' + TypesettingSpace('服務費總金額: ',json_obj.tax_total,MaxLength) + json_obj.tax_total;
+	strbuf = ShiftSpace + '服務費總金額: ' + TypesettingSpace('服務費總金額: ', json_obj.service_total, MaxLength) + json_obj.service_total;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	strbuf = ShiftSpace + '外送費總金額: ' + TypesettingSpace('外送費總金額: ', json_obj.delivery_total, MaxLength) + json_obj.delivery_total;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
