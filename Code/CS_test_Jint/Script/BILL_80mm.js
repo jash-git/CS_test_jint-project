@@ -344,6 +344,25 @@ function Main() {
 	strbuf = "總計: " + space + json_obj.amount
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE)
 	
+	//餐具
+	if(json_obj.tablewares.length > 0) {
+		strbuf = '------------------------------------------------';
+		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+		
+		strbuf = "【餐具】";
+		ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE)
+        ESC_Value = ESC_Value.concat(PageSpace());
+        for (var i = 0; i < json_obj.tablewares.length; i++) {
+            space = "";
+            spaceCount = 48 - Wlen(" "+json_obj.tablewares[i].name) - Wlen("x" + json_obj.tablewares[i].quantity);
+            for (var l = 0; l < spaceCount; l++) {
+                space += " ";//產生對應空白字串
+            }
+            strbuf = " " + json_obj.tablewares[i].name + space + "x" + json_obj.tablewares[i].quantity;
+            ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);			
+		}
+	}
+	
     strbuf = '------------------------------------------------';
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
 	
