@@ -384,18 +384,20 @@ function Main() {
         ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);		
 
         //--------------
+        if (json_obj.payments[i].coin_discount > 0) {
+            payment_name = json_obj.payments[i].payment_name + "[抵扣]:";
+            payment_amount = "" + json_obj.payments[i].coin_discount;
 
-        payment_name = json_obj.payments[i].payment_name + "[抵扣]:";
-        payment_amount = "" + json_obj.payments[i].coin_discount;
+            space = "";
+            spaceCount = 34 - Wlen(payment_name) - Wlen(payment_amount);
+            for (var l = 0; l < spaceCount; l++) {
+                space += " ";//產生對應空白字串
+            }
 
-        space = "";
-        spaceCount = 34 - Wlen(payment_name) - Wlen(payment_amount);
-        for (var l = 0; l < spaceCount; l++) {
-            space += " ";//產生對應空白字串
+            strbuf = ShiftSpace + payment_name + space + payment_amount;
+            ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);	
+
         }
-
-        strbuf = ShiftSpace + payment_name + space + payment_amount;
-        ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);	
 
 	}
 
