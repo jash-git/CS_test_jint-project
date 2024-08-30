@@ -362,12 +362,14 @@ function Main() {
             ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);			
 		}
 	}	
-	
-    strbuf = ShiftSpace + '----------------------------------';
-    ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
-	
-	strbuf = ShiftSpace + '【支付方式】';
-    ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+
+    if (json_obj.payments.length > 0) {
+        strbuf = ShiftSpace + '----------------------------------';
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+
+        strbuf = ShiftSpace + '【支付方式】';
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+    }
 	
 	//支付方式與金額
 	for (var i = 0; i < json_obj.payments.length; i++) {
