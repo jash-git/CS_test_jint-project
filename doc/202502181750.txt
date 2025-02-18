@@ -1,0 +1,209 @@
+工作單匯總表 //工作單匯總表~57mm
+悠遊卡交易收據印表範本 //EasyCardBILL_57mm
+悠遊卡日結印表範本 //EasyCardBILL_57mm
+掃碼點單憑證_57mm //QrCode ~57mm
+標準報表列印範本_57mm //REPORT~57mm
+標準工作票列印範本_57mm //Work~57mm
+標準收據列印範本_57mm //Bill~57mm
+標準智能食譜列印範本_57mm //SMART~57mm
+標準號碼單列印範本_57mm //NUMBER~57mm
+發票57mm //Invoice~57mm
+聯合信用卡小額交易持卡人存根 //NCCCBILL_57mm
+標準貼紙列印範本 //LABLE
+-----------------------
+1.X
+	工作票
+		取餐號加大 O
+		企業Logo O
+		開啟提示音 O
+		外接蜂鳴器 O
+		訂單類型加大 △
+		列印訂單備註 O
+		外賣單號加大 △
+		訂單備註加大 △
+		桌號加大 △
+		商品合併列印 O
+		列印套元素 △
+		商品間距加大 O
+		列印商品金額 △
+		一菜一切 O
+{
+	"device_model": "PD-C325",
+	"conn_type": "DRIVER",
+	"driver_name": "TSC TDP-225",
+	"on_off_state": "Y",
+	"page_size": 80,
+	"bill_print_count": 1,
+	"print_logo": "N",
+	"label_bottom_info": "",
+	"print_ticket_memo": "N",
+	"no_print_price": "N",
+	"print_product_price": "N",
+	"print_pickup_time": "N",
+	"product_single_cut": "N",
+	"merge_product": "N",
+	"product_big_gap": "N",
+	"print_set_attribute": "N",
+	"print_takeaways_info": "N",
+	"start_buzzer": "N",
+	"external_buzzer": "N",
+	"big_callnum": "N",
+	"big_order_type": "N",
+	"big_takeaways_no": "N",
+	"big_table": "N",
+	"big_memo_font": "N",
+	"customized_code": "",
+	"customized_params": ""
+}
+		
+	號碼單
+		取餐號加大 O
+		企業Logo O
+		開啟提示音 O
+		外接蜂鳴器 O
+		列印條碼 O
+{
+	"device_model": "PD-C325",
+	"conn_type": "DRIVER",
+	"driver_name": "TSC TDP-225",
+	"on_off_state": "Y",
+	"page_size": 80,
+	"bill_print_count": 1,
+	"print_logo": "N",
+	"new_bill_no_print": "N",
+	"print_takeaways_info": "N",
+	"conn_cash_box": "N",
+	"print_barcode": "N",
+	"start_buzzer": "N",
+	"external_buzzer": "N",
+	"big_callnum": "N",
+	"big_order_type": "N",
+	"big_takeaways_no": "N",
+	"big_table": "N",
+	"big_memo_font": "N",
+	"customized_code": "",
+	"customized_params": ""
+}
+		
+	報表
+		企業Logo O
+		開啟提示音 O
+		外接蜂鳴器 O
+		只印簡表 O
+{
+	"device_model": "PD-C325",
+	"conn_type": "DRIVER",
+	"driver_name": "TSC TDP-225",
+	"on_off_state": "Y",
+	"page_size": 80,
+	"bill_print_count": 1,
+	"print_logo": "N",
+	"new_bill_no_print": "N",
+	"single_report": "N",
+	"print_takeaways_info": "N",
+	"conn_cash_box": "N",
+	"print_barcode": "N",
+	"start_buzzer": "N",
+	"external_buzzer": "N",
+	"big_callnum": "N",
+	"big_order_type": "N",
+	"big_takeaways_no": "N",
+	"big_table": "N",
+	"big_memo_font": "N",
+	"customized_code": "",
+	"customized_params": ""
+}
+	
+	發票
+		企業Logo O
+{
+	"device_model": "PD-C325",
+	"conn_type": "DRIVER",
+	"driver_name": "TSC TDP-225",
+	"on_off_state": "Y",
+	"page_size": 57,
+	"bill_print_count": 1,
+	"print_logo": "N",
+	"print_takeaways_info": "N",
+	"conn_cash_box": "N",
+	"print_barcode": "N",
+	"start_buzzer": "N",
+	"external_buzzer": "N",
+	"big_callnum": "N",
+	"big_order_type": "N",
+	"big_takeaways_no": "N",
+	"big_table": "N",
+	"big_memo_font": "N",
+	"customized_code": "",
+	"customized_params": ""
+}
+
+	收據
+		取餐號加大 O
+		企業Logo O
+		新單不列印 O
+		開啟提示音 O
+		外接蜂鳴器 O
+		訂單類型加大 O
+		列印條碼 O
+		訂單備註加大 △
+		外賣單號加大 O
+		桌號加大 O
+		列印外買訂單資訊 △
+		收據自訂義資訊:◎◎◎◎◎◎◎ △
+{
+	"device_model": "Epson TM-T82II",
+	"conn_type": "RS232",
+	"serial_port": "COM3",
+	"baud_rate": 2400,
+	"follow_control": 0,
+	"on_off_state": "N",
+	"page_size": 57,
+	"bill_print_count": 1,
+	"print_logo": "Y",
+	"new_bill_no_print": "Y",
+	"bill_self_info": "",
+	"conn_cash_box": "N",
+	"print_barcode": "Y",
+	"start_buzzer": "Y",
+	"external_buzzer": "Y",
+	"big_callnum": "Y",
+	"big_order_type": "Y",
+	"big_takeaways_no": "Y",
+	"big_table": "Y",
+	"customized_code": "",
+	"customized_params": ""
+}
+	貼紙
+		標籤底部列印資訊:◎◎◎◎◎◎◎ O
+		不印價格 O
+		列印取餐時間 △
+{
+	"device_model": "TSC DT-2205",
+	"conn_type": "TCPIP",
+	"tcp_ip_address": "127.0.0.1",
+	"tcp_port": 9001,
+	"on_off_state": "Y",
+	"page_size": 4025,
+	"bill_print_count": 1,
+	"print_logo": "N",
+	"label_bottom_info": "",
+	"print_ticket_memo": "N",
+	"no_print_price": "N",
+	"print_product_price": "N",
+	"print_pickup_time": "N",
+	"product_single_cut": "N",
+	"merge_product": "N",
+	"product_big_gap": "N",
+	"print_set_attribute": "N",
+	"print_takeaways_info": "N",
+	"start_buzzer": "N",
+	"external_buzzer": "N",
+	"big_callnum": "N",
+	"big_order_type": "N",
+	"big_takeaways_no": "N",
+	"big_table": "N",
+	"big_memo_font": "N",
+	"customized_code": "",
+	"customized_params": ""
+}
