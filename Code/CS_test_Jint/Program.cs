@@ -428,7 +428,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "BILL_57mm.js"));
+                Path.DirectorySeparatorChar + "WORK_ALL_80mm.js"));
 
             engine.SetValue("input", StrInput);
             engine.SetValue("TemplateVar", StrTemplateVar);
@@ -826,10 +826,10 @@ namespace CS_test_Jint
             //add(50, 60);
             //Sum();
             //*
-            StreamReader sr = new StreamReader(@"C:\Users\devel\Desktop\Input.json");
+            StreamReader sr = new StreamReader(@"C:\Users\jashv\OneDrive\桌面\Input.json");
             string StrInput = sr.ReadLine();
             sr.Close();// 關閉串流
-            sr = new StreamReader(@"C:\Users\devel\Desktop\TemplateVar.json");
+            sr = new StreamReader(@"C:\Users\jashv\OneDrive\桌面\TemplateVar.json");
             string StrTemplateVar = sr.ReadLine();
             sr.Close();// 關閉串流
             ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);

@@ -66,6 +66,11 @@ function Normal() {//正常模式
         ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
     }
 
+    //訂單類型加大
+    if (PrinterParms.big_order_type != "N") {
+        ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + json_obj.order_type_name + ecDOUBLE_OFF + ecFREE_LINE + ecFREE_LINE);
+    }
+
     //取餐號加大
     if (PrinterParms.big_callnum != "N") {
         ESC_Value.push(ecTEXT_ALIGN_CENTER + ecFOUR_ON + json_obj.call_num + ecFOUR_OFF + ecFREE_LINE + ecFREE_LINE);
@@ -85,6 +90,19 @@ function Normal() {//正常模式
     strbuf = '單號(' + json_obj.order_type_name + ') :' + json_obj.call_num
     ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
     ESC_Value = ESC_Value.concat(PageSpace());//使用頁面模式實作文字間距功能 ;使用concat成員實現陣列合併
+
+    //桌號;文字靠左 + 放大 + 桌號 + 換行
+    if (json_obj.table_name.length > 0) {
+        strbuf = '桌號: ' + json_obj.table_name;
+
+        //桌號加大
+        if (PrinterParms.big_table != "N") {
+            strbuf = '桌號: ' + ecBIG_ON + json_obj.table_name + ecBIG_OFF;
+        }
+
+        ESC_Value.push(ecTEXT_ALIGN_LEFT +strbuf + ecFREE_LINE);
+        ESC_Value = ESC_Value.concat(PageSpace());//使用頁面模式實作文字間距功能 ;使用concat成員實現陣列合併
+    }
 
     //日期&時間;文字靠左 + 日期(時間) + 換行
     var date = new Date(json_obj.order_time * 1000);//json_obj.order_time (sec) -> ms, https://www.fooish.com/javascript/date/
@@ -201,6 +219,11 @@ function Normal() {//正常模式
                 space = "";
                 spaceCount = 0;
                 var amount = "";//+ json_obj.order_items[i].amount;//單一產品價格值轉字串
+
+                //列印商品金額
+                if (PrinterParms.print_product_price != "N") {
+                    amount = json_obj.order_items[i].amount;//單一產品價格值轉字串
+                }
                 spaceCount = 6 - Wlen(amount);//計算價格欄位的空白數= 該欄位總長度6 - 數量字串長度
                 for (var j = 0; j < spaceCount; j++) {
                     space += " ";
@@ -314,6 +337,21 @@ function Normal() {//正常模式
     strbuf = '------------------------------------------------';
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
 
+    //列印備註
+    if (PrinterParms.print_ticket_memo != "N") {
+        strbuf = "訂單備註: " + json_obj.remarks;
+
+        //訂單備註加大
+        if (PrinterParms.big_memo_font != "N") {
+            strbuf = "訂單備註: " + ecBIG_ON + json_obj.remarks + ecBIG_OFF;
+        }
+
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+
+        strbuf = '------------------------------------------------';
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+    }
+
     //列印軟體版本
     strbuf = 'Version: ' + json_obj.pos_ver;
     ESC_Value.push(ecFREE_LINE + ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
@@ -377,6 +415,11 @@ function SingleCut() {//一菜一切
                         ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBOLD_ON + ecBIG_ON + json_obj.store_name + ecBIG_OFF + ecBOLD_OFF + ecFREE_LINE + ecFREE_LINE);
                     }
 
+                    //訂單類型加大
+                    if (PrinterParms.big_order_type != "N") {
+                        ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + json_obj.order_type_name + ecDOUBLE_OFF + ecFREE_LINE + ecFREE_LINE);
+                    }
+
                     //取餐號加大
                     if (PrinterParms.big_callnum != "N") {
                         ESC_Value.push(ecTEXT_ALIGN_CENTER + ecFOUR_ON + json_obj.call_num + ecFOUR_OFF + ecFREE_LINE + ecFREE_LINE);
@@ -386,6 +429,19 @@ function SingleCut() {//一菜一切
                     strbuf = '單號(' + json_obj.order_type_name + ') :' + json_obj.call_num
                     ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
                     ESC_Value = ESC_Value.concat(PageSpace());//使用頁面模式實作文字間距功能 ;使用concat成員實現陣列合併
+
+                    //桌號;文字靠左 + 放大 + 桌號 + 換行
+                    if (json_obj.table_name.length > 0) {
+                        strbuf = '桌號: ' + json_obj.table_name;
+
+                        //桌號加大
+                        if (PrinterParms.big_table != "N") {
+                            strbuf = '桌號: ' + ecBIG_ON + json_obj.table_name + ecBIG_OFF;
+                        }
+
+                        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+                        ESC_Value = ESC_Value.concat(PageSpace());//使用頁面模式實作文字間距功能 ;使用concat成員實現陣列合併
+                    }
 
                     //日期&時間;文字靠左 + 日期(時間) + 換行
                     var date = new Date(json_obj.order_time * 1000);//json_obj.order_time (sec) -> ms, https://www.fooish.com/javascript/date/
@@ -478,6 +534,12 @@ function SingleCut() {//一菜一切
                     //列印備註
                     if (PrinterParms.print_ticket_memo != "N") {
                         strbuf = "訂單備註: " + json_obj.remarks;
+
+                        //訂單備註加大
+                        if (PrinterParms.big_memo_font != "N") {
+                            strbuf = "訂單備註: " + ecBIG_ON + json_obj.remarks + ecBIG_OFF;
+                        }
+
                         ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 
                         strbuf = '------------------------------------------------';
