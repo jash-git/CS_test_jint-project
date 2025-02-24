@@ -176,7 +176,7 @@ function Sell(json_obj, invoice_obj) {
 
 	//---
 	//必須列印銷貨明細
-	if (json_obj.invoice_data.cust_ein.length > 0) {
+	if ((json_obj.invoice_data.cust_ein.length > 0) || (PrinterParms.print_inv_receipt != "N")) {
 		ESC_Value.push(ecTEXT_SPACE70);
 
 		strbuf = ShiftSpace + '----------------------------------';
