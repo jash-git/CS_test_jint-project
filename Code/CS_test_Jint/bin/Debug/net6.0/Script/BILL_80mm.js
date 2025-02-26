@@ -400,7 +400,70 @@ function Main() {
             ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
         }
 
-	}
+    }
+
+    //訂單備註
+    if (json_obj.remarks.length > 0) {
+        strbuf = '------------------------------------------------';
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+
+        strbuf = '【訂單備註】';
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+
+        var remarks = json_obj.remarks;
+        var remarks_len = Wlen(remarks);//計算產品名稱字串長度
+        var remarks_show = '';
+        if (remarks_len > 48)//48是產品名稱欄位最大寬度
+        {
+            intWStrPoint = 0;//初始化Wsubstring函數的旗標
+            remarks_show = Wsubstring(remarks, 0, 48);
+        }
+        else {
+            remarks_show = remarks;
+        }
+
+        if (PrinterParms.big_memo_font != "N") {
+            ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + remarks_show + ecBIG_OFF + ecFREE_LINE);
+        }
+        else {
+            ESC_Value.push(ecTEXT_ALIGN_LEFT + remarks_show + ecFREE_LINE);
+        }
+        
+        if (Wlen(remarks_show) != Wlen(remarks)) {
+            var sublen = Wlen(remarks) - 48;//48是產品名稱欄位最大寬度
+            strbuf = Wsubstring(remarks, intWStrPoint, sublen);//從上次切斷點繼續往後擷取
+            if (PrinterParms.big_memo_font != "N") {
+                ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+            }
+            else {
+                ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+            }
+        }				
+    }
+
+    if (PrinterParms.label_bottom_info.length > 0) {
+        strbuf = '------------------------------------------------';
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+
+        var label_bottom_info = PrinterParms.label_bottom_info
+        var label_bottom_info_len = Wlen(label_bottom_info);//計算產品名稱字串長度
+        var label_bottom_info_show = '';
+        if (label_bottom_info_len > 48)//48是產品名稱欄位最大寬度
+        {
+            intWStrPoint = 0;//初始化Wsubstring函數的旗標
+            label_bottom_info_show = Wsubstring(label_bottom_info, 0, 48);
+        }
+        else {
+            label_bottom_info_show = label_bottom_info;
+        }
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + label_bottom_info_show + ecBIG_OFF + ecFREE_LINE);
+
+        if (Wlen(remarks_show) != Wlen(remarks)) {
+            var sublen = Wlen(remarks) - 48;//48是產品名稱欄位最大寬度
+            strbuf = Wsubstring(remarks, intWStrPoint, sublen);//從上次切斷點繼續往後擷取
+            ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+        }
+    }
 
     //列印軟體版本
     strbuf = 'Version: ' + json_obj.pos_ver;

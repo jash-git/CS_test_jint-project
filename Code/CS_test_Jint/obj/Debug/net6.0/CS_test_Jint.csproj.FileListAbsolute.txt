@@ -111,12 +111,6 @@ C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\esc_pos04.js
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\esc_pos05.js
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\Invoice_57mm.js
-C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\Invoice_57mm_X.js
-C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\Invoice_57mm_X2.js
-C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\Lable_30mm_25mm_RS232.js
-C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\Lable_40mm_25mm_RS232.js
-C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\Lable_40mm_50mm_RS232.js
-C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\Lable_40mm_60mm_RS232.js
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\NcccBILL_57mm.js
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\NUMBER_57mm.js
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\NUMBER_80mm.js
@@ -165,3 +159,9 @@ C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\CS_test_Jint.pdb
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\CS_test_Jint.genruntimeconfig.cache
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\Debug\net6.0\ref\CS_test_Jint.dll
+C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\Lable_30mm_25mm.js
+C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\Lable_40mm_25mm.js
+C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\Lable_40mm_50mm.js
+C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\Lable_40mm_60mm.js
+C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\提點落料機_40mm_50mm.js
+C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\Debug\net6.0\Script\陸柒零落料機_40mm_50mm.js

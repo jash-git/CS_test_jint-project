@@ -353,7 +353,7 @@ namespace CS_test_Jint
             var engine = new Engine();
 
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "Lable_40mm_50mm_RS232.js"));
+                Path.DirectorySeparatorChar + "提點落料機_40mm_50mm.js"));
 
             engine.SetValue("input", StrInput);
             engine.SetValue("memo", StrMemo);
@@ -832,8 +832,8 @@ namespace CS_test_Jint
             sr = new StreamReader(@"C:\Users\jashv\OneDrive\桌面\TemplateVar.json");
             string StrTemplateVar = sr.ReadLine();
             sr.Close();// 關閉串流
-            ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
-            //ESCPOS_Lable_RS232Print(StrInput, "", StrTemplateVar);
+            //ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
+            ESCPOS_Lable_RS232Print(StrInput, "", StrTemplateVar);
             //*/
             /*
             int Page_Width = 552; //57mm

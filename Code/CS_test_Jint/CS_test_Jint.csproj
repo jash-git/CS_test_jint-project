@@ -65,25 +65,25 @@
     <None Update="Script\Invoice_57mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Script\Invoice_57mm_X.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Script\Invoice_57mm_X2.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Script\Lable_30mm_25mm_RS232.js">
+    <None Update="Script\Lable_30mm_25mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Script\Lable_40mm_25mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Script\Lable_40mm_25mm_RS232.js">
+    <None Update="Script\Lable_40mm_25mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Script\Lable_40mm_50mm_RS232.js">
+    <None Update="Script\Lable_40mm_50mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Script\Lable_40mm_60mm_RS232.js">
+    <None Update="Script\陸柒零落料機_40mm_50mm.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Script\提點落料機_40mm_50mm.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Script\Lable_40mm_60mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Script\NcccBILL_57mm.js">
