@@ -141,7 +141,7 @@ function Main() {
 
                 //QR code
                 strbuf = '"';
-                strbuf += json_obj.order_items[i].product_code + '-' + json_obj.order_no.replace('-', '');
+                strbuf += json_obj.order_items[i].product_code;
                 if (StrCondiment_code.length > 0) {
                     strbuf += '-' + StrCondiment_code;
                 }

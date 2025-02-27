@@ -798,7 +798,7 @@ namespace CS_test_Jint
             var StrJsonResult = MainFunction.Call();//執行範本運算 3.0.1
 
             String StrResult = StrJsonResult.AsString();
-        }
+         }
         static void add(int a,int b)
         {
             Console.WriteLine("Init Jint...");
@@ -833,7 +833,8 @@ namespace CS_test_Jint
             string StrTemplateVar = sr.ReadLine();
             sr.Close();// 關閉串流
             //ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
-            ESCPOS_Lable_RS232Print(StrInput, "", StrTemplateVar);
+            //ESCPOS_Lable_RS232Print(StrInput, "", StrTemplateVar);
+            add();
             //*/
             /*
             int Page_Width = 552; //57mm
