@@ -7,6 +7,7 @@
     <Nullable>enable</Nullable>
     <AssemblyVersion>2022.9.5.0633</AssemblyVersion>
     <FileVersion>2022.9.5.0633</FileVersion>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="EZio32.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Script\add.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

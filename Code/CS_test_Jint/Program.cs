@@ -19,6 +19,9 @@ using System.Runtime.InteropServices;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Security.Cryptography;
+using EzioDll;
+using Esprima.Ast;
+using System.Threading.Tasks;
 
 namespace CS_test_Jint
 {
@@ -819,8 +822,150 @@ namespace CS_test_Jint
             String StrResult = StrJsonResult.AsString();
         }
 
+        static List<string> GodexPrinterList = null;
+        static GodexPrinter GodexPrinter = new GodexPrinter();
         static void Main(string[] args)
         {
+            //---
+            //Godex 標籤機
+            GodexPrinterList = GodexPrinter.GetPrinter_USB();
+            if(GodexPrinterList!=null && GodexPrinterList.Count>0)
+            {
+                GodexPrinter.OpenUSB(GodexPrinterList[0]);
+            }
+            else
+            {
+                GodexPrinter.Open(PortType.USB);
+            }
+            List<GodexPrinterCommand> GodexPrinterCommands = new List<GodexPrinterCommand>();
+            GodexPrinterCommand[] SetGodexPrinterCommand = new GodexPrinterCommand[13];
+
+            SetGodexPrinterCommand[0] = new GodexPrinterCommand();//EZioApi.sendcommand("^Q" + 50.ToString() + ",0," + 3.ToString());//長度
+            SetGodexPrinterCommand[0].command_type = "SET";
+            SetGodexPrinterCommand[0].data = "^Q" + 50.ToString() + ",0," + 3.ToString();
+            SetGodexPrinterCommand[1] = new GodexPrinterCommand();//EZioApi.sendcommand("^W" + 40.ToString());//寬度
+            SetGodexPrinterCommand[1].command_type = "SET";
+            SetGodexPrinterCommand[1].data = "^W" + 40.ToString();
+            SetGodexPrinterCommand[2] = new GodexPrinterCommand();//EZioApi.sendcommand("^H" + 10.ToString());//黑度
+            SetGodexPrinterCommand[2].command_type = "SET";
+            SetGodexPrinterCommand[2].data = "^H" + 10.ToString();
+            SetGodexPrinterCommand[3] = new GodexPrinterCommand();//EZioApi.sendcommand("^S" + 3.ToString());//速度
+            SetGodexPrinterCommand[3].command_type = "SET";
+            SetGodexPrinterCommand[3].data = "^S" + 3.ToString();
+            SetGodexPrinterCommand[4] = new GodexPrinterCommand();//EZioApi.sendcommand("^P" + 1.ToString());//張數
+            SetGodexPrinterCommand[4].command_type = "SET";
+            SetGodexPrinterCommand[4].data = "^P" + 1.ToString();
+            SetGodexPrinterCommand[5] = new GodexPrinterCommand();//EZioApi.sendcommand("^C" + 1.ToString());//複製
+            SetGodexPrinterCommand[5].command_type = "SET";
+            SetGodexPrinterCommand[5].data = "^C" + 1.ToString();
+
+            SetGodexPrinterCommand[6] = new GodexPrinterCommand();//EZioApi.sendcommand("^L");//開始旗標
+            SetGodexPrinterCommand[6].command_type = "SET";
+            SetGodexPrinterCommand[6].data = "^L";
+            int x, y,h;
+            x = 10;
+            y = 40;
+            h = 20;
+            SetGodexPrinterCommand[7] = new GodexPrinterCommand();//GodexPrinter.Command.PrintText_Unicode(x, y, h, "Arial", "這是中文測試");
+            SetGodexPrinterCommand[7].command_type = "TEXT";
+            SetGodexPrinterCommand[7].data = "這是中文測試";
+            SetGodexPrinterCommand[7].coordinate_x = x;
+            SetGodexPrinterCommand[7].coordinate_y = y;
+            SetGodexPrinterCommand[7].text_size = h;
+            SetGodexPrinterCommand[7].font_name = "Arial";
+            SetGodexPrinterCommand[8] = new GodexPrinterCommand();//GodexPrinter.Command.PrintText_Unicode(x, y+h, h, "Arial", "----------");
+            SetGodexPrinterCommand[8].command_type = "TEXT";
+            SetGodexPrinterCommand[8].data = "----------";
+            SetGodexPrinterCommand[8].coordinate_x = x;
+            SetGodexPrinterCommand[8].coordinate_y = y + h;
+            SetGodexPrinterCommand[8].text_size = h;
+            SetGodexPrinterCommand[8].font_name = "Arial";
+
+            SetGodexPrinterCommand[9] = new GodexPrinterCommand();//GodexPrinter.Command.PrintText_Unicode(x, y + 2 * h, 30, "Arial", "中文測試");
+            SetGodexPrinterCommand[9].command_type = "TEXT";
+            SetGodexPrinterCommand[9].data = "中文測試";
+            SetGodexPrinterCommand[9].coordinate_x = x;
+            SetGodexPrinterCommand[9].coordinate_y = y + 2 * h;
+            SetGodexPrinterCommand[9].text_size = 30;
+            SetGodexPrinterCommand[9].font_name = "Arial";
+            SetGodexPrinterCommand[10] = new GodexPrinterCommand();//GodexPrinter.Command.PrintText_Unicode(x, y + 2 * h + 30, 45, "Arial", "中文測試");
+            SetGodexPrinterCommand[10].command_type = "TEXT";
+            SetGodexPrinterCommand[10].data = "中文測試";
+            SetGodexPrinterCommand[10].coordinate_x = x;
+            SetGodexPrinterCommand[10].coordinate_y = y + 2 * h + 30;
+            SetGodexPrinterCommand[10].text_size = 45;
+            SetGodexPrinterCommand[10].font_name = "Arial";
+
+            
+            string data = "202502260001-10070062-20X00024,20X00024";
+            int Mode = 3;
+            int Type = 2;
+            string ErrorLavel = "M";
+            int Mask = 8;
+            int Mul = 5;
+            if(data.Length>70)
+            {
+                Mul = 2;
+            }
+            else if(data.Length > 50)
+            {
+                Mul = 3;
+            }
+            else if(data.Length > 30)
+            {
+                Mul = 4;
+            }
+            int Deg = 0;
+            Encoding mEncoding = Encoding.GetEncoding(0);
+
+            SetGodexPrinterCommand[11] = new GodexPrinterCommand();//GodexPrinter.Command.PrintQRCode(x, y + 2 * h + 30 + 45, Mode, Type, "M", Mask, Mul, Deg, "202502260001-10070062-20X00024,20X00024", mEncoding);//複雜
+            SetGodexPrinterCommand[11].command_type = "QRCODE";
+            SetGodexPrinterCommand[11].coordinate_x = x;
+            SetGodexPrinterCommand[11].coordinate_y = y + 2 * h + 30 + 45;
+            SetGodexPrinterCommand[11].qr_mode = Mode;
+            SetGodexPrinterCommand[11].qr_type = Type;
+            SetGodexPrinterCommand[11].qr_errorlavel = ErrorLavel;
+            SetGodexPrinterCommand[11].qr_mask = Mask;
+            SetGodexPrinterCommand[11].qr_mul = Mul;
+            SetGodexPrinterCommand[11].qr_deg = Deg;
+            SetGodexPrinterCommand[11].data = data;
+            SetGodexPrinterCommand[11].qr_encoding = mEncoding;
+            SetGodexPrinterCommand[12] = new GodexPrinterCommand();//EZioApi.sendcommand("E");//結束旗標
+            SetGodexPrinterCommand[12].command_type = "SET";
+            SetGodexPrinterCommand[12].data = "E";
+
+            GodexPrinterCommands.AddRange(SetGodexPrinterCommand);
+            for(int i = 0; i < GodexPrinterCommands.Count; i++)
+            {
+                switch(GodexPrinterCommands[i].command_type)
+                {
+                    case "SET":
+                        EZioApi.sendcommand(GodexPrinterCommands[i].data);
+                        break;
+                    case "TEXT":
+                        GodexPrinter.Command.PrintText_Unicode(GodexPrinterCommands[i].coordinate_x, 
+                                                               GodexPrinterCommands[i].coordinate_y,
+                                                               GodexPrinterCommands[i].text_size,
+                                                               GodexPrinterCommands[i].font_name,
+                                                               GodexPrinterCommands[i].data);
+                        break;
+                    case "QRCODE":
+                        GodexPrinter.Command.PrintQRCode(GodexPrinterCommands[i].coordinate_x,
+                                                         GodexPrinterCommands[i].coordinate_y,
+                                                         GodexPrinterCommands[i].qr_mode, 
+                                                         GodexPrinterCommands[i].qr_type,
+                                                         GodexPrinterCommands[i].qr_errorlavel,
+                                                         GodexPrinterCommands[i].qr_mask,
+                                                         GodexPrinterCommands[i].qr_mul,
+                                                         GodexPrinterCommands[i].qr_deg,
+                                                         GodexPrinterCommands[i].data,
+                                                         GodexPrinterCommands[i].qr_encoding);
+                        break;
+                }
+            }
+            GodexPrinter.Close();
+            
+            //---Godex 標籤機
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);//載入.net Big5編解碼函數庫(System.Text.Encoding.CodePages)
             //add();
             //add(50, 60);

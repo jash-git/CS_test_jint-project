@@ -3,24 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\add.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\add.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\godexprintercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:godexprintercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\godex_lable_30mm_25mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\godex_lable_30mm_25mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\printerhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:printerhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\commonfun.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\commonfun.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\ezioapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:ezioapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\\u9678\u67D2\u96F6\u843D\u6599\u6A5F_40mm_50mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\\u9678\u67D2\u96F6\u843D\u6599\u6A5F_40mm_50mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\add.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\add.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,71 +46,121 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1154,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "Godex_Lable_30mm_25mm.js",
+              "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Godex_Lable_30mm_25mm.js",
+              "RelativeDocumentMoniker": "Script\\Godex_Lable_30mm_25mm.js",
+              "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Godex_Lable_30mm_25mm.js",
+              "RelativeToolTip": "Script\\Godex_Lable_30mm_25mm.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-03-05T09:22:11.31Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GodexPrinterCommand.cs",
+              "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\GodexPrinterCommand.cs",
+              "RelativeDocumentMoniker": "GodexPrinterCommand.cs",
+              "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\GodexPrinterCommand.cs",
+              "RelativeToolTip": "GodexPrinterCommand.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAA2wBQAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T04:49:56.88Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PrinterHelper.cs",
+              "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\PrinterHelper.cs",
+              "RelativeDocumentMoniker": "PrinterHelper.cs",
+              "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\PrinterHelper.cs",
+              "RelativeToolTip": "PrinterHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-03T06:27:45.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EZioApi.cs",
+              "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\EZioApi.cs",
+              "RelativeDocumentMoniker": "EZioApi.cs",
+              "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\EZioApi.cs",
+              "RelativeToolTip": "EZioApi.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-03T06:24:08.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "add.js",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\add.js",
               "RelativeDocumentMoniker": "Script\\add.js",
               "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\add.js",
               "RelativeToolTip": "Script\\add.js",
-              "ViewState": "AgIAADwAAAAAAAAAAAAuwFAAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-02-27T02:57:02.597Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-27T02:57:02.597Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "CommonFun.js",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\CommonFun.js",
               "RelativeDocumentMoniker": "Script\\CommonFun.js",
               "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\CommonFun.js",
               "RelativeToolTip": "Script\\CommonFun.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAAsAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-02-27T01:12:18.977Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "\u9678\u67D2\u96F6\u843D\u6599\u6A5F_40mm_50mm.js",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\\u9678\u67D2\u96F6\u843D\u6599\u6A5F_40mm_50mm.js",
               "RelativeDocumentMoniker": "Script\\\u9678\u67D2\u96F6\u843D\u6599\u6A5F_40mm_50mm.js",
               "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\\u9678\u67D2\u96F6\u843D\u6599\u6A5F_40mm_50mm.js",
               "RelativeToolTip": "Script\\\u9678\u67D2\u96F6\u843D\u6599\u6A5F_40mm_50mm.js",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-02-25T06:10:05.381Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T06:10:05.381Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js",
-              "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js",
-              "RelativeDocumentMoniker": "Script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js",
-              "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js",
-              "RelativeToolTip": "Script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-02-25T06:08:35.706Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAABUDAAAAAAAAAAAgwCADAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAEIDAAAAAAAAAAAnwFgDAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-10T09:19:07.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js",
+              "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js",
+              "RelativeDocumentMoniker": "Script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js",
+              "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js",
+              "RelativeToolTip": "Script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js",
+              "ViewState": "AgIAAAsAAAAAAAAAAAD4vycAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-02-25T06:08:35.706Z",
               "EditorCaption": ""
             }
           ]
