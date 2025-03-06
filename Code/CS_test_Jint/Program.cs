@@ -837,6 +837,19 @@ namespace CS_test_Jint
             {
                 GodexPrinter.Open(PortType.USB);
             }
+
+            /*
+            EZioApi.sendcommand("^Q50,0,3");            
+            EZioApi.sendcommand("^W40");
+            EZioApi.sendcommand("^H10");
+            EZioApi.sendcommand("^S3");
+            EZioApi.sendcommand("^P1");
+            EZioApi.sendcommand("^C1");
+            EZioApi.sendcommand("^L");
+            EZioApi.sendcommand("E");
+            //*/
+            EZioApi.sendcommand("^W40\r\n\r\n^Q50,0,3\r\n\r\n^H10\r\n\r\n^S3\r\n\r\n^P1\r\n\r\n^C1\r\n\r\n^L\r\n\r\nE\r\n\r\n");
+            /*
             List<GodexPrinterCommand> GodexPrinterCommands = new List<GodexPrinterCommand>();
             GodexPrinterCommand[] SetGodexPrinterCommand = new GodexPrinterCommand[13];
 
@@ -924,12 +937,12 @@ namespace CS_test_Jint
             SetGodexPrinterCommand[11].coordinate_y = y + 2 * h + 30 + 45;
             SetGodexPrinterCommand[11].qr_mode = Mode;
             SetGodexPrinterCommand[11].qr_type = Type;
-            SetGodexPrinterCommand[11].qr_errorlavel = ErrorLavel;
+            SetGodexPrinterCommand[11].qr_errorlevel = ErrorLavel;
             SetGodexPrinterCommand[11].qr_mask = Mask;
             SetGodexPrinterCommand[11].qr_mul = Mul;
             SetGodexPrinterCommand[11].qr_deg = Deg;
             SetGodexPrinterCommand[11].data = data;
-            SetGodexPrinterCommand[11].qr_encoding = mEncoding;
+            SetGodexPrinterCommand[11].qr_encoding = 0;
             SetGodexPrinterCommand[12] = new GodexPrinterCommand();//EZioApi.sendcommand("E");//結束旗標
             SetGodexPrinterCommand[12].command_type = "SET";
             SetGodexPrinterCommand[12].data = "E";
@@ -954,15 +967,16 @@ namespace CS_test_Jint
                                                          GodexPrinterCommands[i].coordinate_y,
                                                          GodexPrinterCommands[i].qr_mode, 
                                                          GodexPrinterCommands[i].qr_type,
-                                                         GodexPrinterCommands[i].qr_errorlavel,
+                                                         GodexPrinterCommands[i].qr_errorlevel,
                                                          GodexPrinterCommands[i].qr_mask,
                                                          GodexPrinterCommands[i].qr_mul,
                                                          GodexPrinterCommands[i].qr_deg,
                                                          GodexPrinterCommands[i].data,
-                                                         GodexPrinterCommands[i].qr_encoding);
+                                                         Encoding.GetEncoding(GodexPrinterCommands[i].qr_encoding));
                         break;
                 }
             }
+            //*/
             GodexPrinter.Close();
             
             //---Godex 標籤機

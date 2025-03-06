@@ -5,21 +5,21 @@ const lcPOSITION_Y = 10;//起始定位座標點
 const lcPOSITION_HalfWidth = 175;
 const lcWORD_COUNT = 24;//(12*2)一行英文最多字數(SIZE 40 mm,25 mm)
 
-const lcSET_PAGE_SIZE = '^W40';//設定紙張寬
-const lcSET_GAP_DISTANCE = '^Q25,0,3';//設定紙張寬+間隙
-const lcSET_COLORSHADE = '^H10';//黑度
-const lcSET_SPEED = '^S3';//速度
-const lcPRINTEND = '^P1';//指定設定列印資料對應列印張數
-const lcSET_COPY = '^C1';//設定複製張數
+const lcSET_PAGE_SIZE = '^W40\r\n';//設定紙張寬
+const lcSET_GAP_DISTANCE = '^Q25,0,3\r\n';//設定紙張寬+間隙
+const lcSET_COLORSHADE = '^H10\r\n';//黑度
+const lcSET_SPEED = '^S3\r\n';//速度
+const lcPRINTEND = '^P1\r\n';//指定設定列印資料對應列印張數
+const lcSET_COPY = '^C1\r\n';//設定複製張數
+const lcSET_DATA_START = '^L\r\n';//資料開始
+const lcSET_DATA_END = 'E\r\n';//資料結束
 
-const lcINITIALIZE_PRINTER = lcSET_PAGE_SIZE + lcSET_GAP_DISTANCE + lcSET_COLORSHADE + lcPRINTEND + lcSET_COPY;//印表機初始化
+const lcINITIALIZE_PRINTER = lcSET_PAGE_SIZE + lcSET_GAP_DISTANCE + lcSET_COLORSHADE + lcPRINTEND + lcSET_COPY + lcSET_DATA_START;//印表機初始化
 
-//DataStart + PositionX + ',' + PositionY + ',' + FontSizeXX + " + strbuf + " + End
-const lcDATA_START = 'TEXT ';
-const lcFONT_SIZE03 = '"TST24.BF2",0,1,3,';//字型大小3 => H=75,W=13
-const lcFONT_SIZE02 = '"TST24.BF2",0,1,2,';//字型大小2 => H=50,W=13
-const lcFONT_SIZE01 = '"TST24.BF2",0,1,1,';//字型大小1 => H=25,W=13
-const lcEND = '\r\n';
+const lcFONT_NAME = 'Arial';
+const lcFONT_SIZE02 = 45;//字型大小3 => H=75,W=13
+const lcFONT_SIZE02 = 30;//字型大小2 => H=50,W=13
+const lcFONT_SIZE01 = 20;//字型大小1 => H=25,W=13
 
 //---建立 40 mm,25 mm 標籤機 Command
 
@@ -282,4 +282,110 @@ function GlobalVariable_Init() {//解析C#傳送過來的印表參數並修改�
 function WriteLog(Messages) {//將想要紀錄資訊寫在記憶體中，有需要時拿出來分析判讀(韌體除錯技巧)
     var time = new Date();
     Log_Value.push(time.toLocaleString() + " : " + Messages);
+}
+
+/*
+						   //command_type, data, coordinate_X, coordinate_Y, font_name, text_Size, qr_Mul, qr_Mode, qr_Type, qr_Mask, qr_Deg, qr_ErrorLevel, qr_Encoding
+var cmd1 = CreateGodexCmdObj(undefined,"^L");
+var cmd2 = CreateGodexCmdObj("TEXT","中文測試", 30, 40, undefined, 35);
+var cmd3 = CreateGodexCmdObj("QRCODE","20250101-0202-0303-000000000000001111111111222222222222", 100, 200);
+// 按此方式創建其餘的資料元件
+
+CMD_Value.push(cmd1);
+CMD_Value.push(cmd2);
+CMD_Value.push(cmd3);
+// 重複上述步驟以添加更多物件
+
+console.log(JSON.stringify(CMD_Value));
+[
+	{
+	"command_type": "SET",
+	"data": "^L",
+	"coordinate_x": 0,
+	"coordinate_y": 0,
+	"font_name": "Arial",
+	"text_size": 20,
+	"qr_mode": 3,
+	"qr_type": 2,
+	"qr_qr_errorlevel": "M",
+	"qr_mask": 8,
+	"qr_mul": 5,
+	"qr_deg": 0,
+	"qr_encoding": 0
+	},
+	{
+	"command_type": "TEXT",
+	"data": "中文測試",
+	"coordinate_x": 30,
+	"coordinate_y": 40,
+	"font_name": "Arial",
+	"text_size": 35,
+	"qr_mode": 3,
+	"qr_type": 2,
+	"qr_qr_errorlevel": "M",
+	"qr_mask": 8,
+	"qr_mul": 5,
+	"qr_deg": 0,
+	"qr_encoding": 0
+	},
+	{
+	"command_type": "QRCODE",
+	"data": "20250101-0202-0303-000000000000001111111111222222222222",
+	"coordinate_x": 100,
+	"coordinate_y": 200,
+	"font_name": "Arial",
+	"text_size": 20,
+	"qr_mode": 3,
+	"qr_type": 2,
+	"qr_qr_errorlevel": "M",
+	"qr_mask": 8,
+	"qr_mul": 3,
+	"qr_deg": 0,
+	"qr_encoding": 0
+	}
+]
+*/
+function CreateGodexCmdObj(command_type=undefined, data=undefined, coordinate_X=undefined, coordinate_Y=undefined, font_name=undefined, text_Size=undefined, qr_Mul=undefined, qr_Mode=undefined, qr_Type=undefined, qr_Mask=undefined, qr_Deg=undefined, qr_ErrorLevel=undefined, qr_Encoding=undefined) {
+	var cmd = {
+		"command_type": "SET",
+		"data": "",
+		"coordinate_x": 0,
+		"coordinate_y": 0,
+		"font_name": "Arial",
+		"text_size":20,
+		"qr_mode":3,
+		"qr_type":2,
+		"qr_qr_errorlevel":"M",
+		"qr_mask":8,
+		"qr_mul":5,
+		"qr_deg":0,
+		"qr_encoding":0
+	};
+	if (command_type !== undefined) cmd.command_type = command_type;
+	if (data !== undefined) cmd.data = data;
+	if (coordinate_X !== undefined) cmd.coordinate_x = coordinate_X;
+	if (coordinate_Y !== undefined) cmd.coordinate_y = coordinate_Y;
+	if (font_name !== undefined) cmd.font_name = font_name;
+	if (text_Size !== undefined) cmd.text_size = text_Size;
+	if (qr_Mode !== undefined) cmd.qr_mode = qr_Mode;
+	if (qr_Type !== undefined) cmd.qr_type = qr_Type;
+	if (qr_ErrorLevel !== undefined) cmd.qr_errorlevel = qr_ErrorLevel;
+	if (qr_Mask !== undefined) cmd.qr_mask = qr_Mask;
+	if (qr_Mul !== undefined) cmd.qr_mul = qr_Mul;    
+	if(data.length>70)
+	{
+		cmd.qr_mul = 2;
+	}
+	else if(data.length > 50)
+	{
+		cmd.qr_mul = 3;
+	}
+	else if(data.length > 30)
+	{
+		cmd.qr_mul = 4;
+	}            
+	if (qr_Deg !== undefined) cmd.qr_deg = qr_Deg;
+	if (qr_Encoding !== undefined) cmd.qr_encoding = qr_Encoding;
+	
+	return cmd;
 }

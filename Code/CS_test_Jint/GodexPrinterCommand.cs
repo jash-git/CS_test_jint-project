@@ -19,7 +19,7 @@ namespace CS_test_Jint
         "qr_type":0,
         "qr_mask":0,
         "qr_deg":0
-        "qr_errorlavel":"M"
+        "qr_errorlevel":"M"
         "qr_encoding":0
     }
     */
@@ -36,8 +36,8 @@ namespace CS_test_Jint
         public int qr_type { get; set; }
         public int qr_mask { get; set; }
         public int qr_deg { get; set; }
-        public string qr_errorlavel { get; set; }
-        public Encoding qr_encoding { get; set; }
+        public string qr_errorlevel { get; set; }
+        public int qr_encoding { get; set; }
 
         public GodexPrinterCommand()
         {
@@ -52,8 +52,8 @@ namespace CS_test_Jint
             qr_type = 2;
             qr_mask = 8;
             qr_deg = 0;
-            qr_errorlavel = "M";
-            qr_encoding = Encoding.GetEncoding(0);
+            qr_errorlevel = "M";
+            qr_encoding = 0;
         }
     }
 }
