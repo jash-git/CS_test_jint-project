@@ -415,29 +415,30 @@ namespace CS_test_Jint
 
             for (int i = 0; i < ESCPOSCommand.value.Count; i++)
             {
-                switch (ESCPOSCommand.value[i].command_type)
+                GodexPrinterCommand GodexPrinterCommandBuf = GodexPrinterCommand2Class(ESCPOSCommand.value[i].ToString());
+                switch (GodexPrinterCommandBuf.command_type)
                 {
                     case "SET":
-                        EZioApi.sendcommand(ESCPOSCommand.value[i].data);
+                        EZioApi.sendcommand(GodexPrinterCommandBuf.data);
                         break;
                     case "TEXT":
-                        GodexPrinter.Command.PrintText_Unicode(ESCPOSCommand.value[i].coordinate_x,
-                                                               ESCPOSCommand.value[i].coordinate_y,
-                                                               ESCPOSCommand.value[i].text_size,
-                                                               ESCPOSCommand.value[i].font_name,
-                                                               ESCPOSCommand.value[i].data);
+                        GodexPrinter.Command.PrintText_Unicode(GodexPrinterCommandBuf.coordinate_x,
+                                                               GodexPrinterCommandBuf.coordinate_y,
+                                                               GodexPrinterCommandBuf.text_size,
+                                                               GodexPrinterCommandBuf.font_name,
+                                                               GodexPrinterCommandBuf.data);
                         break;
                     case "QRCODE":
-                        GodexPrinter.Command.PrintQRCode(ESCPOSCommand.value[i].coordinate_x,
-                                                         ESCPOSCommand.value[i].coordinate_y,
-                                                         ESCPOSCommand.value[i].qr_mode,
-                                                         ESCPOSCommand.value[i].qr_type,
-                                                         ESCPOSCommand.value[i].qr_errorlevel,
-                                                         ESCPOSCommand.value[i].qr_mask,
-                                                         ESCPOSCommand.value[i].qr_mul,
-                                                         ESCPOSCommand.value[i].qr_deg,
-                                                         ESCPOSCommand.value[i].data,
-                                                         Encoding.GetEncoding(ESCPOSCommand.value[i].qr_encoding));
+                        GodexPrinter.Command.PrintQRCode(GodexPrinterCommandBuf.coordinate_x,
+                                                         GodexPrinterCommandBuf.coordinate_y,
+                                                         GodexPrinterCommandBuf.qr_mode,
+                                                         GodexPrinterCommandBuf.qr_type,
+                                                         GodexPrinterCommandBuf.qr_errorlevel,
+                                                         GodexPrinterCommandBuf.qr_mask,
+                                                         GodexPrinterCommandBuf.qr_mul,
+                                                         GodexPrinterCommandBuf.qr_deg,
+                                                         GodexPrinterCommandBuf.data,
+                                                         Encoding.GetEncoding(GodexPrinterCommandBuf.qr_encoding));
                         break;
                 }
             }

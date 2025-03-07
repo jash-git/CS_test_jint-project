@@ -61,7 +61,7 @@ namespace CS_test_Jint
     public class GodexPrinterJSOutput
     {
         public int state_code { get; set; }
-        public List<GodexPrinterCommand> value { get; set; }
+        public List<Object> value { get; set; }
         public List<string> log { get; set; }
     }
 }
