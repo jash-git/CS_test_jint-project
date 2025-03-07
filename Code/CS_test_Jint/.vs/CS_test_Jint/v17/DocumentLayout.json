@@ -7,16 +7,20 @@
       "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\godex_lable_30mm_25mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\godex_lable_30mm_25mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\godexprintercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:godexprintercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\printerhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:printerhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\commonfun.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -47,12 +51,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Godex_Lable_30mm_25mm.js",
+              "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Godex_Lable_30mm_25mm.js",
+              "RelativeDocumentMoniker": "Script\\Godex_Lable_30mm_25mm.js",
+              "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Godex_Lable_30mm_25mm.js",
+              "RelativeToolTip": "Script\\Godex_Lable_30mm_25mm.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-03-07T06:27:47.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "GodexPrinterCommand.cs",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\GodexPrinterCommand.cs",
               "RelativeDocumentMoniker": "GodexPrinterCommand.cs",
               "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\GodexPrinterCommand.cs",
               "RelativeToolTip": "GodexPrinterCommand.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABUAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAADEAAAAAAAAAAIAwwDwAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-05T04:49:56.88Z",
               "EditorCaption": ""
@@ -71,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "EZioApi.cs",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\EZioApi.cs",
               "RelativeDocumentMoniker": "EZioApi.cs",
@@ -83,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "add.js",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\add.js",
               "RelativeDocumentMoniker": "Script\\add.js",
@@ -95,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "CommonFun.js",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\CommonFun.js",
               "RelativeDocumentMoniker": "Script\\CommonFun.js",
@@ -107,7 +124,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAI8EAAAAAAAAAAAewJoEAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T09:19:07.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "\u9678\u67D2\u96F6\u843D\u6599\u6A5F_40mm_50mm.js",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\\u9678\u67D2\u96F6\u843D\u6599\u6A5F_40mm_50mm.js",
               "RelativeDocumentMoniker": "Script\\\u9678\u67D2\u96F6\u843D\u6599\u6A5F_40mm_50mm.js",
@@ -119,20 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAKcDAAAAAAAAAAAswLIDAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-10T09:19:07.184Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js",
               "RelativeDocumentMoniker": "Script\\\u63D0\u9EDE\u843D\u6599\u6A5F_40mm_50mm.js",

@@ -350,6 +350,100 @@ namespace CS_test_Jint
             }
         }
 
+        public static GodexPrinterCommand GodexPrinterCommand2Class(String inputbuf)
+        {
+            GodexPrinterCommand GodexPrinterCommandResult = new GodexPrinterCommand();
+            if ((inputbuf != null) && (inputbuf.Length > 0))
+            {
+                try
+                {
+                    GodexPrinterCommandResult = JsonSerializer.Deserialize<GodexPrinterCommand>(inputbuf);
+                }
+                catch
+                {
+                    GodexPrinterCommandResult = null;
+                }
+            }
+            else
+            {
+                GodexPrinterCommandResult = null;
+            }
+
+            return GodexPrinterCommandResult;
+        }
+        static void ESCPOS_GodexLable_RS232Print(String StrInput = "", String StrMemo = "", String StrTemplateVar = "")
+        {
+            Console.WriteLine("Init Jint...");
+            var engine = new Engine();
+
+            engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
+                Path.DirectorySeparatorChar + "Godex_Lable_30mm_25mm.js"));
+
+            engine.SetValue("input", StrInput);
+            engine.SetValue("memo", StrMemo);
+            engine.SetValue("TemplateVar", StrTemplateVar);
+
+            Console.WriteLine("Create ESC_Command...");
+            String StrFunName = "Main";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResultBuf = MainFunction.Call();//執行範本運算 3.0.1
+            string StrJsonResult = StrJsonResultBuf.AsString();
+
+            GodexPrinterJSOutput ESCPOSCommand = new GodexPrinterJSOutput();
+            ESCPOSCommand = JsonSerializer.Deserialize<GodexPrinterJSOutput>(StrJsonResult);
+
+            Console.WriteLine("C# Modified ESC_Command Start");
+            //if ((ESCPOSCommand != null) && (ESCPOSCommand.state_code == 0))
+            //{
+            //    for (int i = 0; i < ESCPOSCommand.value.Count; i++)
+            //    {
+            //        ESCPOSCommand.value[i] = UnescapeUnicode(ESCPOSCommand.value[i]);
+            //    }
+            //}
+            Console.WriteLine("C# Modified ESC_Command End");
+
+            GodexPrinterList = GodexPrinter.GetPrinter_USB();
+            if (GodexPrinterList != null && GodexPrinterList.Count > 0)
+            {
+                GodexPrinter.OpenUSB(GodexPrinterList[0]);
+            }
+            else
+            {
+                GodexPrinter.Open(PortType.USB);
+            }
+
+            for (int i = 0; i < ESCPOSCommand.value.Count; i++)
+            {
+                switch (ESCPOSCommand.value[i].command_type)
+                {
+                    case "SET":
+                        EZioApi.sendcommand(ESCPOSCommand.value[i].data);
+                        break;
+                    case "TEXT":
+                        GodexPrinter.Command.PrintText_Unicode(ESCPOSCommand.value[i].coordinate_x,
+                                                               ESCPOSCommand.value[i].coordinate_y,
+                                                               ESCPOSCommand.value[i].text_size,
+                                                               ESCPOSCommand.value[i].font_name,
+                                                               ESCPOSCommand.value[i].data);
+                        break;
+                    case "QRCODE":
+                        GodexPrinter.Command.PrintQRCode(ESCPOSCommand.value[i].coordinate_x,
+                                                         ESCPOSCommand.value[i].coordinate_y,
+                                                         ESCPOSCommand.value[i].qr_mode,
+                                                         ESCPOSCommand.value[i].qr_type,
+                                                         ESCPOSCommand.value[i].qr_errorlevel,
+                                                         ESCPOSCommand.value[i].qr_mask,
+                                                         ESCPOSCommand.value[i].qr_mul,
+                                                         ESCPOSCommand.value[i].qr_deg,
+                                                         ESCPOSCommand.value[i].data,
+                                                         Encoding.GetEncoding(ESCPOSCommand.value[i].qr_encoding));
+                        break;
+                }
+            }
+            GodexPrinter.Close();
+        }
+
         static void ESCPOS_Lable_RS232Print(String StrInput="",String StrMemo="", String StrTemplateVar = "")
         {
             Console.WriteLine("Init Jint...");
@@ -828,6 +922,7 @@ namespace CS_test_Jint
         {
             //---
             //Godex 標籤機
+            /*
             GodexPrinterList = GodexPrinter.GetPrinter_USB();
             if(GodexPrinterList!=null && GodexPrinterList.Count>0)
             {
@@ -837,18 +932,12 @@ namespace CS_test_Jint
             {
                 GodexPrinter.Open(PortType.USB);
             }
+            */
+            ////---EZioApi.sendcommand("^W40\r\n\r\n^Q50,0,3\r\n\r\n^H10\r\n\r\n^S3\r\n\r\n^P1\r\n\r\n^C1\r\n\r\n^L\r\n\r\nE\r\n\r\n");
+            ////---EZioApi.sendcommand("^L");
+            ////---EZioApi.sendcommand("E");
 
-            /*
-            EZioApi.sendcommand("^Q50,0,3");            
-            EZioApi.sendcommand("^W40");
-            EZioApi.sendcommand("^H10");
-            EZioApi.sendcommand("^S3");
-            EZioApi.sendcommand("^P1");
-            EZioApi.sendcommand("^C1");
-            EZioApi.sendcommand("^L");
-            EZioApi.sendcommand("E");
-            //*/
-            EZioApi.sendcommand("^W40\r\n\r\n^Q50,0,3\r\n\r\n^H10\r\n\r\n^S3\r\n\r\n^P1\r\n\r\n^C1\r\n\r\n^L\r\n\r\nE\r\n\r\n");
+
             /*
             List<GodexPrinterCommand> GodexPrinterCommands = new List<GodexPrinterCommand>();
             GodexPrinterCommand[] SetGodexPrinterCommand = new GodexPrinterCommand[13];
@@ -977,8 +1066,8 @@ namespace CS_test_Jint
                 }
             }
             //*/
-            GodexPrinter.Close();
-            
+            ////---GodexPrinter.Close();
+
             //---Godex 標籤機
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);//載入.net Big5編解碼函數庫(System.Text.Encoding.CodePages)
             //add();
@@ -993,7 +1082,8 @@ namespace CS_test_Jint
             sr.Close();// 關閉串流
             //ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
             //ESCPOS_Lable_RS232Print(StrInput, "", StrTemplateVar);
-            add();
+            ESCPOS_GodexLable_RS232Print(StrInput, "", StrTemplateVar);
+            //add();
             //*/
             /*
             int Page_Width = 552; //57mm

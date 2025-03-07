@@ -66,6 +66,18 @@
     <None Update="Script\func.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Script\Godex_Lable_30mm_25mm.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Script\Godex_Lable_40mm_25mm .js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Script\Godex_Lable_40mm_50mm.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Script\Godex_Lable_40mm_60mm.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Script\Invoice_57mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

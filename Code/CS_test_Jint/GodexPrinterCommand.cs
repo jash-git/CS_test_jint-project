@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jint.Native;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -55,5 +56,12 @@ namespace CS_test_Jint
             qr_errorlevel = "M";
             qr_encoding = 0;
         }
+    }
+
+    public class GodexPrinterJSOutput
+    {
+        public int state_code { get; set; }
+        public List<GodexPrinterCommand> value { get; set; }
+        public List<string> log { get; set; }
     }
 }
