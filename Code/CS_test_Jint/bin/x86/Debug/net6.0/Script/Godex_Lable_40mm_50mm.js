@@ -91,14 +91,13 @@ function Main() {
 
                 //[訂單類型]+單號
                 strbuf = '[' + json_obj.order_type_name + ']' + json_obj.call_num + '';
-                CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + lcPOSITION_Y + ',' + lcFONT_SIZE01 + strbuf + lcEND);
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, lcPOSITION_Y, undefined, lcFONT_SIZE01));
 
                 //產品編號
                 strbuf = '' + Num + '-' + AllCount + '';
                 var POSITION_numX = lcPOSITION_HalfWidth + ((12 - Wlen(Num + '-' + AllCount)) * 13) - lcPOSITION_X;//12:一半為12字;13:字寬
                 var POSITION_numY = 25;
-                CMD_Value.push(lcDATA_START + POSITION_numX + ',' + lcPOSITION_Y + ',' + lcFONT_SIZE01 + strbuf + lcEND);
-
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, POSITION_numX, lcPOSITION_Y, undefined, lcFONT_SIZE01));
 
                 //---
                 //產品+配料		
@@ -108,7 +107,7 @@ function Main() {
                 var POSITION_nameY = 50;//產品名稱字高
                 var POSITION_Y = lcPOSITION_Y + POSITION_numY;//起始點+產品編號高度
                 PositionY_Buf = POSITION_Y + POSITION_nameY / 2;
-                CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + POSITION_Y + ',' + lcFONT_SIZE02 + strbuf + lcEND);
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, POSITION_Y, undefined, lcFONT_SIZE02));
 
                 var StrCondiment_code = '';
                 //配料
@@ -129,13 +128,13 @@ function Main() {
                     for (var l = 0; l < array.length; l++) {
                         PositionY_Buf = lcPOSITION_Y + POSITION_numY + POSITION_nameY + (l * 25);
                         strbuf = '  ' + array[l] + '';
-                        CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE01 + strbuf + lcEND);
+						CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, PositionY_Buf, undefined, lcFONT_SIZE01));
                     }
                 }
                 else {//沒有配料 也要有空白列 ~ 排版一致性
                     PositionY_Buf = lcPOSITION_Y + POSITION_numY + POSITION_nameY;
                     strbuf = '  ';
-                    CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE01 + strbuf + lcEND);
+					CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, PositionY_Buf, undefined, lcFONT_SIZE01));
                 }
                 //---產品+配料
 
@@ -143,12 +142,12 @@ function Main() {
                 strbuf = '';
                 strbuf += json_obj.order_no.replace('-', '') + '|' + json_obj.order_items[i].product_code + '|' + StrCondiment_code;//訂單編號
                 strbuf += '';
-                CMD_Value.push(lcQRCODE + strbuf + lcEND);
+				CMD_Value.push(CreateGodexCmdObj("QRCODE", strbuf, 119, 158));
 
                 //time
                 var POSITION_timeY = 310;
                 strbuf = '' + year + '-' + month + '-' + day + ' ' + hour + ':' + minute + '';
-                CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + POSITION_timeY + ',' + lcFONT_SIZE01 + strbuf + lcEND);
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, POSITION_timeY, undefined, lcFONT_SIZE01));
 
                 //金額
                 var POSITION_priceY = POSITION_timeY + 0;
@@ -160,17 +159,17 @@ function Main() {
                 else {
                     strbuf = '' + '';
                 }
-                CMD_Value.push(lcDATA_START + POSITION_priceX + ',' + POSITION_priceY + ',' + lcFONT_SIZE02 + strbuf + lcEND);
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, POSITION_priceX, POSITION_priceY, undefined, lcFONT_SIZE02));
 
                 //店家名稱
                 var POSITION_storeY = POSITION_timeY + 25;
                 strbuf = '' + json_obj.store_name + '';
-                CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + POSITION_storeY + ',' + lcFONT_SIZE01 + strbuf + lcEND);
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, POSITION_storeY, undefined, lcFONT_SIZE01));
 
                 //標籤底部
                 var POSITION_lableY = POSITION_storeY + 25;
                 strbuf = '' + PrinterParms.label_bottom_info + '';
-                CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + POSITION_lableY + ',' + lcFONT_SIZE01 + strbuf + lcEND);
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, POSITION_lableY, undefined, lcFONT_SIZE01));
 
                 CMD_Value.push(CreateGodexCmdObj(undefined,lcSET_DATA_END));//資料結束
 

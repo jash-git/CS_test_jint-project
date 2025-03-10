@@ -68,6 +68,8 @@ C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\x86\Debug\net6.0\CS_test_Jint.genruntimeconfig.cache
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\obj\x86\Debug\net6.0\ref\CS_test_Jint.dll
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\x86\Debug\net6.0\Script\Godex_Lable_30mm_25mm.js
-C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\x86\Debug\net6.0\Script\Godex_Lable_40mm_25mm .js
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\x86\Debug\net6.0\Script\Godex_Lable_40mm_50mm.js
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\x86\Debug\net6.0\Script\Godex_Lable_40mm_60mm.js
+C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\x86\Debug\net6.0\Script\Godex_Lable_40mm_25mm.js
+C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\x86\Debug\net6.0\Script\Godex_提點落料機_40mm_50mm.js
+C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\x86\Debug\net6.0\Script\Godex_陸柒零落料機_40mm_50mm.js

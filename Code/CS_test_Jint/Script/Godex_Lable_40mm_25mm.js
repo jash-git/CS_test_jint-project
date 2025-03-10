@@ -1,12 +1,12 @@
 //---
-//建立 40 mm,50 mm 標籤機 Command
+//建立 40 mm,25 mm 標籤機 Command
 const lcPOSITION_X = 15;//起始定位座標點
-const lcPOSITION_Y = 8;//起始定位座標點
-const lcPOSITION_HalfWidth = 175;//紙張一半的平移座標
-const lcWORD_COUNT = 24;//(12*2)一行英文最多字數(SIZE 40 mm,50 mm)
+const lcPOSITION_Y = 10;//起始定位座標點
+const lcPOSITION_HalfWidth = 175;
+const lcWORD_COUNT = 24;//(12*2)一行英文最多字數(SIZE 40 mm,25 mm)
 
 const lcSET_PAGE_SIZE = '^W40\r\n';//設定紙張寬
-const lcSET_GAP_DISTANCE = '^Q50,0,3\r\n';//設定紙張寬+間隙
+const lcSET_GAP_DISTANCE = '^Q25,0,3\r\n';//設定紙張寬+間隙
 const lcSET_COLORSHADE = '^H10\r\n';//黑度
 const lcSET_SPEED = '^S3\r\n';//速度
 const lcSET_PAGES = '^P1\r\n';//指定設定列印資料對應列印張數
@@ -21,10 +21,7 @@ const lcFONT_SIZE03 = 45;//字型大小3 => H=75,W=13
 const lcFONT_SIZE02 = 30;//字型大小2 => H=50,W=13
 const lcFONT_SIZE01 = 20;//字型大小1 => H=25,W=13
 
-const lcQRCODE = 'QRCODE 119, 158, M, 4, A, 0, J1, M2, X140, S7,';//座標X(13*8+15),座標Y(108+50),纠错等级(M),模块宽度(4),编码模式(A),旋转(0),[对齐方式(J1)],模式(M2),[最大条码区域(X150)],编码数据(S7)
-//const lcQRCODE = 'QRCODE 93,158,M,4,A,0,M2,S7,';
-
-//---建立 40 mm,50 mm 標籤機 Command
+//---建立 40 mm,25 mm 標籤機 Command
 
 //---
 //全域外部參數
@@ -32,9 +29,10 @@ var PrinterParms = {};//全域印表參數
 var Log_Value = [];//所有除錯用Log物件
 //---全域外部參數
 
+//標籤40 mm,25 mm範本
 function Main() {
     //JSON資料顯示格式轉換: https://jsonformatter.org/
-    //測試資料來源: C:\Users\devel\Desktop\CS_VPOS\CS_VPOS\Json2Class\orders_new.cs
+	//測試資料來源: C:\Users\devel\Desktop\CS_VPOS\CS_VPOS\Json2Class\orders_new.cs
     var Result = {};//最終結果物件
     var json_obj = {};//輸入字串的JSON物件
     var CMD_Value = [];//存放記錄所有產出的列印資訊陣列
@@ -58,7 +56,7 @@ function Main() {
     //判斷記錄輸入資料是否合法
     if (json_obj == null) {
         Result.state_code = 1;
-        return JSON.stringify(Result);
+        return JSON.stringify(Result);        
     }
     else {
         Result.state_code = 0;
@@ -71,114 +69,100 @@ function Main() {
     //---
     //新增列印主體內容
 
-    //日期&時間
+	//日期&時間
     var date = new Date(json_obj.order_time * 1000);//json_obj.order_time (sec) -> ms, https://www.fooish.com/javascript/date/
     var month = pad2(date.getMonth() + 1);//months (0-11)
     var day = pad2(date.getDate());//day (1-31)
     var year = date.getFullYear();
     var hour = pad2(date.getHours());
     var minute = pad2(date.getMinutes());
-
+	
     var AllCount = json_obj.item_count;//產品總數量
-    var Num = 0;//目前在第幾號產品
-
+	var Num = 0;//目前在第幾號產品
+	
     if (json_obj.order_items != null) {
         for (var i = 0; i < json_obj.order_items.length; i++) {
-            for (var j = 0; j < json_obj.order_items[i].count; j++) {
-                var PositionY_Buf = 0;
-                Num++;
+			for(var j=0;j<json_obj.order_items[i].count;j++){
+				var PositionY_Buf = 0;
+				Num++;
                 CMD_Value.push(CreateGodexCmdObj(undefined,lcSET_DATA_START));//資料開始
-
-                //[訂單類型]+單號
-                strbuf = '[' + json_obj.order_type_name + ']' + json_obj.call_num + '';
+				
+				//訂單類型+產品編號
+				strbuf = '' + json_obj.order_type_name + '(' + AllCount + '-' + Num + ')' + '';
 				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, lcPOSITION_Y, undefined, lcFONT_SIZE01));
+				
+                //單號
+                var order_noAry = json_obj.order_no.split('-');
+                strbuf = '' + json_obj.call_num + '';
+				var POSITION_numY =50;//單號字高
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_HalfWidth, lcPOSITION_Y, undefined, lcFONT_SIZE02));
+				
+				//日期
+				strbuf = '' + month + '/' + day + '';
+				var POSITION_dayX = lcPOSITION_HalfWidth +(13*Wlen(order_noAry[1]));
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, POSITION_dayX, lcPOSITION_Y, undefined, lcFONT_SIZE01));
+				
+				//時間
+				strbuf = '' + hour + ':' + minute + '';
+				var POSITION_timeY=lcPOSITION_Y+25;
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, POSITION_dayX, POSITION_timeY, undefined, lcFONT_SIZE01));
+				//---
+				//產品+配料		
 
-                //產品編號
-                strbuf = '' + Num + '-' + AllCount + '';
-                var POSITION_numX = lcPOSITION_HalfWidth + ((12 - Wlen(Num + '-' + AllCount)) * 13) - lcPOSITION_X;//12:一半為12字;13:字寬
-                var POSITION_numY = 25;
-				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, POSITION_numX, lcPOSITION_Y, undefined, lcFONT_SIZE01));
-
-                //---
-                //產品+配料		
-
-                //產品
-                strbuf = '' + json_obj.order_items[i].product_name + ''; //取出產品名稱
-                var POSITION_nameY = 50;//產品名稱字高
-                var POSITION_Y = lcPOSITION_Y + POSITION_numY;//起始點+產品編號高度
-                PositionY_Buf = POSITION_Y + POSITION_nameY / 2;
+				//產品
+				strbuf = '' + json_obj.order_items[i].product_name + ''; //取出產品名稱
+				var POSITION_nameY =50;//產品名稱字高
+				var POSITION_Y = lcPOSITION_Y + POSITION_numY;
+				PositionY_Buf = POSITION_Y + POSITION_nameY/2;
 				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, POSITION_Y, undefined, lcFONT_SIZE02));
 
-                var StrCondiment_code = '';
-                //配料
+				//分隔線
+				var Delimiter = '------------------------'	
+				strbuf = '' + Delimiter + '';			
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, PositionY_Buf, undefined, lcFONT_SIZE02));	
+				
+				var POSITION_Line = 10;
+				PositionY_Buf += POSITION_Line;
+				
+				//配料
                 if (json_obj.order_items[i].condiments != null) {
-                    strbuf = '-';
+                    strbuf = '';
                     for (var k = 0; k < json_obj.order_items[i].condiments.length; k++) {
-                        if (k == 0) {
-                            strbuf += json_obj.order_items[i].condiments[k].condiment_name;
-                            StrCondiment_code = json_obj.order_items[i].condiments[k].condiment_code;
-                        }
-                        else {
-                            strbuf += ',' + json_obj.order_items[i].condiments[k].condiment_name;
-                            StrCondiment_code += ',' + json_obj.order_items[i].condiments[k].condiment_code;
-                        }
+                        strbuf += '(' + json_obj.order_items[i].condiments[k].condiment_name + ')';		
                     }
-
+                    
                     var array = String2Array(strbuf, 24);
                     for (var l = 0; l < array.length; l++) {
-                        PositionY_Buf = lcPOSITION_Y + POSITION_numY + POSITION_nameY + (l * 25);
-                        strbuf = '  ' + array[l] + '';
+                        PositionY_Buf = lcPOSITION_Y + POSITION_numY + POSITION_nameY + POSITION_Line + (l * 25);
+                        strbuf = '  ' + array[l]+'';
 						CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, PositionY_Buf, undefined, lcFONT_SIZE01));
                     }
-                }
-                else {//沒有配料 也要有空白列 ~ 排版一致性
-                    PositionY_Buf = lcPOSITION_Y + POSITION_numY + POSITION_nameY;
-                    strbuf = '  ';
+				}
+				else{//沒有配料 也要有空白列 ~ 排版一致性
+					PositionY_Buf = lcPOSITION_Y + POSITION_numY + POSITION_nameY + POSITION_Line;
+					strbuf = '  ';
 					CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, PositionY_Buf, undefined, lcFONT_SIZE01));
-                }
-                //---產品+配料
-
-                //QR code
-                strbuf = '';
-                strbuf += json_obj.order_no.replace('-', '') + '|' + json_obj.order_items[i].product_code + '|' + StrCondiment_code;//訂單編號
-                strbuf += '';
-				CMD_Value.push(CreateGodexCmdObj("QRCODE", strbuf, 119, 158));
-
-                //time
-                var POSITION_timeY = 310;
-                strbuf = '' + year + '-' + month + '-' + day + ' ' + hour + ':' + minute + '';
-				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, POSITION_timeY, undefined, lcFONT_SIZE01));
-
-                //金額
-                var POSITION_priceY = POSITION_timeY + 0;
-                var POSITION_priceX = 0;
+				}					
+				//---產品+配料
+                
+				//金額
+				PositionY_Buf += 25;
                 if (PrinterParms.no_print_price == "N") {//不印價格
-                    strbuf = 'TWD ' + json_obj.order_items[i].amount + '';
-                    POSITION_priceX = lcPOSITION_HalfWidth + ((12 - Wlen(strbuf) + 2) * 13) - lcPOSITION_X;//12:一半為12字;13:字寬
+                    strbuf = '$' + json_obj.order_items[i].amount + '';
                 }
                 else {
                     strbuf = '' + '';
-                }
-				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, POSITION_priceX, POSITION_priceY, undefined, lcFONT_SIZE02));
+                }		
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, PositionY_Buf, undefined, lcFONT_SIZE02));
+				
+				CMD_Value.push(CreateGodexCmdObj(undefined,lcSET_DATA_END));//資料結束				
+			}
 
-                //店家名稱
-                var POSITION_storeY = POSITION_timeY + 25;
-                strbuf = '' + json_obj.store_name + '';
-				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, POSITION_storeY, undefined, lcFONT_SIZE01));
-
-                //標籤底部
-                var POSITION_lableY = POSITION_storeY + 25;
-                strbuf = '' + PrinterParms.label_bottom_info + '';
-				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, POSITION_lableY, undefined, lcFONT_SIZE01));
-
-                CMD_Value.push(CreateGodexCmdObj(undefined,lcSET_DATA_END));//資料結束
-
-            }
-            //只印一張除錯用 break;
         }
-
+		
     }
     //---新增列印主體內容
+
 
     Result.value = CMD_Value;
     Result.log = Log_Value;
@@ -267,6 +251,7 @@ function GlobalVariable_Init() {//解析C#傳送過來的印表參數並修改�
     catch (e) {
         WriteLog("GlobalVariable_Init 解析錯誤")
         json_obj = null;
+        WriteLog(e.message);
     }
     //---將輸入文字轉成JSON物件
 

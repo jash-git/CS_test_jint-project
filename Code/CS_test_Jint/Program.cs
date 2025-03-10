@@ -377,7 +377,7 @@ namespace CS_test_Jint
             var engine = new Engine();
 
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "Godex_Lable_30mm_25mm.js"));
+                Path.DirectorySeparatorChar + "Godex_Lable_40mm_60mm.js"));
 
             engine.SetValue("input", StrInput);
             engine.SetValue("memo", StrMemo);

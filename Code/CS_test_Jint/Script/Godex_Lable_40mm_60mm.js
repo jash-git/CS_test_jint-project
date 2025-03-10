@@ -101,26 +101,23 @@ function Main() {
 				//單號
 				var order_noAry = json_obj.order_no.split('-');
 				strbuf = '' + json_obj.call_num + '';
-				CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + lcPOSITION_Y + ',' + lcFONT_SIZE02 + strbuf + lcEND);
-				
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, lcPOSITION_Y, undefined, lcFONT_SIZE02));
 				
 				//日期
 				strbuf = '' + month + '/' + day + '';
-				CMD_Value.push(lcDATA_START + lcPOSITION_HalfWidth + ',' + lcPOSITION_Y + ',' + lcFONT_SIZE02 + strbuf + lcEND);
-
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_HalfWidth, lcPOSITION_Y, undefined, lcFONT_SIZE02));
 				
 				//時間
 				strbuf = '' + hour + ':' + minute + '';				
 				var POSITION_dayX = lcPOSITION_HalfWidth +(13*Wlen(month + '-' + day));
-				CMD_Value.push(lcDATA_START + POSITION_dayX + ',' + lcPOSITION_Y + ',' + lcFONT_SIZE02 + strbuf + lcEND);
-				
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, POSITION_dayX, lcPOSITION_Y, undefined, lcFONT_SIZE02));
 				
 				//分隔線
 				var Delimiter = '------------------------'	
 				strbuf = '' + Delimiter + '';
 				PositionY_Shift = lcPOSITION_Y;
 				var POSITION_LineY = PositionY_Shift + (50/2);
-				CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + POSITION_LineY + ',' + lcFONT_SIZE02 + strbuf + lcEND);
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, POSITION_LineY, undefined, lcFONT_SIZE02));
 
 				//訂單類型 + 產品
 				if( (Wlen(json_obj.order_type_name)+Wlen(json_obj.order_items[i].product_name))>=22)
@@ -142,7 +139,7 @@ function Main() {
 				for (var l = 0; l < array.length; l++) {
 					PositionY_Buf = PositionY_Shift + (l * 50);
 					strbuf = '' + array[l] + '';
-					CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE02 + strbuf + lcEND);
+					CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, PositionY_Buf, undefined, lcFONT_SIZE02));
 				}
 				
 				
@@ -182,7 +179,7 @@ function Main() {
                     for (var l = 0; l < array01.length; l++) {
                         PositionY_Buf = PositionY_Shift + (l * 50);
                         strbuf = '' + array01[l] + '';
-                        CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE02 + strbuf + lcEND);
+						CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, PositionY_Buf, undefined, lcFONT_SIZE02));
                     }
 				}
 				else
@@ -200,7 +197,7 @@ function Main() {
 						strbuf = '' + strbuf  + '';		
 					}
 									
-					CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE02 + strbuf + lcEND);
+					CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, PositionY_Buf, undefined, lcFONT_SIZE02));
 				}
 
 				
@@ -208,7 +205,7 @@ function Main() {
 				strbuf = '' + Delimiter + '';
 				PositionY_Shift = PositionY_Buf;
 				var POSITION_LineY = PositionY_Shift + (50/2);
-				CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + POSITION_LineY + ',' + lcFONT_SIZE02 + strbuf + lcEND);
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, POSITION_LineY, undefined, lcFONT_SIZE02));
 				
 				//Memo
 				if( (memo_obj!=null) && (memo_obj.data.length>0) ){
@@ -221,7 +218,7 @@ function Main() {
 							for (var l = 0; l < array02.length; l++) {
 								PositionY_Buf = PositionY_Shift + (l * 70);//(l * 50)
 								strbuf = '' + array02[l] + '';
-								CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE02 + strbuf + lcEND);
+								CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, PositionY_Buf, undefined, lcFONT_SIZE02));
 								if(l==2)
 								{
 									break;
@@ -237,15 +234,13 @@ function Main() {
 				PositionY_Shift = PositionY_Shift + (50/2) +(50*3);
 				PositionY_Buf = PositionY_Shift;
 				strbuf = '' + Delimiter + '';
-				CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE02 + strbuf + lcEND);
-				
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, PositionY_Buf, undefined, lcFONT_SIZE02));				
 				
 				//頁尾文字
 				PositionY_Shift = PositionY_Buf + (70/2);//(50/2)
 				PositionY_Buf = PositionY_Shift;
 				strbuf = '' + '40mm x 60mm' + '';
-				CMD_Value.push(lcDATA_START + lcPOSITION_X + ',' + PositionY_Buf + ',' + lcFONT_SIZE02 + strbuf + lcEND);
-				
+				CMD_Value.push(CreateGodexCmdObj("TEXT", strbuf, lcPOSITION_X, PositionY_Buf, undefined, lcFONT_SIZE02));
 				
 				CMD_Value.push(CreateGodexCmdObj(undefined,lcSET_DATA_END));//資料結束				
 			}
