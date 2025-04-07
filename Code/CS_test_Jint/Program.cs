@@ -1081,9 +1081,9 @@ namespace CS_test_Jint
             sr = new StreamReader(@"C:\Users\jashv\OneDrive\桌面\TemplateVar.json");
             string StrTemplateVar = sr.ReadLine();
             sr.Close();// 關閉串流
-            //ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
+            ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
             //ESCPOS_Lable_RS232Print(StrInput, "", StrTemplateVar);
-            ESCPOS_GodexLable_RS232Print(StrInput, "", StrTemplateVar);
+            //ESCPOS_GodexLable_RS232Print(StrInput, "", StrTemplateVar);
             //add();
             //*/
             /*
