@@ -513,6 +513,94 @@ namespace CS_test_Jint
             }
         }
 
+        static void ESCPOS_Invoice_RS232Print(String StrInput = "", String StrTemplateVar = "",String StrInvoice="")//收據
+        {
+            Console.WriteLine("Init Jint...");
+            var engine = new Engine();
+
+            /*
+            engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
+                Path.DirectorySeparatorChar + "esc_pos01.js"));
+            */
+
+            engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
+                Path.DirectorySeparatorChar + "CommonFun.js"));
+            engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
+                Path.DirectorySeparatorChar + "Invoice_57mm.js"));
+
+            engine.SetValue("Business_Name", "VTEAM-茶飲店(營業登記名稱)");//SqliteDataAccess.m_company[0].business_name;
+            engine.SetValue("Com_EIN", "28537502");//SqliteDataAccess.m_company[0].EIN;//統一編號
+            engine.SetValue("Reprint", "N");//補印
+            engine.SetValue("Sandbox", "Y");//測試
+            engine.SetValue("input", StrInput);
+            engine.SetValue("Invoice", StrInvoice);
+            engine.SetValue("QRCode_Value_1", "LC100425701120613531300000064000000640000000028537502QLOOx0nzLcX0LCfop8gLRA==\u0000:**********:2:2:1:");
+            engine.SetValue("QRCode_Value_2", "**5rOi6Zy457SF6Iy2OjE6NTA66aSK5qiC5aSa57agKOWkpyk6MTo1MDo=");//**波霸紅茶:1:50:養樂多綠(大):1:50:
+            engine.SetValue("BarCode_Value", "11206LC100425705313");
+
+            Console.WriteLine("Create ESC_Command...");
+            String StrFunName = "Main";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call();//執行範本運算 3.0.1
+
+
+            ESCPOS_OrderNew ESCPOSCommand = new ESCPOS_OrderNew();
+            ESCPOSCommand = JsonSerializer.Deserialize<ESCPOS_OrderNew>(StrJsonResult.AsString());
+
+            Console.WriteLine("C# Modified ESC_Command Start");
+            if ((ESCPOSCommand != null) && (ESCPOSCommand.state_code == 0) && (ESCPOSCommand.value != null) && (ESCPOSCommand.value.Count > 0))
+            {
+                for (int i = 0; i < ESCPOSCommand.value.Count; i++)
+                {
+                    ESCPOSCommand.value[i] = UnescapeUnicode(ESCPOSCommand.value[i]);
+                }
+            }
+            Console.WriteLine("C# Modified ESC_Command End");
+
+            string[] m_comports;//= SerialPort.GetPortNames();
+            m_comports = SerialPort.GetPortNames();
+            if ((m_comports.Length > 0) && (!m_port.IsOpen))
+            {
+                m_port.PortName = m_comports[0];
+                //m_port.BaudRate = 115200;//RP-700  ;
+                m_port.BaudRate = 19200;//PDC325
+                m_port.DataBits = 8;
+                m_port.StopBits = StopBits.One;
+                m_port.Parity = Parity.None;
+                m_port.ReadTimeout = 1;
+                m_port.ReadTimeout = 3000; //单位毫秒
+                m_port.WriteTimeout = 3000; //单位毫秒
+                //串口控件成员变量，字面意思为接收字节阀值，
+                //串口对象在收到这样长度的数据之后会触发事件处理函数
+                //一般都设为1
+                m_port.ReceivedBytesThreshold = 1;
+                m_port.DataReceived += new SerialDataReceivedEventHandler(CommDataReceived); //设置数据接收事件（监听）
+                m_port.Open();
+
+                Console.WriteLine("ESC_Command to Printer Start");
+                if ((ESCPOSCommand != null) && (ESCPOSCommand.value != null))
+                {
+                    for (int i = 0; i < ESCPOSCommand.value.Count; i++)
+                    {
+                        //會亂碼  byte[] bytes = Encoding.UTF8.GetBytes(ESCPOSCommand.value[i]);
+                        //會亂碼  byte[] bytes = Encoding.Default.GetBytes(ESCPOSCommand.value[i]);
+                        //會亂碼  byte[] bytes = Encoding.ASCII.GetBytes(ESCPOSCommand.value[i]);
+                        //會亂碼  byte[] bytes = Encoding.Latin1.GetBytes(ESCPOSCommand.value[i]);
+                        //byte[] bytes = Encoding.GetEncoding("big5").GetBytes(ESCPOSCommand.value[i]);
+                        m_port.Write(Encoding.GetEncoding("big5").GetBytes(ESCPOSCommand.value[i]), 0, Encoding.GetEncoding("big5").GetBytes(ESCPOSCommand.value[i]).Length);
+                        //m_port.Write(bytes, 0, bytes.Length);
+                    }
+                }
+                //*/
+                Console.WriteLine("ESC_Command to Printer End");
+            }
+            else
+            {
+                m_port.Close();
+            }
+        }
+
         static void ESCPOS_Receipt_RS232Print(String StrInput="",String StrTemplateVar="")//收據
         {
             Console.WriteLine("Init Jint...");
@@ -526,7 +614,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "BILL_57mm.js"));
+                Path.DirectorySeparatorChar + "BILL57mm.js"));
 
             engine.SetValue("input", StrInput);
             engine.SetValue("TemplateVar", StrTemplateVar);
@@ -1081,7 +1169,11 @@ namespace CS_test_Jint
             sr = new StreamReader(@"C:\Users\jashv\OneDrive\桌面\TemplateVar.json");
             string StrTemplateVar = sr.ReadLine();
             sr.Close();// 關閉串流
-            ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
+            sr = new StreamReader(@"C:\Users\jashv\OneDrive\桌面\Invoice.json");
+            string StrInvoice = sr.ReadLine();
+            sr.Close();// 關閉串流
+            ESCPOS_Invoice_RS232Print(StrInput,StrTemplateVar, StrInvoice);//發票
+            //ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
             //ESCPOS_Lable_RS232Print(StrInput, "", StrTemplateVar);
             //ESCPOS_GodexLable_RS232Print(StrInput, "", StrTemplateVar);
             //add();

@@ -105,7 +105,7 @@ function Sell(json_obj, invoice_obj) {
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 列印時間 + 換行
 	//---列印時間;文字靠左 + 列印時間 + 換行
 
-	strbuf = ShiftSpace + "隨機碼: " + json_obj.invoice_data.random_code + "       總計: " + json_obj.amount;
+	strbuf = ShiftSpace + "隨機碼: " + json_obj.invoice_data.random_code + "       總計: " + json_obj.invoice_amount;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 隨機碼&總計 + 換行
 
 	strbuf = ShiftSpace + "賣方: " + Com_EIN + "     買方: " + json_obj.invoice_data.cust_ein;

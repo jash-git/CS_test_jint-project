@@ -276,6 +276,7 @@ function Main() {
                 strbuf = " 【" + discount_name + "】" + space + "-" + json_obj.order_items[i].discount_fee;
                 ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
             }
+
         }
     }
     //---產品+配料
