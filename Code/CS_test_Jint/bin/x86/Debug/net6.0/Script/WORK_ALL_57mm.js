@@ -115,6 +115,24 @@ function Normal() {//正常模式
     strbuf = ShiftSpace + '日期: ' + year + "-" + month + "-" + day + "  時間: " + hour + ':' + minute;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 
+    //發票號碼
+    if ((json_obj.invoice_data != null) && (json_obj.invoice_data.inv_no.length > 0)) {
+        strbuf = ShiftSpace + '發票號碼: ' + json_obj.invoice_data.inv_no;
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+    }
+
+    //客戶姓名
+    if (json_obj.member_name.length > 0) {
+        strbuf = ShiftSpace + '客戶姓名: ' + json_obj.member_name;
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+    }
+
+    //連絡電話
+    if (json_obj.member_phone.length > 0) {
+        strbuf = ShiftSpace + '連絡電話: ' + json_obj.member_phone;
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+    }
+
     //交易序號;文字靠左 + 交易序號 + 換行
     strbuf = ShiftSpace + '交易序號: ' + json_obj.order_no;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
@@ -356,6 +374,7 @@ function Normal() {//正常模式
                     }
                 }
             }
+
         }
     }
     //---產品+配料
@@ -518,6 +537,24 @@ function SingleCut() {//一菜一切
                     var minute = pad2(date.getMinutes());
                     strbuf = ShiftSpace + '日期: ' + year + "-" + month + "-" + day + "  時間: " + hour + ':' + minute;
                     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+
+                    //發票號碼
+                    if ((json_obj.invoice_data != null) && (json_obj.invoice_data.inv_no.length > 0)) {
+                        strbuf = ShiftSpace + '發票號碼: ' + json_obj.invoice_data.inv_no;
+                        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+                    }
+
+                    //客戶姓名
+                    if (json_obj.member_name.length > 0) {
+                        strbuf = ShiftSpace + '客戶姓名: ' + json_obj.member_name;
+                        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+                    }
+
+                    //連絡電話
+                    if (json_obj.member_phone.length > 0) {
+                        strbuf = ShiftSpace + '連絡電話: ' + json_obj.member_phone;
+                        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+                    }
 
                     //交易序號;文字靠左 + 交易序號 + 換行
                     strbuf = ShiftSpace + '交易序號: ' + json_obj.order_no;
@@ -686,6 +723,24 @@ function SingleCut() {//一菜一切
                                     var minute = pad2(date.getMinutes());
                                     strbuf = ShiftSpace + '日期: ' + year + "-" + month + "-" + day + "  時間: " + hour + ':' + minute;
                                     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+
+                                    //發票號碼
+                                    if ((json_obj.invoice_data != null) && (json_obj.invoice_data.inv_no.length > 0)) {
+                                        strbuf = ShiftSpace + '發票號碼: ' + json_obj.invoice_data.inv_no;
+                                        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+                                    }
+
+                                    //客戶姓名
+                                    if (json_obj.member_name.length > 0) {
+                                        strbuf = ShiftSpace + '客戶姓名: ' + json_obj.member_name;
+                                        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+                                    }
+
+                                    //連絡電話
+                                    if (json_obj.member_phone.length > 0) {
+                                        strbuf = ShiftSpace + '連絡電話: ' + json_obj.member_phone;
+                                        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+                                    }
 
                                     //交易序號;文字靠左 + 交易序號 + 換行
                                     strbuf = ShiftSpace + '交易序號: ' + json_obj.order_no;
