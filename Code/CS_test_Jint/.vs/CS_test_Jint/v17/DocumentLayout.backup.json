@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\report_80mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\report_80mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\report_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\report_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\invoice_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\invoice_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\number_80mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -17,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\bill_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\bill_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\invoice_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|solutionrelative:script\\invoice_57mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{182BFDBA-4508-463D-B0E1-8B5D18EF90EE}|CS_test_Jint.csproj|c:\\users\\jashv\\onedrive\\\u684C\u9762\\github\\cs_test_jint-project\\code\\cs_test_jint\\script\\godex_lable_40mm_25mm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -62,11 +70,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1154,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "REPORT_80mm.js",
+              "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\REPORT_80mm.js",
+              "RelativeDocumentMoniker": "Script\\REPORT_80mm.js",
+              "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\REPORT_80mm.js",
+              "RelativeToolTip": "Script\\REPORT_80mm.js",
+              "ViewState": "AgIAALoAAAAAAAAAAAAuwMQAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-04-10T05:31:08.702Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "NUMBER_80mm.js",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\NUMBER_80mm.js",
               "RelativeDocumentMoniker": "Script\\NUMBER_80mm.js",
@@ -74,25 +95,24 @@
               "RelativeToolTip": "Script\\NUMBER_80mm.js",
               "ViewState": "AgIAAIMAAAAAAAAAAAAUwJcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-04-09T07:23:40.508Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T07:23:40.508Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Invoice_57mm.js",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Invoice_57mm.js",
               "RelativeDocumentMoniker": "Script\\Invoice_57mm.js",
               "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Invoice_57mm.js",
               "RelativeToolTip": "Script\\Invoice_57mm.js",
-              "ViewState": "AgIAAOABAAAAAAAAAAAYwOkBAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-04-08T02:16:05.151Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "BILL_80mm.js",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\BILL_80mm.js",
               "RelativeDocumentMoniker": "Script\\BILL_80mm.js",
@@ -100,12 +120,11 @@
               "RelativeToolTip": "Script\\BILL_80mm.js",
               "ViewState": "AgIAABICAAAAAAAAAAAUwCYCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-04-07T06:46:41.029Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-07T06:46:41.029Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "BILL_57mm.js",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\BILL_57mm.js",
               "RelativeDocumentMoniker": "Script\\BILL_57mm.js",
@@ -113,12 +132,11 @@
               "RelativeToolTip": "Script\\BILL_57mm.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACkCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-04-07T06:34:52.05Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-07T06:34:52.05Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Godex_Lable_40mm_25mm.js",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Godex_Lable_40mm_25mm.js",
               "RelativeDocumentMoniker": "Script\\Godex_Lable_40mm_25mm.js",
@@ -130,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "CS_test_Jint.csproj",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\CS_test_Jint.csproj",
               "RelativeDocumentMoniker": "CS_test_Jint.csproj",
@@ -142,7 +160,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Godex_Lable_30mm_25mm.js",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\Godex_Lable_30mm_25mm.js",
               "RelativeDocumentMoniker": "Script\\Godex_Lable_30mm_25mm.js",
@@ -154,7 +172,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAPIEAAAAAAAAAIAwwPsEAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T09:19:07.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "REPORT_57mm.js",
+              "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\REPORT_57mm.js",
+              "RelativeDocumentMoniker": "Script\\REPORT_57mm.js",
+              "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\REPORT_57mm.js",
+              "RelativeToolTip": "Script\\REPORT_57mm.js",
+              "ViewState": "AgIAAF0BAAAAAAAAAAAAAFMBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-04-10T05:31:07.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "GodexPrinterCommand.cs",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\GodexPrinterCommand.cs",
               "RelativeDocumentMoniker": "GodexPrinterCommand.cs",
@@ -166,7 +210,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "PrinterHelper.cs",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\PrinterHelper.cs",
               "RelativeDocumentMoniker": "PrinterHelper.cs",
@@ -178,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "EZioApi.cs",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\EZioApi.cs",
               "RelativeDocumentMoniker": "EZioApi.cs",
@@ -190,7 +234,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "add.js",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\add.js",
               "RelativeDocumentMoniker": "Script\\add.js",
@@ -202,7 +246,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "CommonFun.js",
               "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Script\\CommonFun.js",
               "RelativeDocumentMoniker": "Script\\CommonFun.js",
@@ -211,19 +255,6 @@
               "ViewState": "AgIAACoAAAAAAAAAAAAAAAsAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-02-27T01:12:18.977Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\jashv\\OneDrive\\\u684C\u9762\\GITHUB\\CS_test_jint-project\\Code\\CS_test_Jint\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAO8EAAAAAAAAAAAWwPcEAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-10T09:19:07.184Z",
-              "EditorCaption": ""
             }
           ]
         }

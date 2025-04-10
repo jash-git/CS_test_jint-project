@@ -614,7 +614,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "BILL57mm.js"));
+                Path.DirectorySeparatorChar + "REPORT_80mm.js"));
 
             engine.SetValue("input", StrInput);
             engine.SetValue("TemplateVar", StrTemplateVar);
@@ -1169,11 +1169,15 @@ namespace CS_test_Jint
             sr = new StreamReader(@"C:\Users\jashv\OneDrive\桌面\TemplateVar.json");
             string StrTemplateVar = sr.ReadLine();
             sr.Close();// 關閉串流
+
+            /*
             sr = new StreamReader(@"C:\Users\jashv\OneDrive\桌面\Invoice.json");
             string StrInvoice = sr.ReadLine();
             sr.Close();// 關閉串流
             ESCPOS_Invoice_RS232Print(StrInput,StrTemplateVar, StrInvoice);//發票
-            //ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
+            */
+
+            ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
             //ESCPOS_Lable_RS232Print(StrInput, "", StrTemplateVar);
             //ESCPOS_GodexLable_RS232Print(StrInput, "", StrTemplateVar);
             //add();

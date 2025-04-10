@@ -157,11 +157,19 @@ function Main() {
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	strbuf = ShiftSpace + '外送費總金額: ' + TypesettingSpace('外送費總金額: ', json_obj.delivery_total, MaxLength) + json_obj.delivery_total;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+	strbuf = ShiftSpace + '點數折抵金額: ' + TypesettingSpace('點數折抵金額: ', json_obj.point_discount * -1, MaxLength) + json_obj.point_discount *-1;
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	strbuf = ShiftSpace + '交易沖正金額: ' + TypesettingSpace('交易沖正金額: ',json_obj.trans_reversal,MaxLength) + json_obj.trans_reversal;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	strbuf = ShiftSpace + '溢收款金額: ' + TypesettingSpace('溢收款金額: ',json_obj.over_paid,MaxLength) + json_obj.over_paid;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
-	strbuf = ShiftSpace + '營業銷售金額: ' + TypesettingSpace('營業銷售金額: ',json_obj.sale_amount,MaxLength) + json_obj.sale_amount;
+	strbuf = ShiftSpace + '代收款金額: ' + TypesettingSpace('代收款金額: ', json_obj.collection_payment, MaxLength) + json_obj.collection_payment;
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+	strbuf = ShiftSpace + '銷售收入金額: ' + TypesettingSpace('銷售收入金額: ', json_obj.sale_amount, MaxLength) + json_obj.sale_amount;
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+	strbuf = ShiftSpace + '實收金額: ' + TypesettingSpace('實收金額: ', (json_obj.collection_payment + json_obj.sale_amount), MaxLength) + (json_obj.collection_payment + json_obj.sale_amount);
+	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+	strbuf = ShiftSpace + '發票開立金額: ' + TypesettingSpace('發票開立金額: ', json_obj.invoice_amount, MaxLength) + json_obj.invoice_amount;
 	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 	
 	//分隔線;文字靠左 + 分隔線 + 換行
@@ -269,14 +277,14 @@ function Main() {
 			}
 		}
 		
-		if((intsale_quantity>0) && (intcancel_quantity>0))
+		if(1==1)//if((intsale_quantity>0) && (intcancel_quantity>0))
 		{
 			strbuf = ShiftSpace + DividingLine('-',MaxLength);;	
 			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);				
 		}
 
 		//作廢
-		if(intcancel_quantity>0)
+		if (1 == 1)//if(intcancel_quantity>0)
 		{
 			strbuf = ShiftSpace + '發票作廢張數:' + TypesettingSpace('發票作廢張數:',json_obj.inv_summery_info.cancel_quantity,MaxLength) + json_obj.inv_summery_info.cancel_quantity;
 			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
@@ -327,6 +335,27 @@ function Main() {
 			
 		strbuf = ShiftSpace + DividingLine('=',MaxLength);
 		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);				
+	}
+
+	//促銷/折扣/讓紀錄
+	if ((PrinterParms.single_report == "N") && (json_obj.promotions_info != null) && (json_obj.promotions_info.length > 0))
+	{
+		strbuf = ShiftSpace + '【促銷/折扣/讓紀錄】';
+		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+
+		for (var i = 0; i < json_obj.promotions_info.length; i++) {
+			var intSpaceLen = 16 - Wlen(json_obj.promotions_info[i].name.trim()) - 1;
+			strbuf = ShiftSpace + json_obj.promotions_info[i].name.trim() + ':' + DividingLine(' ', intSpaceLen);
+			strbuf += 'x';
+			var intSpaceLen = 6 - Wlen('' + json_obj.promotions_info[i].quantity);
+			strbuf += DividingLine(' ', intSpaceLen) + json_obj.promotions_info[i].quantity;
+			var intSpaceLen = 11 - Wlen('' + json_obj.promotions_info[i].amount);
+			strbuf += DividingLine(' ', intSpaceLen) + json_obj.promotions_info[i].amount;
+			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+		}
+
+		strbuf = ShiftSpace + DividingLine('=', MaxLength);
+		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);	
 	}
 
 	//列印軟體版本;文字靠左 + 支付方式 + 換行
