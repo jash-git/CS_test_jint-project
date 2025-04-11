@@ -22,6 +22,7 @@ using System.Security.Cryptography;
 using EzioDll;
 using Esprima.Ast;
 using System.Threading.Tasks;
+using System;
 
 namespace CS_test_Jint
 {
@@ -601,6 +602,105 @@ namespace CS_test_Jint
             }
         }
 
+        static void ESCPOS_Receipt_DrivePrint(String StrInput = "", String StrTemplateVar = "", String StrInvoice = "")//收據
+        {
+            String DriveName = "POS-80C";
+            Console.WriteLine("Init Jint...");
+            var engine = new Engine();
+
+            /*
+            engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
+                Path.DirectorySeparatorChar + "esc_pos01.js"));
+            */
+
+            engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
+                Path.DirectorySeparatorChar + "CommonFun.js"));
+            engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
+                Path.DirectorySeparatorChar + "VT-303ii.js"));
+
+            engine.SetValue("Business_Name", "VTEAM-茶飲店(營業登記名稱)");//SqliteDataAccess.m_company[0].business_name;
+            engine.SetValue("Com_EIN", "28537502");//SqliteDataAccess.m_company[0].EIN;//統一編號
+            engine.SetValue("Reprint", "N");//補印
+            engine.SetValue("Sandbox", "Y");//測試
+            engine.SetValue("input", StrInput);
+            engine.SetValue("Invoice", StrInvoice);
+            engine.SetValue("QRCode_Value_1", "LC100425701120613531300000064000000640000000028537502QLOOx0nzLcX0LCfop8gLRA==\u0000:**********:2:2:1:");
+            engine.SetValue("QRCode_Value_2", "**5rOi6Zy457SF6Iy2OjE6NTA66aSK5qiC5aSa57agKOWkpyk6MTo1MDo=");//**波霸紅茶:1:50:養樂多綠(大):1:50:
+            engine.SetValue("BarCode_Value", "11206LC100425705313");
+
+            Console.WriteLine("Create ESC_Command...");
+            String StrFunName = "Main";//"Main()";
+            //var StrJsonResult = engine.Execute(StrFunName).GetCompletionValue();//執行範本運算 2.11.58 版本
+            var MainFunction = engine.GetValue(StrFunName).AsFunctionInstance();
+            var StrJsonResult = MainFunction.Call();//執行範本運算 3.0.1
+
+
+            ESCPOS_OrderNew ESCPOSCommand = new ESCPOS_OrderNew();
+            ESCPOSCommand = JsonSerializer.Deserialize<ESCPOS_OrderNew>(StrJsonResult.AsString());
+
+            Console.WriteLine("C# Modified ESC_Command Start");
+            if ((ESCPOSCommand != null) && (ESCPOSCommand.state_code == 0) && (ESCPOSCommand.value != null) && (ESCPOSCommand.value.Count > 0))
+            {
+                for (int i = 0; i < ESCPOSCommand.value.Count; i++)
+                {
+                    ESCPOSCommand.value[i] = UnescapeUnicode(ESCPOSCommand.value[i]);
+                }
+            }
+            Console.WriteLine("C# Modified ESC_Command End");
+
+            bool blnResult = false;
+            String StrLog = "";
+
+            Int32 dwError = 0, dwWritten = 0;
+            IntPtr hPrinter = new IntPtr(0);
+
+            DOCINFOA di = new DOCINFOA();
+            di.pDocName = "My C#.NET RAW Document";
+            di.pDataType = "RAW";
+
+            if (PrinterAPI.OpenPrinter(DriveName, out hPrinter, IntPtr.Zero))
+            {
+                // 啟動文檔列印                    
+                if (PrinterAPI.StartDocPrinter(hPrinter, 1, di))
+                {
+                    // 開始列印                        
+                    if (PrinterAPI.StartPagePrinter(hPrinter))
+                    {
+                        if ((ESCPOSCommand != null) && (ESCPOSCommand.state_code == 0) && (ESCPOSCommand.value != null))
+                        {
+                            for (int i = 0; i < ESCPOSCommand.value.Count; i++)
+                            {
+                                byte[] bytes = Encoding.GetEncoding("big5").GetBytes(UnescapeUnicode(ESCPOSCommand.value[i].ToString()));
+
+                                Int32 dwCount = bytes.Length;
+                                // 非託管指針              
+                                IntPtr pBytes = Marshal.AllocHGlobal(dwCount);
+                                // 將託管位元組陣列複製到非託管記憶體指標          
+                                Marshal.Copy(bytes, 0, pBytes, dwCount);
+
+                                // 向印表機輸出位元組  
+                                blnResult = PrinterAPI.WritePrinter(hPrinter, pBytes, dwCount, out dwWritten);
+                            }
+                        }
+
+                        PrinterAPI.EndPagePrinter(hPrinter);
+                    }
+
+                    PrinterAPI.EndDocPrinter(hPrinter);
+                }
+
+                PrinterAPI.ClosePrinter(hPrinter);
+
+                blnResult = true;
+            }
+
+            if (blnResult == false)
+            {
+                dwError = Marshal.GetLastWin32Error();
+            }
+        }
+
+
         static void ESCPOS_Receipt_RS232Print(String StrInput="",String StrTemplateVar="")//收據
         {
             Console.WriteLine("Init Jint...");
@@ -1170,14 +1270,14 @@ namespace CS_test_Jint
             string StrTemplateVar = sr.ReadLine();
             sr.Close();// 關閉串流
 
-            /*
+            //*
             sr = new StreamReader(@"C:\Users\jashv\OneDrive\桌面\Invoice.json");
             string StrInvoice = sr.ReadLine();
             sr.Close();// 關閉串流
-            ESCPOS_Invoice_RS232Print(StrInput,StrTemplateVar, StrInvoice);//發票
-            */
+            //ESCPOS_Invoice_RS232Print(StrInput,StrTemplateVar, StrInvoice);//發票
+            //*/
 
-            ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
+            ESCPOS_Receipt_DrivePrint(StrInput, StrTemplateVar, StrInvoice); ;
             //ESCPOS_Lable_RS232Print(StrInput, "", StrTemplateVar);
             //ESCPOS_GodexLable_RS232Print(StrInput, "", StrTemplateVar);
             //add();

@@ -99,6 +99,9 @@
     <None Update="Script\Lable_40mm_50mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Script\VT-303ii.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Script\陸柒零落料機_40mm_50mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
