@@ -6,5 +6,3 @@ https://www.youtube.com/watch?v=yCs6UmogKEg&t=57s
 https://docs.microsoft.com/zh-tw/shows/code-conversations/sebastien-ros-on-jint-javascript-interpreter-net
 
 https://blog.no2don.com/2020/03/cnet-core-c-jint-javascript.html
-
-
