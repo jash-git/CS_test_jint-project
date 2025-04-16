@@ -1,4 +1,11 @@
-﻿const ecTEXT_ALIGN_CENTER01 = ecESC + "a" + 1;//文字至中
+﻿//芯燁(xprinter)電子發票
+
+//---
+//專屬 ESC Code
+const ecTEXT_ALIGN_CENTER_xprinter = ecESC + "a" + 1;//文字至中 ~ \u001Ba1 (\u001BaI)
+const ecTEXT_ALIGN_LEFT_xprinter = ecESC + "a" + 0;//文字靠左 ~ \u001Ba0 (\u001BaH)
+//---專屬 ESC Code
+
 function Main() {
 	var json_obj = {};//輸入字串的JSON物件
 	var invoice_obj = {};//輸入invoice字串的JSON物件
@@ -52,14 +59,14 @@ function Sell(json_obj, invoice_obj) {
 	//---
 	//店家名 & LOGO
 	if (PrinterParms.print_logo != "N") {
-		ESC_Value.push(ecTEXT_ALIGN_CENTER + ecLOGO);
+		ESC_Value.push(ecTEXT_ALIGN_CENTER_xprinter + ecLOGO);
 	}
 	else {
 		if (Wlen(Business_Name) <= 18) {
-			ESC_Value.push(ecTEXT_ALIGN_CENTER01 + ecDOUBLE_ON + Business_Name + ecDOUBLE_OFF + ecFREE_LINE);
+			ESC_Value.push(ecTEXT_ALIGN_CENTER_xprinter + ecDOUBLE_ON + Business_Name + ecDOUBLE_OFF + ecFREE_LINE);
 		}
 		else {
-			ESC_Value.push(ecTEXT_ALIGN_CENTER01 + ecBIG_ON + Business_Name + ecBIG_OFF + ecFREE_LINE);
+			ESC_Value.push(ecTEXT_ALIGN_CENTER_xprinter + ecBIG_ON + Business_Name + ecBIG_OFF + ecFREE_LINE);
 		}
 	}
 	//---店家名 & LOGO
@@ -68,16 +75,16 @@ function Sell(json_obj, invoice_obj) {
 	if (Reprint == "Y") {
 		Invoice_Title = Invoice_Title + "補印";
 	}
-	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + Invoice_Title + ecDOUBLE_OFF + ecFREE_LINE);
+	ESC_Value.push(ecTEXT_ALIGN_CENTER_xprinter + ecDOUBLE_ON + Invoice_Title + ecDOUBLE_OFF + ecFREE_LINE);
 
 	var Inv_Period = (json_obj.invoice_data.inv_period.substr(0, 4) - 1911) + "年" + (json_obj.invoice_data.inv_period.substr(4, 2) - 1) + "-" + (json_obj.invoice_data.inv_period.substr(4, 2) - 0) + "月";
-	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + Inv_Period + ecDOUBLE_OFF + ecFREE_LINE);
+	ESC_Value.push(ecTEXT_ALIGN_CENTER_xprinter + ecDOUBLE_ON + Inv_Period + ecDOUBLE_OFF + ecFREE_LINE);
 
 	var Invoice_NO = json_obj.invoice_data.inv_no.substr(0, 2) + "-" + json_obj.invoice_data.inv_no.substr(2, 8);
 	if (Sandbox == "Y") {
 		Invoice_NO = Invoice_NO + "(測)";
 	}
-	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecDOUBLE_ON + Invoice_NO + ecDOUBLE_OFF + ecFREE_LINE);
+	ESC_Value.push(ecTEXT_ALIGN_CENTER_xprinter + ecDOUBLE_ON + Invoice_NO + ecDOUBLE_OFF + ecFREE_LINE);
 
 	//---
 	//列印時間;文字靠左 + 列印時間 + 換行
@@ -90,21 +97,21 @@ function Sell(json_obj, invoice_obj) {
 	minute = pad2(now.getMinutes());
 	second = pad2(now.getSeconds());
 	strbuf = ShiftSpace + year + "-" + month + "-" + day + " " + hour + ':' + minute + ':' + second;
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 列印時間 + 換行
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);//文字靠左 + 列印時間 + 換行
 	//---列印時間;文字靠左 + 列印時間 + 換行
 
 	strbuf = ShiftSpace + "隨機碼: " + json_obj.invoice_data.random_code + "       總計: " + json_obj.invoice_amount;
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 隨機碼&總計 + 換行
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);//文字靠左 + 隨機碼&總計 + 換行
 
 	strbuf = ShiftSpace + "賣方: " + Com_EIN + "     買方: " + json_obj.invoice_data.cust_ein;
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 統編 + 換行	
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);//文字靠左 + 統編 + 換行	
 
 
 	//---
 	//紙張設定
 	ESC_Value.push("\x1B\x4C");//选择页模式 ESC L
 	ESC_Value.push("\x1B\x57\x00\x00\x00\x00\x80\x02\x00\x02");//在页模式下设置打印区域 ESC W xL xH yL yH dxL dxH dyL dyH; [456%256=200(C8) 456/256=1(01) [57mm]; 480%256=244(F4) 480/256=1(01)[30mm]
-	//ESC_Value.push("\x1B\x54\x00");//选择字符代码表 ESC T n ; HEX 1B 54 00	
+	ESC_Value.push("\x1B\x54\x00");//选择字符代码表 ESC T n ; HEX 1B 54 00	
 	//---紙張設定		
 
 	//---
@@ -156,10 +163,10 @@ function Sell(json_obj, invoice_obj) {
 	//---
 	//最後資訊
 	strbuf = ShiftSpace + "店家: " + json_obj.store_name;
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);
 
 	strbuf = ShiftSpace + "機號: " + json_obj.terminal_sid;
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);
 	//---最後資訊
 
 	//---
@@ -168,21 +175,21 @@ function Sell(json_obj, invoice_obj) {
 		ESC_Value.push(ecTEXT_SPACE70);
 
 		strbuf = ShiftSpace + '----------------------------------';
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+		ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);
 
-		ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBIG_ON + "交易明細表" + ecBIG_OFF + ecFREE_LINE + ecFREE_LINE);
+		ESC_Value.push(ecTEXT_ALIGN_CENTER_xprinter + ecBIG_ON + "交易明細表" + ecBIG_OFF + ecFREE_LINE + ecFREE_LINE);
 
 		strbuf = ShiftSpace + '營業人名稱: ' + Business_Name;
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+		ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);
 
 		strbuf = ShiftSpace + '營業人統編: ' + Com_EIN;
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+		ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);
 
 		strbuf = ShiftSpace + '發票編號: ' + invoice_obj.Track + "-" + invoice_obj.Inv_No;
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+		ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);
 
 		strbuf = ShiftSpace + '交易序號: ' + json_obj.order_no;
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE + ecFREE_LINE);
+		ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE + ecFREE_LINE);
 
 		var AllCount = 0;
 		var space = "";
@@ -237,14 +244,14 @@ function Sell(json_obj, invoice_obj) {
 					space += " ";
 				}
 				strbuf = ShiftSpace + product_name_show + space + count + "  " + amount;
-				ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+				ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);
 
 			}
 		}
 		//---產品+配料
 
 		strbuf = ShiftSpace + '----------------------------------';
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+		ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
 
 		//---
 		//小計列
@@ -254,16 +261,16 @@ function Sell(json_obj, invoice_obj) {
 			space += " ";//產生對應空白字串
 		}
 		strbuf = ShiftSpace + "小計: " + space + invoice_obj.Total_Amount + "   ";
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+		ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);
 		//---小計列
 
 		strbuf = ShiftSpace + '----------------------------------';
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行				
+		ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行				
 
 		//---
 		//稅別列
 		strbuf = ShiftSpace + '稅別    應稅總額    稅額      總計';//34=8[中文4個字]+14+4[中文2個字]+4+4[中文2個字]
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+		ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
 
 
 		var Untaxed = AllAmount - AllTax_Fee;//應稅總額
@@ -288,10 +295,10 @@ function Sell(json_obj, invoice_obj) {
 			space += " ";//產生對應空白字串
 		}
 		strbuf += space + AllAmount;
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+		ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);
 
 		strbuf = ShiftSpace + '----------------------------------';
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+		ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
 		//---稅別列
 
 		//---
@@ -311,7 +318,7 @@ function Sell(json_obj, invoice_obj) {
 			space += " ";//產生對應空白字串
 		}
 		strbuf += space + AllAmount;
-		ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+		ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
 		//---合計列
 	}
 	//---必須列印銷貨明細
@@ -344,14 +351,14 @@ function Refund(json_obj, invoice_obj) {
 
 	//---
 	//店家名
-	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBIG_ON + Business_Name + ecBIG_OFF + ecFREE_LINE);
+	ESC_Value.push(ecTEXT_ALIGN_CENTER_xprinter + ecBIG_ON + Business_Name + ecBIG_OFF + ecFREE_LINE);
 	//---店家名
 
 	strbuf = '營業人銷貨退回、進貨退出或';
-	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+	ESC_Value.push(ecTEXT_ALIGN_CENTER_xprinter + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
 
 	strbuf = '折讓證明單';
-	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE + ecFREE_LINE);
+	ESC_Value.push(ecTEXT_ALIGN_CENTER_xprinter + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE + ecFREE_LINE);
 
 	//---
 	//列印時間;文字靠左 + 列印時間 + 換行
@@ -363,16 +370,16 @@ function Refund(json_obj, invoice_obj) {
 	var minute = pad2(now.getMinutes());
 	var second = pad2(now.getSeconds());
 	strbuf = year + "-" + month + "-" + day;
-	ESC_Value.push(ecTEXT_ALIGN_CENTER + strbuf + ecFREE_LINE + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 列印時間 + 換行
+	ESC_Value.push(ecTEXT_ALIGN_CENTER_xprinter + strbuf + ecFREE_LINE + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 列印時間 + 換行
 	//---列印時間;文字靠左 + 列印時間 + 換行	
 
 	//---
 	//賣方資訊
 	strbuf = ShiftSpace + "賣方統編: " + Com_EIN;
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 統編 + 換行
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);//文字靠左 + 統編 + 換行
 
 	strbuf = ShiftSpace + "賣方名稱: " + Business_Name;
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 統編 + 換行	
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 統編 + 換行	
 	//---賣方資訊
 
 	var date = new Date(invoice_obj.Inv_Time * 1000);//json_obj.order_time (sec) -> ms, https://www.fooish.com/javascript/date/
@@ -382,7 +389,7 @@ function Refund(json_obj, invoice_obj) {
 	hour = pad2(date.getHours());
 	minute = pad2(date.getMinutes());
 	strbuf = ShiftSpace + "開立發票日期: " + year + "-" + month + "-" + day;
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 統編 + 換行	
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 統編 + 換行	
 
 	//---
 	//發票號碼
@@ -390,16 +397,16 @@ function Refund(json_obj, invoice_obj) {
 	if (Sandbox == "Y") {
 		Invoice_NO = Invoice_NO + "(測)";
 	}
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + Invoice_NO + ecBIG_OFF + ecFREE_LINE + ecFREE_LINE);
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + ecBIG_ON + Invoice_NO + ecBIG_OFF + ecFREE_LINE + ecFREE_LINE);
 	//---發票號碼
 
 	//---
 	//買方資訊
 	strbuf = ShiftSpace + "買方統編: " + json_obj.invoice_data.cust_ein;
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 統編 + 換行
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);//文字靠左 + 統編 + 換行
 
 	strbuf = ShiftSpace + "買方名稱: " + "";
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 統編 + 換行	
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 統編 + 換行	
 	//---買方資訊
 
 	var AllCount = 0;
@@ -455,14 +462,14 @@ function Refund(json_obj, invoice_obj) {
 				space += " ";
 			}
 			strbuf = ShiftSpace + product_name_show + space + count + "  " + amount;
-			ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+			ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);
 
 		}
 	}
 	//---產品+配料
 
 	strbuf = ShiftSpace + '----------------------------------';
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
 
 	//---
 	//小計列
@@ -472,16 +479,16 @@ function Refund(json_obj, invoice_obj) {
 		space += " ";//產生對應空白字串
 	}
 	strbuf = ShiftSpace + "小計: " + space + invoice_obj.Total_Amount + "   ";
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);
 	//---小計列
 
 	strbuf = ShiftSpace + '----------------------------------';
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行				
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行				
 
 	//---
 	//稅別列
 	strbuf = ShiftSpace + '稅別    應稅總額    稅額      總計';//34=8[中文4個字]+14+4[中文2個字]+4+4[中文2個字]
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
 
 
 	var Untaxed = AllAmount - AllTax_Fee;//應稅總額
@@ -506,10 +513,10 @@ function Refund(json_obj, invoice_obj) {
 		space += " ";//產生對應空白字串
 	}
 	strbuf += space + AllAmount;
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE);
 
 	strbuf = ShiftSpace + '----------------------------------';
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
 	//---稅別列
 
 	//---
@@ -529,11 +536,11 @@ function Refund(json_obj, invoice_obj) {
 		space += " ";//產生對應空白字串
 	}
 	strbuf += space + AllAmount;
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE + ecFREE_LINE + ecFREE_LINE);
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE + ecFREE_LINE + ecFREE_LINE);
 	//---合計列
 
 	strbuf = ShiftSpace + '  簽收人:';//
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 分隔線 + 換行	
+	ESC_Value.push(ecTEXT_ALIGN_LEFT_xprinter + strbuf + ecFREE_LINE + ecFREE_LINE);//文字靠左 + 分隔線 + 換行	
 
 	ESC_Value.push(ecCUT_PAPER);//切紙
 

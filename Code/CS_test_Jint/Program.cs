@@ -604,7 +604,8 @@ namespace CS_test_Jint
 
         static void ESCPOS_Receipt_DrivePrint(String StrInput = "", String StrTemplateVar = "", String StrInvoice = "")//收據
         {
-            String DriveName = "POS-80C";
+            //String DriveName = "80mm Series Printer";//PDC325
+            String DriveName = "POS-80C";//PDC325
             Console.WriteLine("Init Jint...");
             var engine = new Engine();
 
@@ -616,7 +617,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "VT-303ii.js"));
+                Path.DirectorySeparatorChar + "ECS_PageMode_test.js"));
 
             engine.SetValue("Business_Name", "VTEAM-茶飲店(營業登記名稱)");//SqliteDataAccess.m_company[0].business_name;
             engine.SetValue("Com_EIN", "28537502");//SqliteDataAccess.m_company[0].EIN;//統一編號
@@ -714,7 +715,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "REPORT_80mm.js"));
+                Path.DirectorySeparatorChar + "ECS_PageMode_test.js"));
 
             engine.SetValue("input", StrInput);
             engine.SetValue("TemplateVar", StrTemplateVar);
@@ -1278,6 +1279,7 @@ namespace CS_test_Jint
             //*/
 
             ESCPOS_Receipt_DrivePrint(StrInput, StrTemplateVar, StrInvoice); ;
+            //ESCPOS_Receipt_RS232Print(StrInput, StrTemplateVar);
             //ESCPOS_Lable_RS232Print(StrInput, "", StrTemplateVar);
             //ESCPOS_GodexLable_RS232Print(StrInput, "", StrTemplateVar);
             //add();

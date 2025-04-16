@@ -74,3 +74,4 @@ C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\x86\Debug\net6.0\Script\Godex_提點落料機_40mm_50mm.js
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\x86\Debug\net6.0\Script\Godex_陸柒零落料機_40mm_50mm.js
 C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\x86\Debug\net6.0\Script\VT-303ii.js
+C:\Users\jashv\OneDrive\桌面\GITHUB\CS_test_jint-project\Code\CS_test_Jint\bin\x86\Debug\net6.0\Script\ECS_PageMode_test.js

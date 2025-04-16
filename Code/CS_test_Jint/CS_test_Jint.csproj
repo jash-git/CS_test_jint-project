@@ -48,6 +48,9 @@
     <None Update="Script\EasyCardCHECKOUT_57mm.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Script\ECS_PageMode_test.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Script\esc_pos01.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
