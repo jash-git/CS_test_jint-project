@@ -617,7 +617,7 @@ namespace CS_test_Jint
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
                 Path.DirectorySeparatorChar + "CommonFun.js"));
             engine.Execute(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "Script" +
-                Path.DirectorySeparatorChar + "ECS_PageMode_test.js"));
+                Path.DirectorySeparatorChar + "ECSCode_test.js"));
 
             engine.SetValue("Business_Name", "VTEAM-茶飲店(營業登記名稱)");//SqliteDataAccess.m_company[0].business_name;
             engine.SetValue("Com_EIN", "28537502");//SqliteDataAccess.m_company[0].EIN;//統一編號

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CS_test_Jint")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("2022.9.5.0633")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a51faed3c5aa264f4bf5034b86f91eca726e34c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8420fe4c27265ac0fc5ded9143702e774a0321b")]
 [assembly: System.Reflection.AssemblyProductAttribute("CS_test_Jint")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CS_test_Jint")]
 [assembly: System.Reflection.AssemblyVersionAttribute("2022.9.5.0633")]
