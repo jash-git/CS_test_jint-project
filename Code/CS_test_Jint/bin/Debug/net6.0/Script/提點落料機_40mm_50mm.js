@@ -99,7 +99,6 @@ function Main() {
                 var POSITION_numY = 25;
                 CMD_Value.push(lcDATA_START + POSITION_numX + ',' + lcPOSITION_Y + ',' + lcFONT_SIZE01 + strbuf + lcEND);
 
-
                 //---
                 //產品+配料		
 

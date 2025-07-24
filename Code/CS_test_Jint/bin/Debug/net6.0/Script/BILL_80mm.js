@@ -113,6 +113,24 @@ function Main() {
     strbuf = '日期: ' + year + "-" + month + "-" + day + "  時間: " + hour + ':' + minute;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
 
+    //發票號碼
+    if ((json_obj.invoice_data != null) && (json_obj.invoice_data.inv_no.length > 0)) {
+        strbuf = '發票號碼: ' + json_obj.invoice_data.inv_no;
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+    }
+
+    //客戶姓名
+    if (json_obj.member_name.length > 0) {
+        strbuf = '客戶姓名: ' + json_obj.member_name;
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+    }
+
+    //連絡電話
+    if (json_obj.member_phone.length > 0) {
+        strbuf = '連絡電話: ' + json_obj.member_phone;
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+    }
+
 	//交易序號;文字靠左 + 交易序號 + 換行
     strbuf = '交易序號: ' + json_obj.order_no;
     ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
@@ -130,7 +148,8 @@ function Main() {
 	
     var AllCount = 0;
 	var space = "";
-	var spaceCount = 0;
+    var spaceCount = 0;
+    var ALLDiscountFee = 0;
     //---
     //產品+配料
     if (json_obj.order_items != null) {
@@ -151,12 +170,12 @@ function Main() {
 
                 space = "";
 				spaceCount = 0;
-                var amount = "" + json_obj.order_items[i].amount;//單一產品價格值轉字串
+                var amount = "" + json_obj.order_items[i].subtotal;//單一產品價格值轉字串
                 spaceCount = 6 - Wlen(amount);//計算價格欄位的空白數= 該欄位總長度6 - 數量字串長度
                 for (var j = 0; j < spaceCount; j++) {
                     space += " ";
                 }
-                amount = space + json_obj.order_items[i].amount;
+                amount = space + json_obj.order_items[i].subtotal;
 
 				//產品&包材;文字靠左 + 放大 + 產品 + 換行
                 space = "";
@@ -244,6 +263,20 @@ function Main() {
                 }
             }
 
+            //折扣/折讓 ~ 總寬度 20+6+6=32
+            spaceCount = 0;
+            space = "";
+            var discount_name = json_obj.order_items[i].discount_name.trim();
+            if ((discount_name != null) && (discount_name.length > 0)) {
+                ALLDiscountFee += json_obj.order_items[i].discount_fee;
+                spaceCount = 46 - Wlen(discount_name) - Wlen(json_obj.order_items[i].discount_fee) - 4;//4=" 【""】""-"
+                for (var j = 0; j < spaceCount; j++) {
+                    space += " ";//產生對應空白字串
+                }
+                strbuf = " 【" + discount_name + "】" + space + "-" + json_obj.order_items[i].discount_fee;
+                ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+            }
+
         }
     }
     //---產品+配料
@@ -296,7 +329,21 @@ function Main() {
 		space += " ";//產生對應空白字串
 	}		
 	strbuf = "小計金額: " + space + json_obj.subtotal;
-	ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+    ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+
+    //單項折扣/讓總計
+    if (ALLDiscountFee > 0) {
+        strbuf = '------------------------------------------------';
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
+
+        space = "";
+        spaceCount = 48 - Wlen("單項折扣/讓總計: ") - Wlen("-" + ALLDiscountFee);
+        for (var l = 0; l < spaceCount; l++) {
+            space += " ";//產生對應空白字串
+        }
+        strbuf = "單項折扣/讓總計: " + space + "-" + ALLDiscountFee
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);
+    }
 	
 	//服務費
 	if(json_obj.service_fee>0)
@@ -334,6 +381,17 @@ function Main() {
         ESC_Value.push(ecTEXT_ALIGN_LEFT + strbuf + ecFREE_LINE);//文字靠左 + 分隔線 + 換行
     }
     //---優惠/兌換券
+
+    //點數折抵金額:
+    if (json_obj.point_discount > 0) {
+        space = "";
+        spaceCount = 48 - Wlen("點數折抵金額: ") - Wlen("-" + json_obj.point_discount);
+        for (var l = 0; l < spaceCount; l++) {
+            space += " ";//產生對應空白字串
+        }
+        strbuf = "點數折抵金額: " + space + "-" + json_obj.point_discount;
+        ESC_Value.push(ecTEXT_ALIGN_LEFT + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
+    }
 
 	//總計
 	space = "";
