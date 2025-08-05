@@ -359,7 +359,7 @@ function Refund(json_obj, invoice_obj) {
 	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBIG_ON + Business_Name + ecBIG_OFF + ecFREE_LINE);
 	//---店家名
 
-	strbuf = '營業人銷貨退回、進貨退出或';
+	strbuf = '營業人銷貨退回、進貨退出貨';
 	ESC_Value.push(ecTEXT_ALIGN_CENTER + ecBIG_ON + strbuf + ecBIG_OFF + ecFREE_LINE);
 
 	strbuf = '折讓證明單';
